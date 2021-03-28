@@ -1,6 +1,10 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
+using System;
+using System.Collections;
+using TMPro;
 
-public class VolumeCapture : MonoBehaviour
+public class AudioMeasure : MonoBehaviour
 {
     public float RmsValue;
     public float DbValue;
@@ -14,16 +18,66 @@ public class VolumeCapture : MonoBehaviour
     private float[] _spectrum;
     private float _fSample;
 
+    private AudioSource micAudioSource;
+
+    public Image chargeMeterFillBarImage;
+    public TextMeshProUGUI chargeLevelText;
+
+    private int count;
+    private float movingAverage;
+
+    public int movingAverageLength = 10;
+
+    private float audioChargeMeterLevel;
+
+    public int chargeBarDamperAmount = 5;
+
     void Start()
     {
+        micAudioSource = GetComponent<AudioSource>();
+        micAudioSource.clip = Microphone.Start(null, true, 100, 44100);
+        micAudioSource.loop = true;
+        micAudioSource.mute = false;
+        while (!(Microphone.GetPosition(null) > 0)) { }
+        micAudioSource.Play();
+
         _samples = new float[QSamples];
         _spectrum = new float[QSamples];
         _fSample = AudioSettings.outputSampleRate;
+
     }
+     
 
     void Update()
     {
+        count++;
+
         AnalyzeSound();
+
+        CalculateMovingAverage();
+
+        chargeLevelText.text = movingAverage.ToString();
+
+        if (chargeBarDamperAmount <= 0) chargeBarDamperAmount = 1;
+
+        chargeMeterFillBarImage.fillAmount = movingAverage / chargeBarDamperAmount;
+
+    }
+
+    private void CalculateMovingAverage()
+    {
+        if (count > movingAverageLength)
+        {
+            movingAverage = movingAverage + (DbValue - movingAverage) / (movingAverageLength + 1);
+        }
+        else
+        {
+            movingAverage += DbValue;
+        }
+        if (count == movingAverageLength)
+        {
+            movingAverage = movingAverage / count;
+        }
     }
 
     void AnalyzeSound()
@@ -37,9 +91,9 @@ public class VolumeCapture : MonoBehaviour
         }
         RmsValue = Mathf.Sqrt(sum / QSamples); // rms = square root of average
         DbValue = 20 * Mathf.Log10(RmsValue / RefValue); // calculate dB
-        if (DbValue < -160) DbValue = -160; // clamp it to -160dB min
+        if (DbValue < 0) DbValue = 0; // clamp it to 0dB min
                                             // get sound spectrum
-        GetComponent<AudioSource>().GetSpectrumData(_spectrum, 0, FFTWindow.BlackmanHarris);
+        micAudioSource.GetSpectrumData(_spectrum, 0, FFTWindow.BlackmanHarris);
         float maxV = 0;
         var maxN = 0;
         for (i = 0; i < QSamples; i++)
