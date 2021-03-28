@@ -6,8 +6,7 @@ using UnityEngine.UI;
 using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 
-public class Button_Manager : MonoBehaviour
-{
+public class Button_Manager : MonoBehaviour {
     [Header("Object References")]
     [SerializeField] AudioMixer audioMixer = null;
     [SerializeField] AudioSource audioSource = null;
@@ -42,6 +41,15 @@ public class Button_Manager : MonoBehaviour
         SceneManager.UnloadSceneAsync(currentScene);
     }
 
+    public void ContinueGame(){
+        audioSource.PlayOneShot(buttonPressedAudio);
+
+        int currentScene = SceneManager.GetActiveScene().buildIndex;
+
+        SceneManager.LoadSceneAsync(GameManager.Instance.GetLevelProgression());
+        SceneManager.UnloadSceneAsync(currentScene);
+    }
+
     public void OnSliderChange(float value) {
         audioMixer.SetFloat(audioMixerChannelKey, Mathf.Log10(value) * 20);
         PlayerPrefs.SetFloat(saveKey, value);
@@ -56,8 +64,7 @@ public class Button_Manager : MonoBehaviour
         PlayerPrefs.Save();
     }
 
-    public void OnPanelSwicth()
-    {
+    public void OnPanelSwicth(){
         thisButton.interactable = false;
         PanelBeingSwitchedToButton.interactable = true;
 

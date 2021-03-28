@@ -732,6 +732,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   audioMixer: {fileID: 24100000, guid: eec57e009101e1f439192a15b2b2ac2f, type: 2}
   audioSource: {fileID: 2800105935796851306}
+  thisButton: {fileID: 0}
+  PanelBeingSwitchedToButton: {fileID: 0}
+  panelToActivate: {fileID: 0}
+  PanelToDeactivate: {fileID: 0}
   mousedOverAudio: {fileID: 8300000, guid: 7c6214f57642649429a8f2a4b492f5da, type: 3}
   buttonPressedAudio: {fileID: 8300000, guid: ffdeedfdb540cda4c93e3c5c26f27228, type: 3}
   goToSceneName: 
@@ -929,7 +933,7 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  m_IsOn: 1
+  m_IsOn: 0
 --- !u!1 &2800105936314631324
 GameObject:
   m_ObjectHideFlags: 0
