@@ -56,6 +56,8 @@ public class HeroControls : MonoBehaviour
             {
                 //start or continue charging animation/sprite
                 energyCharge();
+                _anim.SetBool("isCharge", true);
+                chargeUp.GetComponent<Animator>().SetBool("isCharge", true);
             }
             else
             {
@@ -79,7 +81,7 @@ public class HeroControls : MonoBehaviour
                     if(Input.GetKeyDown(KeyCode.K))
                     {
                         canJump = false;
-                        //Start jump animation
+                        _anim.SetTrigger("isJump");
                     }
                 }
             }
@@ -94,7 +96,7 @@ public class HeroControls : MonoBehaviour
             Vector3 targetV = new Vector2(hMove * horizontalSpeed, vMove * verticalSpeed);
 
             rigidBod.velocity = Vector3.SmoothDamp(rigidBod.velocity, targetV, ref velocity, movementSmooth);
-
+            _anim.SetInteger("Walk", Mathf.RoundToInt(Mathf.Abs(horizontalMove)));
 
             if(hMove > 0 && !facingRight)
             {
@@ -229,7 +231,7 @@ public class HeroControls : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if (collision.transform.CompareTag("EnemyAttack"))
+        if (collision.transform.CompareTag("EnemyAttackBox"))
         {
             float damage = 5;
             //float damage = collision.gameObject.GetComponent<EnemyBaseClass>().attackDamage;
