@@ -1,8 +1,8 @@
 ﻿// Created by Dylan LeClair 27/03/21
 // Last modified 27/03/21 (Dylan LeClair)
-
+//Last Modified 28/03/21 (Kyle Ennis)
 using UnityEngine;
-
+using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
     public static GameManager Instance { get; private set; }
 
@@ -37,6 +37,10 @@ public class GameManager : MonoBehaviour {
         PlayerPrefs.Save();
     }
 
+    public string GetActiveScene()
+    {
+        return SceneManager.GetActiveScene().name;
+    }
     public Transform GetPlayerTransform()
     {
         return player;

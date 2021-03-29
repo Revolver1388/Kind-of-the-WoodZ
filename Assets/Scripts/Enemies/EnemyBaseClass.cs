@@ -9,17 +9,19 @@ public class EnemyBaseClass : MonoBehaviour {
     [SerializeField] float movementSpeed = 0;
     [SerializeField] float attackDamage = 0;
     [SerializeField] float attackSpeed = 0;
-    CircleCollider2D _attackBox;
+    [SerializeField] CircleCollider2D _attackBox;
     BoxCollider2D _hitBox;
+    SpriteRenderer _rend;
     HeroControls _player;
-
+    [SerializeField] Transform _layerOrd;
     bool isAlive = true;
     Animator _anim;
     void Awake(){
         _anim = GetComponent<Animator>();
         //player = GameManager.Instance.GetPlayerTransform();
-        _attackBox = GetComponent<CircleCollider2D>();
+        _attackBox = GetComponentInChildren<CircleCollider2D>();
         _hitBox = GetComponent<BoxCollider2D>();
+        _rend = GetComponent<SpriteRenderer>();
         _player = FindObjectOfType<HeroControls>();
     }
     private void Start()
@@ -28,14 +30,12 @@ public class EnemyBaseClass : MonoBehaviour {
         _attackBox.enabled = false;
         _hitBox.isTrigger = true;
     }
-    void Update() {
-        MoveTowardsPlayer();
+    void LateUpdate() {
+        _rend.sortingOrder = Mathf.RoundToInt(_layerOrd.position.y) * -1;
     }
 
     public virtual void MoveTowardsPlayer() {
 
-        transform.position = Vector2.MoveTowards(transform.position, _player.transform.position, movementSpeed * Time.deltaTime);
-        // else if (Vector3.Distance(transform.position, _player.transform.position) <= 1) AttackPlayer();
 
     }
 
@@ -45,20 +45,18 @@ public class EnemyBaseClass : MonoBehaviour {
         _anim.SetTrigger("isAttack");
     }
 
-    void OnCollisionEnter(Collision collision){
-        if (collision.transform.CompareTag("PlayerHand") || collision.transform.CompareTag("PlayerFeet"))
-            TakeDamage();
-    }
-
     public void TakeDamage(){
         if (!isAlive)
             return;
 
         //Call player damage method
-
+        _anim.SetTrigger("isHurt");
+        if(Health > 0)
+        {
+            Health--;
+        }
         if(Health <= 0)
         {
-            _anim.SetTrigger("isHurt");
             isAlive = false;
             Die();
         }
@@ -66,7 +64,6 @@ public class EnemyBaseClass : MonoBehaviour {
 
     void Die() {
         _anim.SetBool("isDead", true);
-      //Disbale colliders
     }
 
     public void DeactivateEnemy() {
@@ -88,5 +85,9 @@ public class EnemyBaseClass : MonoBehaviour {
         else
             _hitBox.enabled = true;
 
+    }
+    private void OnTriggerEnter2D(Collider2D c)
+    {
+        if (c.tag == "PlayerAttackBox") TakeDamage();
     }
 }
