@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4250603350825847577}
   - component: {fileID: 4250603350825847575}
   - component: {fileID: 4250603350825847574}
+  - component: {fileID: 9144215664324554495}
   m_Layer: 0
   m_Name: Atlas_Fox_1
   m_TagString: Untagged
@@ -101,6 +102,22 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &9144215664324554495
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4250603350825847576}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ac9ad49a690bac34da8397858a0ca061, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 0
+  movementSpeed: 0
+  attackDamage: 0
+  attackSpeed: 0
 --- !u!1 &4250603351713603471
 GameObject:
   m_ObjectHideFlags: 0

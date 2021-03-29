@@ -30,11 +30,16 @@ public class HeroControls : MonoBehaviour
     private int attackDamage = 10;
 
 
+    //Animator
+    Animator _anim;
+    [SerializeField] GameObject chargeUp;
+
     void Awake()
     {
         rigidBod = GetComponent<Rigidbody2D>();
         attackZone = GetComponent<CircleCollider2D>();
         attackZone.enabled = false;
+        _anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -44,7 +49,11 @@ public class HeroControls : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Space))
             {
+                rigidBod.velocity = Vector2.zero;
                 //start or continue charging animation/sprite
+                _anim.SetBool("isCharge", true);
+                chargeUp.SetActive(true);
+                chargeUp.GetComponent<Animator>().SetBool("isCharge", true);
                 energyCharge();
             }
             else
@@ -52,6 +61,8 @@ public class HeroControls : MonoBehaviour
                 horizontalMove = Input.GetAxis("Horizontal");
                 verticalMove = Input.GetAxis("Vertical");
                 moveCharacter(horizontalMove, verticalMove);
+                _anim.SetBool("isCharge", false);
+                chargeUp.GetComponent<Animator>().SetBool("isCharge", false);
                 if (Input.GetKeyDown(KeyCode.J))
                 {
                     attack();
@@ -93,7 +104,8 @@ public class HeroControls : MonoBehaviour
     {
         if (canAttack)
         {
-            attackZone.enabled = true;
+          //  attackZone.enabled = true;
+            _anim.SetTrigger("isAttack");
             canAttack = false;
             StartCoroutine(attackDelay());
             Debug.Log("Attack");
@@ -174,5 +186,14 @@ public class HeroControls : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
         canTakeDamage = true;
         //stop minor flashing animation?
+    }
+
+    public void ActivateAttackBox()
+    {
+        if (attackZone.isActiveAndEnabled)
+            attackZone.enabled = false;
+        else
+            attackZone.enabled = true;
+
     }
 }
