@@ -30,26 +30,21 @@ public class HeroControls : MonoBehaviour
     private CircleCollider2D attackZone;
     [SerializeField] int attackDamage;
 
-<<<<<<< Updated upstream
-=======
-    //Animator
+
     Animator _anim;
     [SerializeField] GameObject chargeUp;
 
 
->>>>>>> Stashed changes
     void Awake()
     {
         rigidBod = GetComponent<Rigidbody2D>();
         attackZone = attackHands.GetComponent<CircleCollider2D>();
         //attackZone = GetComponent<CircleCollider2D>();
         attackZone.enabled = false;
-<<<<<<< Updated upstream
-=======
+
         _anim = GetComponent<Animator>();
         attackDamage = 0;
         canJump = true;
->>>>>>> Stashed changes
     }
 
     // Update is called once per frame
@@ -67,13 +62,11 @@ public class HeroControls : MonoBehaviour
                 horizontalMove = Input.GetAxis("Horizontal");
                 verticalMove = Input.GetAxis("Vertical");
                 moveCharacter(horizontalMove, verticalMove);
-<<<<<<< Updated upstream
-=======
+
                 _anim.SetBool("isCharge", false);
                 chargeUp.GetComponent<Animator>().SetBool("isCharge", false);
 
                 //Attack 1
->>>>>>> Stashed changes
                 if (Input.GetKeyDown(KeyCode.J))
                 {
                     //attack for 10 damage with 0.5 seconds delay
@@ -126,12 +119,9 @@ public class HeroControls : MonoBehaviour
     {
         if (canAttack)
         {
-<<<<<<< Updated upstream
             attackZone.enabled = true;
-=======
             attackDamage = damage; 
-            //attackZone.enabled = true;
->>>>>>> Stashed changes
+
             canAttack = false;
             _anim.SetTrigger("isAttack");
             StartCoroutine(attackDelay(delayTime));
@@ -222,8 +212,6 @@ public class HeroControls : MonoBehaviour
         canTakeDamage = true;
         //stop minor flashing animation?
     }
-<<<<<<< Updated upstream
-=======
 
     public void ActivateAttackBox()
     {
@@ -248,5 +236,4 @@ public class HeroControls : MonoBehaviour
             hitOurHero((int)damage);
         }
     }
->>>>>>> Stashed changes
 }
