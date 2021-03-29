@@ -17,6 +17,27 @@ TextureImporter:
   - first:
       213: -5151178863656045625
     second: Chicken_Hurt_4
+  - first:
+      213: 6265427408847728191
+    second: Chicken_Hurt_0
+  - first:
+      213: -3534983526685050712
+    second: Chicken_Hurt_1
+  - first:
+      213: -4877375142208313468
+    second: Chicken_Hurt_3
+  - first:
+      213: 1585655332983560438
+    second: Chicken_Hurt_5
+  - first:
+      213: 4426813599133690940
+    second: Chicken_Hurt_6
+  - first:
+      213: -3942786785431785004
+    second: Chicken_Hurt_7
+  - first:
+      213: -8943397713231240450
+    second: Chicken_Hurt_8
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -118,7 +139,7 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 0
-        y: 157
+        y: 559
         width: 479
         height: 389
       alignment: 7
@@ -128,8 +149,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 1a6183f0c74b6cb30800000000000000
-      internalID: 4307328538550736545
+      spriteID: f3e6d5e580543f650800000000000000
+      internalID: 6265427408847728191
       vertices: []
       indices: 
       edges: []
@@ -139,9 +160,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 542
-        y: 104
+        y: 506
         width: 381
-        height: 493
+        height: 487
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -149,8 +170,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 35b3da9d1a217e620800000000000000
-      internalID: 2803229779412466515
+      spriteID: 8a8741d263731fec0800000000000000
+      internalID: -3534983526685050712
       vertices: []
       indices: 
       edges: []
@@ -160,9 +181,9 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 1035
-        y: 82
+        y: 487
         width: 377
-        height: 500
+        height: 497
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -170,8 +191,71 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a9a01b18987f9c090800000000000000
-      internalID: -8013601891970643302
+      spriteID: 4876a5c4625105cb0800000000000000
+      internalID: -4877375142208313468
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chicken_Hurt_5
+      rect:
+        serializedVersion: 2
+        x: 116
+        y: 20
+        width: 345
+        height: 463
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6f850bacf11610610800000000000000
+      internalID: 1585655332983560438
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chicken_Hurt_6
+      rect:
+        serializedVersion: 2
+        x: 549
+        y: 8
+        width: 384
+        height: 458
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: c3c6b3f93833f6d30800000000000000
+      internalID: 4426813599133690940
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Chicken_Hurt_7
+      rect:
+        serializedVersion: 2
+        x: 1025
+        y: 4
+        width: 394
+        height: 452
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 4d1fb35fe486849c0800000000000000
+      internalID: -3942786785431785004
       vertices: []
       indices: 
       edges: []
