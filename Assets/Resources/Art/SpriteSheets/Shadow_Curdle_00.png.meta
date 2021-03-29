@@ -1,37 +1,34 @@
 fileFormatVersion: 2
-guid: 2299926338d4b3d4485f15790a7c8ba9
+guid: 61b3e9df08d84e343883326aacfaba39
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -480691225593209486
-    second: Atlas_Fox_0
+      213: 8861804753655098953
+    second: Shadow_Curdle_00_0
   - first:
-      213: 815415173606913594
-    second: Atlas_Fox_1
+      213: 1138989819784873129
+    second: Shadow_Curdle_00_1
   - first:
-      213: -3655373213444044388
-    second: Atlas_Fox_2
+      213: -5214422230610685971
+    second: Shadow_Curdle_00_2
   - first:
-      213: -4441518126499500953
-    second: Atlas_Fox_3
+      213: 831214824156730128
+    second: Shadow_Curdle_00_3
   - first:
-      213: 7032872760068630499
-    second: Atlas_Fox_10
+      213: 7231985589217444900
+    second: Shadow_Curdle_00_4
   - first:
-      213: 6948986213324275481
-    second: Atlas_Fox_10
+      213: -4099676314451868364
+    second: Shadow_Curdle_00_5
   - first:
-      213: 2262193332295055800
-    second: Atlas_Fox_6
+      213: 5821249090025264134
+    second: Shadow_Curdle_00_6
   - first:
-      213: 5824098188759314680
-    second: Atlas_Fox_7
+      213: -4618662098311477290
+    second: Shadow_Curdle_00_7
   - first:
-      213: -1816364291939861716
-    second: Atlas_Fox_8
-  - first:
-      213: -9079101319596603392
-    second: Atlas_Fox_4
+      213: -724249193079671761
+    second: Shadow_Curdle_00_8
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -50,7 +47,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-  isReadable: 1
+  isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   grayScaleToAlpha: 0
@@ -75,7 +72,7 @@ TextureImporter:
   spriteMeshType: 0
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 100
+  spritePixelsToUnits: 128
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -129,12 +126,54 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Atlas_Fox_0
+      name: Shadow_Curdle_00_0
       rect:
         serializedVersion: 2
-        x: 894
-        y: 654
-        width: 6
+        x: 0
+        y: 559
+        width: 479
+        height: 389
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 94eea7ab8747bfa70800000000000000
+      internalID: 8861804753655098953
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shadow_Curdle_00_1
+      rect:
+        serializedVersion: 2
+        x: 542
+        y: 506
+        width: 381
+        height: 487
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 9a4401bd4318ecf00800000000000000
+      internalID: 1138989819784873129
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shadow_Curdle_00_2
+      rect:
+        serializedVersion: 2
+        x: 922
+        y: 777
+        width: 8
         height: 14
       alignment: 7
       pivot: {x: 0.5, y: 0}
@@ -143,20 +182,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 27d9edb80ed3459f0800000000000000
-      internalID: -480691225593209486
+      spriteID: defcc83cb96a2a7b0800000000000000
+      internalID: -5214422230610685971
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atlas_Fox_1
+      name: Shadow_Curdle_00_3
       rect:
         serializedVersion: 2
-        x: 356
-        y: 255
-        width: 240
-        height: 352
+        x: 1035
+        y: 487
+        width: 377
+        height: 497
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -164,125 +203,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: a36bd47b7cfe05b00800000000000000
-      internalID: 815415173606913594
+      spriteID: 01396e58a71198b00800000000000000
+      internalID: 831214824156730128
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atlas_Fox_3
+      name: Shadow_Curdle_00_4
       rect:
         serializedVersion: 2
-        x: 965
-        y: 437
-        width: 333
-        height: 198
-      alignment: 9
-      pivot: {x: 0.88307387, y: 0.23780206}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 76ce98ecbce8c52c0800000000000000
-      internalID: -4441518126499500953
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Atlas_Fox_5
-      rect:
-        serializedVersion: 2
-        x: 1350
-        y: 239
-        width: 246
-        height: 362
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3e769667388c99160800000000000000
-      internalID: 7032872760068630499
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Atlas_Fox_10
-      rect:
-        serializedVersion: 2
-        x: 1622
-        y: 243
-        width: 289
-        height: 362
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 91fb74ac422cf6060800000000000000
-      internalID: 6948986213324275481
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Atlas_Fox_6
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 225
-        width: 246
-        height: 362
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8b934b0a9dce46f10800000000000000
-      internalID: 2262193332295055800
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Atlas_Fox_7
-      rect:
-        serializedVersion: 2
-        x: 960
-        y: 241
-        width: 339
-        height: 168
-      alignment: 9
-      pivot: {x: 0.0765714, y: 0.31458846}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 8f0befdf17a53d050800000000000000
-      internalID: 5824098188759314680
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Atlas_Fox_8
-      rect:
-        serializedVersion: 2
-        x: 1282
-        y: 220
+        x: 926
+        y: 761
         width: 5
-        height: 6
+        height: 5
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -290,20 +224,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c2b783ccc4afac6e0800000000000000
-      internalID: -1816364291939861716
+      spriteID: 424cc02a39c2d5460800000000000000
+      internalID: 7231985589217444900
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atlas_Fox_4
+      name: Shadow_Curdle_00_5
       rect:
         serializedVersion: 2
-        x: 677
-        y: 234
-        width: 243
-        height: 352
+        x: 116
+        y: 20
+        width: 345
+        height: 463
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -311,8 +245,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0080aa5f37d800280800000000000000
-      internalID: -9079101319596603392
+      spriteID: 435830fec160b17c0800000000000000
+      internalID: -4099676314451868364
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shadow_Curdle_00_6
+      rect:
+        serializedVersion: 2
+        x: 549
+        y: 8
+        width: 384
+        height: 458
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6049500843b39c050800000000000000
+      internalID: 5821249090025264134
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Shadow_Curdle_00_7
+      rect:
+        serializedVersion: 2
+        x: 1025
+        y: 4
+        width: 394
+        height: 452
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d78594da4737efb0800000000000000
+      internalID: -4618662098311477290
       vertices: []
       indices: 
       edges: []

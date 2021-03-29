@@ -1,37 +1,31 @@
 fileFormatVersion: 2
-guid: 2299926338d4b3d4485f15790a7c8ba9
+guid: dbe6ac70c438d8d47a403cb0f1d24c86
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -480691225593209486
-    second: Atlas_Fox_0
+      213: 4646649027328027380
+    second: Egg_0
   - first:
-      213: 815415173606913594
-    second: Atlas_Fox_1
+      213: -3665803642334570777
+    second: Egg_1
   - first:
-      213: -3655373213444044388
-    second: Atlas_Fox_2
+      213: -1939087737486915630
+    second: Egg_0
   - first:
-      213: -4441518126499500953
-    second: Atlas_Fox_3
+      213: 6369332073806427586
+    second: Egg_1
   - first:
-      213: 7032872760068630499
-    second: Atlas_Fox_10
+      213: -7578226498497253333
+    second: Egg_2
   - first:
-      213: 6948986213324275481
-    second: Atlas_Fox_10
+      213: 2599295178660905587
+    second: Egg_3
   - first:
-      213: 2262193332295055800
-    second: Atlas_Fox_6
+      213: -2566293651397995864
+    second: Egg_4
   - first:
-      213: 5824098188759314680
-    second: Atlas_Fox_7
-  - first:
-      213: -1816364291939861716
-    second: Atlas_Fox_8
-  - first:
-      213: -9079101319596603392
-    second: Atlas_Fox_4
+      213: 8500137045646508858
+    second: Egg_5
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
@@ -50,7 +44,7 @@ TextureImporter:
     externalNormalMap: 0
     heightScale: 0.25
     normalMapFilter: 0
-  isReadable: 1
+  isReadable: 0
   streamingMipmaps: 0
   streamingMipmapsPriority: 0
   grayScaleToAlpha: 0
@@ -72,7 +66,7 @@ TextureImporter:
   compressionQuality: 50
   spriteMode: 2
   spriteExtrude: 1
-  spriteMeshType: 0
+  spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
   spritePixelsToUnits: 100
@@ -129,118 +123,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Atlas_Fox_0
-      rect:
-        serializedVersion: 2
-        x: 894
-        y: 654
-        width: 6
-        height: 14
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 27d9edb80ed3459f0800000000000000
-      internalID: -480691225593209486
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Atlas_Fox_1
-      rect:
-        serializedVersion: 2
-        x: 356
-        y: 255
-        width: 240
-        height: 352
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: a36bd47b7cfe05b00800000000000000
-      internalID: 815415173606913594
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Atlas_Fox_3
-      rect:
-        serializedVersion: 2
-        x: 965
-        y: 437
-        width: 333
-        height: 198
-      alignment: 9
-      pivot: {x: 0.88307387, y: 0.23780206}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 76ce98ecbce8c52c0800000000000000
-      internalID: -4441518126499500953
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Atlas_Fox_5
-      rect:
-        serializedVersion: 2
-        x: 1350
-        y: 239
-        width: 246
-        height: 362
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 3e769667388c99160800000000000000
-      internalID: 7032872760068630499
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Atlas_Fox_10
-      rect:
-        serializedVersion: 2
-        x: 1622
-        y: 243
-        width: 289
-        height: 362
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 91fb74ac422cf6060800000000000000
-      internalID: 6948986213324275481
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: Atlas_Fox_6
+      name: Egg_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 225
-        width: 246
-        height: 362
+        y: 2
+        width: 124
+        height: 105
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -248,41 +137,41 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8b934b0a9dce46f10800000000000000
-      internalID: 2262193332295055800
+      spriteID: 2d7c6caf9f9f615e0800000000000000
+      internalID: -1939087737486915630
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atlas_Fox_7
+      name: Egg_1
       rect:
         serializedVersion: 2
-        x: 960
-        y: 241
-        width: 339
-        height: 168
-      alignment: 9
-      pivot: {x: 0.0765714, y: 0.31458846}
+        x: 136
+        y: 23
+        width: 117
+        height: 100
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 8f0befdf17a53d050800000000000000
-      internalID: 5824098188759314680
+      spriteID: 2c5fbb366c9646850800000000000000
+      internalID: 6369332073806427586
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atlas_Fox_8
+      name: Egg_2
       rect:
         serializedVersion: 2
-        x: 1282
-        y: 220
-        width: 5
-        height: 6
+        x: 273
+        y: 11
+        width: 124
+        height: 161
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -290,20 +179,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c2b783ccc4afac6e0800000000000000
-      internalID: -1816364291939861716
+      spriteID: b207e99962bb4d690800000000000000
+      internalID: -7578226498497253333
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Atlas_Fox_4
+      name: Egg_3
       rect:
         serializedVersion: 2
-        x: 677
-        y: 234
-        width: 243
-        height: 352
+        x: 469
+        y: 2
+        width: 124
+        height: 161
       alignment: 7
       pivot: {x: 0.5, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -311,8 +200,50 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 0080aa5f37d800280800000000000000
-      internalID: -9079101319596603392
+      spriteID: 372087e713d821420800000000000000
+      internalID: 2599295178660905587
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Egg_4
+      rect:
+        serializedVersion: 2
+        x: 620
+        y: 0
+        width: 124
+        height: 105
+      alignment: 7
+      pivot: {x: 0.5, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8a215175581b26cd0800000000000000
+      internalID: -2566293651397995864
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Egg_5
+      rect:
+        serializedVersion: 2
+        x: 756
+        y: 21
+        width: 117
+        height: 100
+      alignment: 2
+      pivot: {x: 0.5, y: 1}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: a3306eb7b9d86f570800000000000000
+      internalID: 8500137045646508858
       vertices: []
       indices: 
       edges: []
