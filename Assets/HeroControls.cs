@@ -11,7 +11,6 @@ public class HeroControls : MonoBehaviour
     [SerializeField] private bool canAttack = true;
     [SerializeField] private bool canTakeDamage = true;
     private bool canCharge = true;
-    public float attackSpeedDelay = 0.5f;
     
     //Movement Variables
     public float horizontalSpeed = 8f;
@@ -24,17 +23,27 @@ public class HeroControls : MonoBehaviour
     private Vector3 velocity = Vector3.zero;
     private float horizontalMove;
     private float verticalMove;
+    [SerializeField] bool canJump;
 
     //Attack Variables
+    [SerializeField] GameObject attackHands;
     private CircleCollider2D attackZone;
-    private int attackDamage = 10;
+    [SerializeField] int attackDamage;
+
+    //Animator
+    Animator _anim;
+    [SerializeField] GameObject chargeUp;
 
 
     void Awake()
     {
         rigidBod = GetComponent<Rigidbody2D>();
-        attackZone = GetComponent<CircleCollider2D>();
+        attackZone = attackHands.GetComponent<CircleCollider2D>();
+        //attackZone = GetComponent<CircleCollider2D>();
         attackZone.enabled = false;
+        _anim = GetComponent<Animator>();
+        attackDamage = 0;
+        canJump = true;
     }
 
     // Update is called once per frame
@@ -44,7 +53,11 @@ public class HeroControls : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Space))
             {
+                rigidBod.velocity = Vector2.zero;
                 //start or continue charging animation/sprite
+                _anim.SetBool("isCharge", true);
+                chargeUp.SetActive(true);
+                chargeUp.GetComponent<Animator>().SetBool("isCharge", true);
                 energyCharge();
             }
             else
@@ -52,9 +65,24 @@ public class HeroControls : MonoBehaviour
                 horizontalMove = Input.GetAxis("Horizontal");
                 verticalMove = Input.GetAxis("Vertical");
                 moveCharacter(horizontalMove, verticalMove);
+                _anim.SetBool("isCharge", false);
+                chargeUp.GetComponent<Animator>().SetBool("isCharge", false);
+
+                //Attack 1
                 if (Input.GetKeyDown(KeyCode.J))
                 {
-                    attack();
+                    //attack for 10 damage with 0.5 seconds delay
+                    attack(10, 0.5f);
+                }
+
+                //Jump, K right now
+                if(canJump)
+                {
+                    if(Input.GetKeyDown(KeyCode.K))
+                    {
+                        canJump = false;
+                        //Start jump animation
+                    }
                 }
             }
         }
@@ -89,14 +117,16 @@ public class HeroControls : MonoBehaviour
     }
 
     //Attack script that also calls the delay numerator to avoid attack spam
-    private void attack()
+    private void attack(int damage, float delayTime)
     {
         if (canAttack)
         {
-            attackZone.enabled = true;
+            attackDamage = damage; 
+            //attackZone.enabled = true;
             canAttack = false;
-            StartCoroutine(attackDelay());
-            Debug.Log("Attack");
+            _anim.SetTrigger("isAttack");
+            StartCoroutine(attackDelay(delayTime));
+
             if (playerEnergy > 0)
             {
                 playerEnergy -= 5;
@@ -131,10 +161,11 @@ public class HeroControls : MonoBehaviour
     }
 
     //Take Damage from enemy method
-    public void hitOurHero(int damage)
+    private void hitOurHero(int damage)
     {
         if (canTakeDamage)
         {
+            rigidBod.velocity = Vector2.zero;
             canTakeDamage = false;
             playerHealth -= damage;
             StartCoroutine(damageDelay());
@@ -154,12 +185,19 @@ public class HeroControls : MonoBehaviour
     public int getDamage()
     {
         return attackDamage;
+
+        //alternate return where energy effects attack damage
+        /*
+        float energy = (float)playerEnergy / 100f;
+        float damage = attackDamage * energy;
+        return (int)damage; */
     }
 
-    IEnumerator attackDelay()
+    IEnumerator attackDelay(float attackDelay)
     {
-        yield return new WaitForSeconds(attackSpeedDelay);
-        attackZone.enabled = false;
+        yield return new WaitForSeconds(attackDelay);
+        attackDamage = 0;
+        //attackZone.enabled = false;
         canAttack = true;
     }
 
@@ -174,5 +212,28 @@ public class HeroControls : MonoBehaviour
         yield return new WaitForSeconds(1.0f);
         canTakeDamage = true;
         //stop minor flashing animation?
+    }
+
+    public void ActivateAttackBox()
+    {
+        if (attackZone.isActiveAndEnabled)
+            attackZone.enabled = false;
+        else
+            attackZone.enabled = true;
+
+    }
+
+    public void jump()
+    {
+        canJump = !canJump;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.transform.CompareTag("EnemyAttack"))
+        {
+            float damage = collision.gameObject.GetComponent<EnemyBaseClass>().attackDamage;
+            hitOurHero((int)damage);
+        }
     }
 }
