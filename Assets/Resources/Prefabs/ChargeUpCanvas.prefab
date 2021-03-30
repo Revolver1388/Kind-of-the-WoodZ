@@ -1,5 +1,41 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2206438136890848835
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 9173292054613119065}
+  m_Layer: 5
+  m_Name: PromptTextContainer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &9173292054613119065
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2206438136890848835}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 7695925780850199026}
+  m_Father: {fileID: 2893400694820720813}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 500, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &2893400694820720801
 GameObject:
   m_ObjectHideFlags: 0
@@ -32,7 +68,7 @@ RectTransform:
   m_Children:
   - {fileID: 2893400694919146166}
   - {fileID: 5319858169547240041}
-  - {fileID: 7695925780850199026}
+  - {fileID: 9173292054613119065}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -160,6 +196,8 @@ MonoBehaviour:
   runningChargeUpText: {fileID: 2893400694925835757}
   chargedUpAmountText: {fileID: 2893400695201681455}
   promptText: {fileID: 1620300398763719364}
+  promptTextList: []
+  promptTextContainerTransform: {fileID: 9173292054613119065}
 --- !u!82 &2893400694919146167
 AudioSource:
   m_ObjectHideFlags: 0
@@ -875,13 +913,13 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 2893400694820720813}
-  m_RootOrder: 2
+  m_Father: {fileID: 9173292054613119065}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 500, y: 100}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &7059054215539021655
 CanvasRenderer:
@@ -992,8 +1030,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e8ace8ced0e81c847968cdca0aeda757, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triggerAnimPlayerOnChange: 1
-  effectIntensityMultiplier: 10
+  triggerAnimPlayerOnChange: 0
+  effectIntensityMultiplier: 30
   appearancesContainer:
     tags:
     - size
@@ -1014,7 +1052,8 @@ MonoBehaviour:
         rotationDuration: 0.3
         rotationStartAngle: 180
       presets: []
-  tags_fallbackBehaviors: []
+  tags_fallbackBehaviors:
+  - shake
   behaviorValues:
     defaults:
       wiggleAmplitude: 0.15
@@ -1068,7 +1107,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useTypeWriter: 1
-  startTypewriterMode: 3
+  startTypewriterMode: 0
   canSkipTypewriter: 1
   hideAppearancesOnSkip: 0
   triggerEventsOnSkip: 0
@@ -1083,8 +1122,8 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   waitForNormalChars: 0.03
-  waitLong: 0.6
-  waitMiddle: 0.2
+  waitLong: 0.03
+  waitMiddle: 0.03
   avoidMultiplePunctuactionWait: 0
-  waitForNewLines: 1
-  waitForLastCharacter: 1
+  waitForNewLines: 0
+  waitForLastCharacter: 0
