@@ -108,18 +108,28 @@ public class AudioMeasure : MonoBehaviour
         Debug.Log("Starting prompt text display coroutine");
         promptText.gameObject.SetActive(true);
         
-        for (int i = 0; i < promptTextList.Count; i++)
+        for (int i = 0; i <= promptTextList.Count; i++)
         {
-            Debug.Log("Playing Prompt Text " + i);
-            textAnimatorPlayer.ShowText(promptTextList[i]);
-            yield return new WaitUntil(() => textAnimator.allLettersShown);
             if (i == promptTextList.Count)
             {
                 i = 0;
             }
+
+            Debug.Log("Playing Prompt Text " + i);
+            textAnimatorPlayer.ShowText(promptTextList[i]);
+            yield return new WaitUntil(() => textAnimator.allLettersShown);
+            yield return new WaitForSeconds(2);
+            promptText.gameObject.SetActive(false);
+            promptTextContainerTransform.gameObject.SetActive(false);
+            promptTextContainerTransform.localScale = new Vector3(0.5f + (chargeAmount / 100), 0.5f + (chargeAmount / 100), 0.5f + (chargeAmount / 100));
+            promptTextContainerTransform.gameObject.SetActive(true);
+            promptText.gameObject.SetActive(true);
+            
         }
 
     }
+
+    [SerializeField] Transform promptTextContainerTransform;
 
     void Update()
     {
@@ -128,8 +138,10 @@ public class AudioMeasure : MonoBehaviour
         if (!isCharging)
         {
             chargeAmount = chargeAmount - (chargeAmount * chargeDegradePercentPerFrame);
+           
 
         }
+
 
 
         if (Input.GetKeyDown(KeyCode.Space) && !isCharging)
