@@ -30,8 +30,12 @@ public class HeroControls : MonoBehaviour
     private int attackDamage = 10;
 
 
+    //Microphone
+    private AudioMeasure audioMeasure;
+
     void Awake()
     {
+        audioMeasure = FindObjectOfType<AudioMeasure>();
         rigidBod = GetComponent<Rigidbody2D>();
         attackZone = GetComponent<CircleCollider2D>();
         attackZone.enabled = false;
@@ -45,7 +49,11 @@ public class HeroControls : MonoBehaviour
             if (Input.GetKey(KeyCode.Space))
             {
                 //start or continue charging animation/sprite
-                energyCharge();
+                //energyCharge();
+                horizontalMove = 0;
+                verticalMove = 0;
+                moveCharacter(horizontalMove, verticalMove);
+
             }
             else
             {
@@ -57,6 +65,7 @@ public class HeroControls : MonoBehaviour
                     attack();
                 }
             }
+            playerEnergy = (int)Mathf.Round(audioMeasure.chargeAmount);
         }
     }
 
@@ -117,16 +126,17 @@ public class HeroControls : MonoBehaviour
             StartCoroutine(energyDelay());
 
             //Get Value from Microphone for charge float of 1-100 or 0-1
-            int energyScream = 5; //*value
+            //float energyScream = audioMeasure.movingAverage; //*value
 
-            if (playerEnergy < 100)
-            {
-                playerEnergy += energyScream;
-            }
-            else
-            {
-                playerEnergy = 100;
-            }
+            //if (playerEnergy < 100)
+            //{
+            //    playerEnergy += energyScream;
+            //}
+            //else
+            //{
+            //    playerEnergy = 100;
+            //}
+
         }
     }
 
