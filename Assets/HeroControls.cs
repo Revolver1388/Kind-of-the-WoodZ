@@ -114,7 +114,7 @@ public class HeroControls : MonoBehaviour
             Vector3 targetV = new Vector2(hMove * horizontalSpeed, vMove * verticalSpeed);
 
             rigidBod.velocity = Vector3.SmoothDamp(rigidBod.velocity, targetV, ref velocity, movementSmooth);
-
+            _anim.SetInteger("Walk", Mathf.RoundToInt(Mathf.Abs(horizontalMove + verticalMove)));
             if (hMove > 0 && !facingRight)
             {
                 flip();
