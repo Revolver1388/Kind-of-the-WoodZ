@@ -59,10 +59,11 @@ public class AudioMeasure : MonoBehaviour
 
         micAudioSource = GetComponent<AudioSource>();
 
-        micAudioSource.clip = Microphone.Start(null, true, 100, 44100);
+        micAudioSource.clip = Microphone.Start(null, true, 1000, 44100);
 
         micAudioSource.loop = true;
         micAudioSource.mute = false;
+        micAudioSource.volume = 1;
         while (!(Microphone.GetPosition(null) > 0)) { }
         micAudioSource.Play();
 
@@ -133,11 +134,11 @@ public class AudioMeasure : MonoBehaviour
     {
         if (count > movingAverageLength)
         {
-            movingAverage = movingAverage + (DbValue - movingAverage) / (movingAverageLength + 1);
+            movingAverage = movingAverage + (RmsValue - movingAverage) / (movingAverageLength + 1);
         }
         else
         {
-            movingAverage += DbValue;
+            movingAverage += RmsValue;
         }
         if (count == movingAverageLength)
         {
@@ -154,8 +155,8 @@ public class AudioMeasure : MonoBehaviour
         {
             sum += _samples[i] * _samples[i]; // sum squared samples
         }
-        RmsValue = Mathf.Sqrt(sum / QSamples); // rms = square root of average
-        DbValue = 10 * Mathf.Log10(RmsValue / RefValue); // calculate dB
+        RmsValue = energyChargeMultiple * Mathf.Sqrt(sum / QSamples); // rms = square root of average
+        DbValue = energyChargeMultiple * Mathf.Log10(RmsValue / RefValue); // calculate dB
         if (DbValue < 0) DbValue = 0; // clamp it to 0dB min
                                             // get sound spectrum
         micAudioSource.GetSpectrumData(_spectrum, 0, FFTWindow.BlackmanHarris);

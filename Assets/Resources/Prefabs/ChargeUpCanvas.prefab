@@ -153,9 +153,9 @@ MonoBehaviour:
   movingAverageLength: 100
   isCharging: 0
   chargeAmount: 0
-  chargeDegradePercentPerFrame: 0.0005
-  chargeBarDamperAmount: 3
-  energyChargeMultiple: 5
+  chargeDegradePercentPerFrame: 0.001
+  chargeBarDamperAmount: 1
+  energyChargeMultiple: 3
   runningChargeUpText: {fileID: 2893400694925835757}
   chargedUpAmountText: {fileID: 2893400695201681455}
 --- !u!82 &2893400694919146167

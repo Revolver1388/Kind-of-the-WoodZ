@@ -53,22 +53,22 @@ public class Fox : EnemyBaseClass
 
     private void Update()
     {
-        print(currentlyFacing);
+        //print(currentlyFacing);
         if (currentlyFacing == FacingDir.right)
         {
             if (_parent.transform.position.x <= _player.transform.position.x)
             {
-                print("infront");
+                //print("infront");
                 _parent.transform.right = new Vector2(-1, 0);
                 currentlyFacing = FacingDir.left;
             }
         }
         else
         {
-            print("facing left");
+            //print("facing left");
             if (_parent.transform.position.x > _player.transform.position.x)
             {
-                print("behind");
+                //print("behind");
                 _parent.transform.right = new Vector2(1, 0);
                 currentlyFacing = FacingDir.right;
             }
