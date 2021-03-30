@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System;
 using System.Collections;
 using TMPro;
+using System.IO;
 
 public class AudioMeasure : MonoBehaviour
 {
@@ -24,18 +25,42 @@ public class AudioMeasure : MonoBehaviour
     public TextMeshProUGUI chargeLevelText;
 
     private int count;
-    private float movingAverage;
+    public float movingAverage;
 
     public int movingAverageLength = 10;
-
-    private float audioChargeMeterLevel;
-
+    public bool isCharging;
+    public float chargeAmount;
+    public float chargeDegradePercentPerFrame;
     public int chargeBarDamperAmount = 5;
+    public int energyChargeMultiple;
+
+    [SerializeField] TextMeshProUGUI runningChargeUpText;
+    [SerializeField] TextMeshProUGUI chargedUpAmountText;
+
+
+#if UNITY_WEBGL && !UNITY_EDITOR
+        void Awake()
+        {
+            Microphone.Init();
+            Microphone.QueryAudioInput();
+        }
+#endif
+
+#if UNITY_WEBGL && !UNITY_EDITOR
+        void Update()
+        {
+            Microphone.Update();
+        }
+#endif
 
     void Start()
     {
+#if !UNITY_WEBGL
+
         micAudioSource = GetComponent<AudioSource>();
+
         micAudioSource.clip = Microphone.Start(null, true, 100, 44100);
+
         micAudioSource.loop = true;
         micAudioSource.mute = false;
         while (!(Microphone.GetPosition(null) > 0)) { }
@@ -44,23 +69,63 @@ public class AudioMeasure : MonoBehaviour
         _samples = new float[QSamples];
         _spectrum = new float[QSamples];
         _fSample = AudioSettings.outputSampleRate;
+#endif
 
     }
-     
+
+    public void StartChargeUp()
+    {
+        isCharging = true;       
+    }
+
+    public void StopCharging()
+    {
+        isCharging = false;
+        chargedUpAmountText.text = chargeAmount.ToString();
+    }
 
     void Update()
     {
-        count++;
+        if (chargeAmount < 0) chargeAmount = 0;
+        
+        if (!isCharging)
+        {
+            chargeAmount = chargeAmount - (chargeAmount * chargeDegradePercentPerFrame);
 
-        AnalyzeSound();
+        }
 
-        CalculateMovingAverage();
 
-        chargeLevelText.text = movingAverage.ToString();
+        if (Input.GetKeyDown(KeyCode.Space) && !isCharging)
+        {
+            StartChargeUp();
+        }
 
-        if (chargeBarDamperAmount <= 0) chargeBarDamperAmount = 1;
+        if (Input.GetKeyUp(KeyCode.Space) && isCharging)
+        {
+            StopCharging();
+        }
 
-        chargeMeterFillBarImage.fillAmount = movingAverage / chargeBarDamperAmount;
+
+
+        if (isCharging)
+        {
+            count++;
+
+            AnalyzeSound();
+
+            CalculateMovingAverage();
+
+            chargeLevelText.text = movingAverage.ToString();
+
+            if (chargeBarDamperAmount <= 0) chargeBarDamperAmount = 1;
+
+            chargeAmount += movingAverage;
+        }
+
+        if (chargeAmount > 100) chargeAmount = 100;
+        chargeMeterFillBarImage.fillAmount = chargeAmount / 100;
+        runningChargeUpText.text = "Energy Charge: " + Mathf.Round(chargeAmount).ToString() + " / 100";
+
 
     }
 
@@ -90,7 +155,7 @@ public class AudioMeasure : MonoBehaviour
             sum += _samples[i] * _samples[i]; // sum squared samples
         }
         RmsValue = Mathf.Sqrt(sum / QSamples); // rms = square root of average
-        DbValue = 20 * Mathf.Log10(RmsValue / RefValue); // calculate dB
+        DbValue = 10 * Mathf.Log10(RmsValue / RefValue); // calculate dB
         if (DbValue < 0) DbValue = 0; // clamp it to 0dB min
                                             // get sound spectrum
         micAudioSource.GetSpectrumData(_spectrum, 0, FFTWindow.BlackmanHarris);

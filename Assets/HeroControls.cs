@@ -39,8 +39,12 @@ public class HeroControls : MonoBehaviour
     [SerializeField] GameObject chargeUp;
 
 
+    //Microphone
+    private AudioMeasure audioMeasure;
+
     void Awake()
     {
+        audioMeasure = FindObjectOfType<AudioMeasure>();       
         rigidBod = GetComponentInParent<Rigidbody2D>();
         attackZone = GetComponentInChildren<CircleCollider2D>();
         attackZone.enabled = false;
@@ -59,16 +63,21 @@ public class HeroControls : MonoBehaviour
             {
                 rigidBod.velocity = Vector2.zero;
                 //start or continue charging animation/sprite
+                //energyCharge();
+                horizontalMove = 0;
+                verticalMove = 0;
+                moveCharacter(horizontalMove, verticalMove);
+
                 _anim.SetBool("isCharge", true);
                 chargeUp.SetActive(true);
                 chargeUp.GetComponent<Animator>().SetBool("isCharge", true);
-                energyCharge();
             }
             else
             {
                 horizontalMove = Input.GetAxis("Horizontal");
                 verticalMove = Input.GetAxis("Vertical");
                 moveCharacter(horizontalMove, verticalMove);
+                chargeUp.SetActive(false);
 
                 //Charging Resets
                 if (startCharging)
@@ -93,6 +102,7 @@ public class HeroControls : MonoBehaviour
                    jump();
                }
             }
+            playerEnergy = (int)Mathf.Round(audioMeasure.chargeAmount);
         }
     }
 
@@ -157,12 +167,21 @@ public class HeroControls : MonoBehaviour
             StartCoroutine(energyDelay());
 
             //Get Value from Microphone for charge float of 1-100 or 0-1
-            int energyScream = 5; //*value
+            //float energyScream = audioMeasure.movingAverage; //*value
+
+            //if (playerEnergy < 100)
+            //{
+            //    playerEnergy += energyScream;
+            //}
+            //else
+            //{
+            //    playerEnergy = 100;
+            //}
 
             if (playerEnergy < 100)
             {
-                playerEnergy += energyScream;
-                energyCharged += energyScream;
+                playerEnergy = (int)Mathf.Round(audioMeasure.chargeAmount);
+                energyCharged += (int)Mathf.Round(audioMeasure.movingAverage);
             }
             else
             {
