@@ -77,6 +77,7 @@ public class HeroControls : MonoBehaviour
                 horizontalMove = Input.GetAxis("Horizontal");
                 verticalMove = Input.GetAxis("Vertical");
                 moveCharacter(horizontalMove, verticalMove);
+                chargeUp.SetActive(false);
 
                 //Charging Resets
                 if (startCharging)
@@ -179,8 +180,8 @@ public class HeroControls : MonoBehaviour
 
             if (playerEnergy < 100)
             {
-                playerEnergy += energyScream;
-                energyCharged += energyScream;
+                playerEnergy = (int)Mathf.Round(audioMeasure.chargeAmount);
+                energyCharged += (int)Mathf.Round(audioMeasure.movingAverage);
             }
             else
             {
