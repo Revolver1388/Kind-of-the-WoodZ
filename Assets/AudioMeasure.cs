@@ -40,7 +40,9 @@ public class AudioMeasure : MonoBehaviour
 
     void Start()
     {
+#if !UNITY_WEBGL
         micAudioSource = GetComponent<AudioSource>();
+
         micAudioSource.clip = Microphone.Start(null, true, 100, 44100);
         micAudioSource.loop = true;
         micAudioSource.mute = false;
@@ -50,7 +52,7 @@ public class AudioMeasure : MonoBehaviour
         _samples = new float[QSamples];
         _spectrum = new float[QSamples];
         _fSample = AudioSettings.outputSampleRate;
-
+#endif
     }
      
     private void StartChargeUp()
