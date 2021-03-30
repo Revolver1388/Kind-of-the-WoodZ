@@ -49,11 +49,11 @@ TagManager:
   - name: MiddleGround
     uniqueID: 667226433
     locked: 0
-  - name: JumpArea
-    uniqueID: 3244168639
-    locked: 0
   - name: WalkArea
     uniqueID: 4035393803
+    locked: 0
+  - name: JumpArea
+    uniqueID: 3244168639
     locked: 0
   - name: Foreground
     uniqueID: 87314957
