@@ -192,12 +192,26 @@ MonoBehaviour:
   chargeAmount: 0
   chargeDegradePercentPerFrame: 0.001
   chargeBarDamperAmount: 1
-  energyChargeMultiple: 3
+  energyChargeMultiple: 2
   runningChargeUpText: {fileID: 2893400694925835757}
   chargedUpAmountText: {fileID: 2893400695201681455}
   promptText: {fileID: 1620300398763719364}
-  promptTextList: []
-  promptTextContainerTransform: {fileID: 9173292054613119065}
+  promptTextList:
+  - Make some noise!!!!!
+  - You gotta make some noise to keep your energy up!!
+  - Get to the Choppaaaaaa!!!!!!!
+  - Shazaam!
+  - CrakaPow!
+  - 'Your Brother''s Soul Is Mine '
+  - Bagok bitches
+  - cuck-a-doo
+  - I Need More POWER!!!!
+  - HUAAAAAAAAAAAARG!
+  - '*FART NOISES !!!.....??'
+  - HUAAAAAAAAAAAARG!!!
+  - KAAAAAHN!!!!!
+  - HUAAAAAAAAAAAARG!!!!
+  - HUAAAAAAAAAAAARG!!!!!
 --- !u!82 &2893400694919146167
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1107,8 +1121,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   useTypeWriter: 1
-  startTypewriterMode: 0
-  canSkipTypewriter: 1
+  startTypewriterMode: -1
+  canSkipTypewriter: 0
   hideAppearancesOnSkip: 0
   triggerEventsOnSkip: 0
   resetTypingSpeedAtStartup: 1
