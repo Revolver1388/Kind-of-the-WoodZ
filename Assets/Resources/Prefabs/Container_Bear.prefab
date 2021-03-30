@@ -44,7 +44,7 @@ GameObject:
   - component: {fileID: 5170675538637316403}
   - component: {fileID: 5170675538637316400}
   - component: {fileID: 5170675538637316401}
-  - component: {fileID: 5170675538637316405}
+  - component: {fileID: 6268945227818614388}
   m_Layer: 0
   m_Name: Atlas_Bear
   m_TagString: Untagged
@@ -106,7 +106,8 @@ SpriteRenderer:
   m_SortingLayerID: -259573493
   m_SortingLayer: 4
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: e94ea3b3dde07e6439d128560aa11cfa, type: 3}
+  m_Sprite: {fileID: 1140997824564347086, guid: 544ead6f1cd5df6498ac39f3130af91a,
+    type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -151,11 +152,11 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: 2.39}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 3.52, y: 5.13}
+    pivot: {x: 0.5, y: 0}
+    oldSize: {x: 3.52, y: 4.88}
     newSize: {x: 3.52, y: 5.13}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -186,7 +187,7 @@ MonoBehaviour:
   _parent: {fileID: 0}
   _layerOrd: {fileID: 5170675538887554398}
   _anim: {fileID: 0}
---- !u!95 &5170675538637316405
+--- !u!95 &6268945227818614388
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
@@ -196,7 +197,7 @@ Animator:
   m_GameObject: {fileID: 5170675538637316415}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 24fbc7c280c40434f88b41148fe19c76, type: 2}
+  m_Controller: {fileID: 9100000, guid: 9a61493a4a62f004e9bf6c757f79387b, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -249,6 +250,6 @@ CircleCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -1.46, y: -1.26}
+  m_Offset: {x: -0.91, y: 1.14}
   serializedVersion: 2
-  m_Radius: 0.35
+  m_Radius: 1.3
