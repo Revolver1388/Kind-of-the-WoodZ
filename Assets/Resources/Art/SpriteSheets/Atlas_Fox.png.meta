@@ -178,8 +178,8 @@ TextureImporter:
         y: 437
         width: 333
         height: 198
-      alignment: 5
-      pivot: {x: 1, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.88307387, y: 0.23780206}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -195,8 +195,8 @@ TextureImporter:
       name: Atlas_Fox_5
       rect:
         serializedVersion: 2
-        x: 1353
-        y: 242
+        x: 1350
+        y: 239
         width: 246
         height: 362
       alignment: 7
@@ -262,8 +262,8 @@ TextureImporter:
         y: 241
         width: 339
         height: 168
-      alignment: 4
-      pivot: {x: 0, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.0765714, y: 0.31458846}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

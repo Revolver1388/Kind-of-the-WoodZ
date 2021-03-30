@@ -5,13 +5,14 @@ using UnityEngine;
 public class HeroControls : MonoBehaviour
 {
     //Stats
-    [SerializeField] private int playerHealth = 100;
-    [SerializeField] private int playerEnergy = 100;
+    [SerializeField] private int playerHealth = 6;
+    [SerializeField] public int playerEnergy = 0;
     [SerializeField] private bool isAlive = true;
     [SerializeField] private bool canAttack = true;
     [SerializeField] private bool canTakeDamage = true;
     private bool canCharge = true;
-    
+    [SerializeField] private GameObject[] heartCounter;
+
     //Movement Variables
     public float horizontalSpeed = 8f;
     public float verticalSpeed = 4f;
@@ -26,21 +27,32 @@ public class HeroControls : MonoBehaviour
     [SerializeField] bool canJump;
 
     //Attack Variables
-    [SerializeField] GameObject attackHands;
-    private CircleCollider2D attackZone;
+    [SerializeField] CircleCollider2D attackZone;
     [SerializeField] int attackDamage;
+    private BoxCollider2D hitBox;
+
+    //Charging Variables
+    [SerializeField] private float energyCharged = 0;
+    [SerializeField] private float startCharge = 0;
+    private bool startCharging = false;
+    [SerializeField] GameObject egg;
 
     //Animator
     Animator _anim;
     [SerializeField] GameObject chargeUp;
 
 
+    //Microphone
+    private AudioMeasure audioMeasure;
+
     void Awake()
     {
-        rigidBod = GetComponent<Rigidbody2D>();
-        attackZone = attackHands.GetComponent<CircleCollider2D>();
-        //attackZone = GetComponent<CircleCollider2D>();
+        audioMeasure = FindObjectOfType<AudioMeasure>();
+        rigidBod = GetComponentInParent<Rigidbody2D>();
+        attackZone = GetComponentInChildren<CircleCollider2D>();
         attackZone.enabled = false;
+        checkHearts();
+        hitBox = GetComponent<BoxCollider2D>();
         _anim = GetComponent<Animator>();
         attackDamage = 0;
         canJump = true;
@@ -49,24 +61,38 @@ public class HeroControls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (isAlive)
         {
             if (Input.GetKey(KeyCode.Space))
             {
                 rigidBod.velocity = Vector2.zero;
                 //start or continue charging animation/sprite
+                energyCharge();
+                horizontalMove = 0;
+                verticalMove = 0;
+                moveCharacter(horizontalMove, verticalMove);
+
                 _anim.SetBool("isCharge", true);
                 chargeUp.SetActive(true);
                 chargeUp.GetComponent<Animator>().SetBool("isCharge", true);
-                energyCharge();
             }
             else
             {
                 horizontalMove = Input.GetAxis("Horizontal");
                 verticalMove = Input.GetAxis("Vertical");
                 moveCharacter(horizontalMove, verticalMove);
-                _anim.SetBool("isCharge", false);
-                chargeUp.GetComponent<Animator>().SetBool("isCharge", false);
+                chargeUp.SetActive(false);
+
+                //Charging Resets
+                if (startCharging)
+                {
+                    _anim.SetBool("isCharge", false);
+                    energyCharged = 0;
+                    startCharging = false;
+                    chargeUp.GetComponent<Animator>().SetBool("isCharge", false);
+                }
+
 
                 //Attack 1
                 if (Input.GetKeyDown(KeyCode.J))
@@ -76,33 +102,34 @@ public class HeroControls : MonoBehaviour
                 }
 
                 //Jump, K right now
-                if(canJump)
+                if (Input.GetKeyDown(KeyCode.K))
                 {
-                    if(Input.GetKeyDown(KeyCode.K))
-                    {
-                        canJump = false;
-                        //Start jump animation
-                    }
+                    jump();
+                }
+
+                if(Input.GetKeyDown(KeyCode.L))
+                {
+                    pickUpHealth();
                 }
             }
+            playerEnergy = (int)Mathf.Round(audioMeasure.chargeAmount);
         }
     }
 
     //Movement script via Rigidbody 2D velocity
     public void moveCharacter(float hMove, float vMove)
     {
-        if(canMove)
+        if (canMove)
         {
             Vector3 targetV = new Vector2(hMove * horizontalSpeed, vMove * verticalSpeed);
 
             rigidBod.velocity = Vector3.SmoothDamp(rigidBod.velocity, targetV, ref velocity, movementSmooth);
-
-
-            if(hMove > 0 && !facingRight)
+            _anim.SetInteger("Walk", Mathf.RoundToInt(Mathf.Abs(horizontalMove) + Mathf.Abs(verticalMove)));
+            if (hMove > 0 && !facingRight)
             {
                 flip();
             }
-            else if(hMove < 0 && facingRight)
+            else if (hMove < 0 && facingRight)
             {
                 flip();
             }
@@ -121,7 +148,7 @@ public class HeroControls : MonoBehaviour
     {
         if (canAttack)
         {
-            attackDamage = damage; 
+            attackDamage = damage;
             //attackZone.enabled = true;
             canAttack = false;
             _anim.SetTrigger("isAttack");
@@ -141,22 +168,45 @@ public class HeroControls : MonoBehaviour
     //Energy Charge while holding space bar, to add - voice intensity detection to increase charge
     private void energyCharge()
     {
-        if(canCharge)
+        if (canCharge)
         {
             canCharge = false;
-            StartCoroutine(energyDelay());
+            if (!startCharging)
+            {
+                startCharging = true;
+                startCharge = playerEnergy;
+            }
 
             //Get Value from Microphone for charge float of 1-100 or 0-1
-            int energyScream = 5; //*value
+            //float energyScream = audioMeasure.movingAverage; //*value
+
+            //if (playerEnergy < 100)
+            //{
+            //    playerEnergy += energyScream;
+            //}
+            //else
+            //{
+            //    playerEnergy = 100;
+            //}
 
             if (playerEnergy < 100)
             {
-                playerEnergy += energyScream;
+                energyCharged = playerEnergy - startCharge;
             }
             else
             {
                 playerEnergy = 100;
             }
+
+            //Every 40 energy lay an egg
+            if (energyCharged >= 40)
+            {
+                //twea
+                StartCoroutine(layEgg());
+                startCharge += 40;
+            }
+            canCharge = true;
+
         }
     }
 
@@ -167,16 +217,15 @@ public class HeroControls : MonoBehaviour
         {
             rigidBod.velocity = Vector2.zero;
             canTakeDamage = false;
+            _anim.SetTrigger("isHurt");
             playerHealth -= damage;
+            checkHearts();
             StartCoroutine(damageDelay());
+            //updateHearts();
             if (playerHealth <= 0)
             {
                 isAlive = false;
-                //dead animation/sprite
-            }
-            else
-            {
-                //minor flashing animation?
+                _anim.SetBool("isDead", true);
             }
         }
     }
@@ -184,13 +233,181 @@ public class HeroControls : MonoBehaviour
     //Return attack damage for enemies hit by attack
     public int getDamage()
     {
-        return attackDamage;
-
-        //alternate return where energy effects attack damage
-        /*
         float energy = (float)playerEnergy / 100f;
         float damage = attackDamage * energy;
-        return (int)damage; */
+        return (int)damage;
+    }
+
+    private void pickUpHealth()
+    {
+        playerHealth++;
+        checkHearts();
+    }
+
+    public void ActivateAttackBox()
+    {
+
+        if (attackZone.isActiveAndEnabled)
+            attackZone.enabled = false;
+        else
+            attackZone.enabled = true;
+
+    }
+
+    public void JumpLayerSwap()
+    {
+        SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+        if(sprite.sortingLayerName=="WalkArea")
+        {
+            sprite.sortingLayerName = "JumpArea";
+        }
+        else
+        {
+            sprite.sortingLayerName = "WalkArea";
+        }
+    }
+    public void jump()
+    {
+        if (canJump)
+        {
+            canJump = false;
+            _anim.SetTrigger("isJump");
+            StartCoroutine(jumpDelay());
+        }
+    }
+
+    private void checkHearts()
+    {
+        if (playerHealth == 0)
+        {
+            heartCounter[0].GetComponent<Animator>().SetBool("isLife", false);
+            heartCounter[1].GetComponent<Animator>().SetBool("isLife", false);
+            heartCounter[2].GetComponent<Animator>().SetBool("isLife", false);
+            heartCounter[3].GetComponent<Animator>().SetBool("isLife", false);
+            heartCounter[4].GetComponent<Animator>().SetBool("isLife", false);
+            heartCounter[5].GetComponent<Animator>().SetBool("isLife", false);
+        }
+        else if(playerHealth == 1)
+        {
+            heartCounter[0].GetComponent<Animator>().SetBool("isLife", true);
+            heartCounter[1].GetComponent<Animator>().SetBool("isLife", false);
+            heartCounter[2].GetComponent<Animator>().SetBool("isLife", false);
+            heartCounter[3].GetComponent<Animator>().SetBool("isLife", false);
+            heartCounter[4].GetComponent<Animator>().SetBool("isLife", false);
+            heartCounter[5].GetComponent<Animator>().SetBool("isLife", false);
+
+        }
+        else if (playerHealth == 2)
+        {
+            heartCounter[0].GetComponent<Animator>().SetBool("isLife", true);
+            heartCounter[1].GetComponent<Animator>().SetBool("isLife", false);
+            heartCounter[2].GetComponent<Animator>().SetBool("isLife", false);
+            heartCounter[3].GetComponent<Animator>().SetBool("isLife", false);
+            heartCounter[4].GetComponent<Animator>().SetBool("isLife", false);
+            heartCounter[5].GetComponent<Animator>().SetBool("isLife", false);
+        }
+        else if (playerHealth == 3)
+        {
+            heartCounter[0].GetComponent<Animator>().SetBool("isLife", true);
+            heartCounter[1].GetComponent<Animator>().SetBool("isLife", true);
+            heartCounter[2].GetComponent<Animator>().SetBool("isLife", false);
+            heartCounter[3].GetComponent<Animator>().SetBool("isLife", false);
+            heartCounter[4].GetComponent<Animator>().SetBool("isLife", false);
+            heartCounter[5].GetComponent<Animator>().SetBool("isLife", false);
+        }
+        else if (playerHealth == 4)
+        {
+            heartCounter[0].GetComponent<Animator>().SetBool("isLife", true);
+            heartCounter[1].GetComponent<Animator>().SetBool("isLife", true);
+            heartCounter[2].GetComponent<Animator>().SetBool("isLife", false);
+            heartCounter[3].GetComponent<Animator>().SetBool("isLife", false);
+            heartCounter[4].GetComponent<Animator>().SetBool("isLife", false);
+            heartCounter[5].GetComponent<Animator>().SetBool("isLife", false);
+
+        }
+        else if (playerHealth == 5)
+        {
+            heartCounter[0].GetComponent<Animator>().SetBool("isLife", true);
+            heartCounter[1].GetComponent<Animator>().SetBool("isLife", true);
+            heartCounter[2].GetComponent<Animator>().SetBool("isLife", true);
+            heartCounter[3].GetComponent<Animator>().SetBool("isLife", false);
+            heartCounter[4].GetComponent<Animator>().SetBool("isLife", false);
+            heartCounter[5].GetComponent<Animator>().SetBool("isLife", false);
+        }
+        else if (playerHealth == 6)
+        {
+            heartCounter[0].GetComponent<Animator>().SetBool("isLife", true);
+            heartCounter[1].GetComponent<Animator>().SetBool("isLife", true);
+            heartCounter[2].GetComponent<Animator>().SetBool("isLife", true);
+            heartCounter[3].GetComponent<Animator>().SetBool("isLife", false);
+            heartCounter[4].GetComponent<Animator>().SetBool("isLife", false);
+            heartCounter[5].GetComponent<Animator>().SetBool("isLife", false);
+        }
+        else if (playerHealth == 7)
+        {
+            heartCounter[0].GetComponent<Animator>().SetBool("isLife", true);
+            heartCounter[1].GetComponent<Animator>().SetBool("isLife", true);
+            heartCounter[2].GetComponent<Animator>().SetBool("isLife", true);
+            heartCounter[3].GetComponent<Animator>().SetBool("isLife", true);
+            heartCounter[4].GetComponent<Animator>().SetBool("isLife", false);
+            heartCounter[5].GetComponent<Animator>().SetBool("isLife", false);
+        }
+        else if (playerHealth == 8)
+        {
+            heartCounter[0].GetComponent<Animator>().SetBool("isLife", true);
+            heartCounter[1].GetComponent<Animator>().SetBool("isLife", true);
+            heartCounter[2].GetComponent<Animator>().SetBool("isLife", true);
+            heartCounter[3].GetComponent<Animator>().SetBool("isLife", true);
+            heartCounter[4].GetComponent<Animator>().SetBool("isLife", false);
+            heartCounter[5].GetComponent<Animator>().SetBool("isLife", false);
+
+        }
+        else if (playerHealth == 9)
+        {
+            heartCounter[0].GetComponent<Animator>().SetBool("isLife", true);
+            heartCounter[1].GetComponent<Animator>().SetBool("isLife", true);
+            heartCounter[2].GetComponent<Animator>().SetBool("isLife", true);
+            heartCounter[3].GetComponent<Animator>().SetBool("isLife", true);
+            heartCounter[4].GetComponent<Animator>().SetBool("isLife", true);
+            heartCounter[5].GetComponent<Animator>().SetBool("isLife", false);
+        }
+        else if (playerHealth == 10)
+        {
+            heartCounter[0].GetComponent<Animator>().SetBool("isLife", true);
+            heartCounter[1].GetComponent<Animator>().SetBool("isLife", true);
+            heartCounter[2].GetComponent<Animator>().SetBool("isLife", true);
+            heartCounter[3].GetComponent<Animator>().SetBool("isLife", true);
+            heartCounter[4].GetComponent<Animator>().SetBool("isLife", true);
+            heartCounter[5].GetComponent<Animator>().SetBool("isLife", false);
+        }
+        else if (playerHealth == 11)
+        {
+            heartCounter[0].GetComponent<Animator>().SetBool("isLife", true);
+            heartCounter[1].GetComponent<Animator>().SetBool("isLife", true);
+            heartCounter[2].GetComponent<Animator>().SetBool("isLife", true);
+            heartCounter[3].GetComponent<Animator>().SetBool("isLife", true);
+            heartCounter[4].GetComponent<Animator>().SetBool("isLife", true);
+            heartCounter[5].GetComponent<Animator>().SetBool("isLife", true);
+        }
+        else if (playerHealth == 12)
+        {
+            heartCounter[0].GetComponent<Animator>().SetBool("isLife", true);
+            heartCounter[1].GetComponent<Animator>().SetBool("isLife", true);
+            heartCounter[2].GetComponent<Animator>().SetBool("isLife", true);
+            heartCounter[3].GetComponent<Animator>().SetBool("isLife", true);
+            heartCounter[4].GetComponent<Animator>().SetBool("isLife", true);
+            heartCounter[5].GetComponent<Animator>().SetBool("isLife", true);
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "EnemyAttackBox")
+        {
+            float damage = 1;
+            //float damage = collision.gameObject.GetComponent<EnemyBaseClass>().attackDamage;
+            hitOurHero((int)damage);
+        }
     }
 
     IEnumerator attackDelay(float attackDelay)
@@ -200,13 +417,7 @@ public class HeroControls : MonoBehaviour
         //attackZone.enabled = false;
         canAttack = true;
     }
-
-    IEnumerator energyDelay()
-    {
-        yield return new WaitForSeconds(0.7f);
-        canCharge = true;
-    }
-
+    
     IEnumerator damageDelay()
     {
         yield return new WaitForSeconds(1.0f);
@@ -214,26 +425,20 @@ public class HeroControls : MonoBehaviour
         //stop minor flashing animation?
     }
 
-    public void ActivateAttackBox()
+    IEnumerator jumpDelay()
     {
-        if (attackZone.isActiveAndEnabled)
-            attackZone.enabled = false;
-        else
-            attackZone.enabled = true;
-
+        yield return new WaitForSeconds(1.5f);
+        canJump = true;
     }
 
-    public void jump()
+    IEnumerator layEgg()
     {
-        canJump = !canJump;
-    }
+        yield return new WaitForSeconds(1.0f);
+        GameObject littleAttacker = Instantiate(egg);
+        Vector3 eggPosition = transform.position;
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.transform.CompareTag("EnemyAttack"))
-        {
-            float damage = collision.gameObject.GetComponent<EnemyBaseClass>().attackDamage;
-            hitOurHero((int)damage);
-        }
+        //move the egg slightly down
+        eggPosition.y = eggPosition.y - 3;
+        littleAttacker.transform.position = eggPosition;
     }
 }
