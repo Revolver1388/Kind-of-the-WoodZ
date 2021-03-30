@@ -6,7 +6,7 @@ public class HeroControls : MonoBehaviour
 {
     //Stats
     [SerializeField] private int playerHealth = 6;
-    [SerializeField] private int playerEnergy = 0;
+    [SerializeField] public int playerEnergy = 0;
     [SerializeField] private bool isAlive = true;
     [SerializeField] private bool canAttack = true;
     [SerializeField] private bool canTakeDamage = true;
