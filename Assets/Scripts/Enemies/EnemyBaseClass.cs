@@ -6,31 +6,34 @@ using UnityEngine;
 public class EnemyBaseClass : MonoBehaviour {
     [Header("Enemy Attributes")]
     [SerializeField] int Health = 0;
-    [SerializeField] float movementSpeed = 0;
+    public float movementSpeed = 0;
     [SerializeField] float attackDamage = 0;
     [SerializeField] float attackSpeed = 0;
     [SerializeField] CircleCollider2D _attackBox;
     BoxCollider2D _hitBox;
     SpriteRenderer _rend;
-    HeroControls _player;
+    public HeroControls _player;
+    public GameObject _parent;
     [SerializeField] Transform _layerOrd;
     bool isAlive = true;
     Animator _anim;
-    void Awake(){
+    public virtual void Awake(){
         _anim = GetComponent<Animator>();
         //player = GameManager.Instance.GetPlayerTransform();
         _attackBox = GetComponentInChildren<CircleCollider2D>();
         _hitBox = GetComponent<BoxCollider2D>();
         _rend = GetComponent<SpriteRenderer>();
         _player = FindObjectOfType<HeroControls>();
+        _parent = transform.parent.gameObject;
     }
-    private void Start()
+    public virtual void Start()
     {
         _attackBox.isTrigger = true;
         _attackBox.enabled = false;
         _hitBox.isTrigger = true;
     }
-    void LateUpdate() {
+
+    public virtual void LateUpdate() {
         _rend.sortingOrder = Mathf.RoundToInt(_layerOrd.position.y) * -1;
     }
 
@@ -45,7 +48,7 @@ public class EnemyBaseClass : MonoBehaviour {
         _anim.SetTrigger("isAttack");
     }
 
-    public void TakeDamage(){
+    public virtual void TakeDamage(){
         if (!isAlive)
             return;
 
@@ -62,15 +65,15 @@ public class EnemyBaseClass : MonoBehaviour {
         }
     }
 
-    void Die() {
+    public virtual void Die() {
         _anim.SetBool("isDead", true);
     }
 
-    public void DeactivateEnemy() {
+    public virtual void DeactivateEnemy() {
         gameObject.SetActive(false);
     }
 
-    public void ActivateAttackBox()
+    public virtual void ActivateAttackBox()
     {
         if (_attackBox.isActiveAndEnabled)
             _attackBox.enabled = false;
@@ -78,7 +81,7 @@ public class EnemyBaseClass : MonoBehaviour {
             _attackBox.enabled = true;
 
     }
-    public void ActivateHitBox()
+    public virtual void ActivateHitBox()
     {
         if (_hitBox.isActiveAndEnabled)
             _hitBox.enabled = false;
