@@ -23,4 +23,16 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Menu_Scenes/Game_Over.unity
     guid: 6e8ebc63a1edb2a4f8c7bfe2b621f811
+  - enabled: 1
+    path: Assets/Scenes/City_Scene.unity
+    guid: 28ec365e6789dcc4897c007b829fbad5
+  - enabled: 1
+    path: Assets/Scenes/Battle_Scene.unity
+    guid: 7463667e1a8277d4a83d87dddccaeda4
+  - enabled: 1
+    path: Assets/Scenes/Night_Scene.unity
+    guid: 83a2f178e5a21ac498b8ca1119fb4bf7
+  - enabled: 1
+    path: Assets/Scenes/Snow_Level.unity
+    guid: adb730c1437b63f4584e921bf2e89fab
   m_configObjects: {}
