@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7219281730436895607}
   - component: {fileID: 7219281730436895606}
-  - component: {fileID: 8310215011865264026}
+  - component: {fileID: 6982525109169834025}
   m_Layer: 0
   m_Name: Forest_Background_02
   m_TagString: Untagged
@@ -82,7 +82,7 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!68 &8310215011865264026
+--- !u!68 &6982525109169834025
 EdgeCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -95,10 +95,8 @@ EdgeCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0, y: -2}
   m_EdgeRadius: 0
   m_Points:
-  - {x: -10.278557, y: -2.583973}
-  - {x: 0.6396229, y: -2.255489}
-  - {x: 3.6114879, y: -2.5070655}
-  - {x: 10.24, y: -2.468271}
+  - {x: -10.24, y: 0}
+  - {x: 10.24, y: 0}

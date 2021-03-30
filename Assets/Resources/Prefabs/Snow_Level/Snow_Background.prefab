@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 1534162813018660879}
   - component: {fileID: 3980053466947232542}
   m_Layer: 0
-  m_Name: Forest_Background_00
+  m_Name: Snow_Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -71,7 +71,7 @@ SpriteRenderer:
   m_SortingLayerID: -1275857751
   m_SortingLayer: 1
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: df026b9cb1cf5e7499580c90b208df86, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 919551462c373b941bc87b997dadbefb, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -95,7 +95,7 @@ EdgeCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -2}
+  m_Offset: {x: 0, y: 0.5}
   m_EdgeRadius: 0
   m_Points:
   - {x: -10.24, y: 0}
