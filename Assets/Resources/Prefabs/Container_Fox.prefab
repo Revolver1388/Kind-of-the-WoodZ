@@ -211,14 +211,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e15b384b10e89ce4387b3fcfbfdd789c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 3
+  Health: 100
   movementSpeed: 2
   attackDamage: 1
   attackSpeed: 3
   _attackBox: {fileID: 0}
+  _hitBox: {fileID: 0}
   _player: {fileID: 0}
   _parent: {fileID: 0}
   _layerOrd: {fileID: 1506472436}
+  _anim: {fileID: 0}
 --- !u!1 &4250603351713603471
 GameObject:
   m_ObjectHideFlags: 0

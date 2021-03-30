@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Fox : EnemyBaseClass
 {
-    enum FoxStates { postion, approach, attack, backoff, hit }
+    enum FoxStates { postion, approach, attack, backoff, hit, dodge }
     FoxStates foxState = FoxStates.postion;
 
     enum FacingDir { left, right }
@@ -42,10 +42,14 @@ public class Fox : EnemyBaseClass
                 Approach();
                 break;
             case FoxStates.attack:
+                Attack();
                 break;
             case FoxStates.backoff:
+                BackOff();
                 break;
             case FoxStates.hit:
+                break;
+            case FoxStates.dodge:
                 break;
         }
 
@@ -106,7 +110,14 @@ public class Fox : EnemyBaseClass
                 approachTarget = new Vector2(_player.transform.position.x - _player.transform.right.normalized.x * 2.5f, _player.transform.position.y);
                 foxState = FoxStates.approach;
             }
-        }         
+        }
+        
+        if (Vector2.Distance(_parent.transform.position, _player.transform.position) <= 2)
+        {
+            AttackPlayer();
+            StartCoroutine(AttackWait());
+            foxState = FoxStates.attack;
+        }
     }
 
     private void Approach()
@@ -114,17 +125,82 @@ public class Fox : EnemyBaseClass
         _parent.transform.position = Vector2.MoveTowards(_parent.transform.position, approachTarget, movementSpeed * Time.fixedDeltaTime);
         if(Vector2.Distance(_parent.transform.position, approachTarget) <= 0.1f)
         {
-            if(Vector2.Distance(_player.transform.position, _player.transform.position) >= 3)
+            if(Vector2.Distance(_parent.transform.position, _player.transform.position) >= 3)
             {
                 foxState = FoxStates.postion;
+            }
+            else if(Vector2.Distance(_parent.transform.position, _player.transform.position) <= 2)
+            {
+                AttackPlayer();
+                StartCoroutine(AttackWait());
+                foxState = FoxStates.attack;
             }
             else
             {
                 //if the player is facing the fox chance to dodge
                 //else will attack
-                AttackPlayer();
+                if (Vector2.Dot(_player.transform.right, _player.transform.position - _parent.transform.position) < 0)
+                {
+                    int rando = Random.Range(0, 10);
+                    if (rando >= 7)
+                    {
+                        foxState = FoxStates.dodge;
+                        _hitBox.enabled = false;
+                        StartCoroutine(DodgeWait());
+                    }
+                    else
+                    {
+                        AttackPlayer();
+                        StartCoroutine(AttackWait());
+                        foxState = FoxStates.attack;
+                    }
+                }
+                else
+                {
+                    AttackPlayer();
+                    StartCoroutine(AttackWait());
+                    foxState = FoxStates.attack;
+                }              
             }
         }
+    }
+
+    IEnumerator AttackWait()
+    {
+        yield return new WaitForSeconds(1.4f);
+        foxState = FoxStates.backoff;
+    }
+
+    private void Attack()
+    {
+        //if(_anim.GetCurrentAnimatorStateInfo(0).IsName("Anim_Fox_Idle"))
+        //{
+        //    _anim.SetBool("isAttack", false);
+        //    foxState = FoxStates.backoff;
+        //}
+
+    }
+
+    private void BackOff()
+    {
+        _parent.transform.position = new Vector2(_parent.transform.position.x - movementSpeed * Time.fixedDeltaTime, _parent.transform.position.y);
+        if (Vector2.Distance(_parent.transform.position, _player.transform.position) >= 6)
+        {
+            moveDirection = MoveDir.vert;
+            foxState = FoxStates.postion;
+        }
+    }
+
+    private void Dodge()
+    {
+        _parent.transform.position = new Vector2(_parent.transform.position.x - movementSpeed * 3 * Time.fixedDeltaTime, _parent.transform.position.y);
+    }
+
+    IEnumerator DodgeWait()
+    {
+        yield return new WaitForSeconds(0.3f);
+        _hitBox.enabled = true;
+        foxState = FoxStates.postion;
     }
 
 
@@ -158,8 +234,17 @@ public class Fox : EnemyBaseClass
         base.EvadePlayer();
     }
 
-    public override void TakeDamage()
+    public override void TakeDamage(int damage)
     {
-        base.TakeDamage();
+        base.TakeDamage(damage);
+        foxState = FoxStates.hit;
+        StopCoroutine(Hit());
+        StartCoroutine(Hit());
+    }
+
+    IEnumerator Hit()
+    {
+        yield return new WaitForSeconds(0.6f);
+        foxState = FoxStates.backoff;
     }
 }
