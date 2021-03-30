@@ -2,8 +2,10 @@
 using UnityEngine.UI;
 using System;
 using System.Collections;
+using System.Collections.Generic;
 using TMPro;
 using System.IO;
+using DG.Tweening;
 
 public class AudioMeasure : MonoBehaviour
 {
@@ -38,6 +40,10 @@ public class AudioMeasure : MonoBehaviour
     [SerializeField] TextMeshProUGUI chargedUpAmountText;
     [SerializeField] TextMeshProUGUI promptText;
 
+    [SerializeField] List<string> promptTextList;
+
+    private Febucci.UI.TextAnimator textAnimator;
+    private Febucci.UI.TextAnimatorPlayer textAnimatorPlayer;
 
 #if UNITY_WEBGL && !UNITY_EDITOR
         void Awake()
@@ -56,6 +62,9 @@ public class AudioMeasure : MonoBehaviour
 
     void Start()
     {
+        textAnimator = promptText.gameObject.GetComponent<Febucci.UI.TextAnimator>();
+        textAnimatorPlayer = promptText.gameObject.GetComponent<Febucci.UI.TextAnimatorPlayer>();
+
         promptText.gameObject.SetActive(false);
 
 #if !UNITY_WEBGL
@@ -81,13 +90,35 @@ public class AudioMeasure : MonoBehaviour
     {
         isCharging = true;
         promptText.gameObject.SetActive(true);
+        StartCoroutine(PlayPromptTextSequence());
+
     }
 
     public void StopCharging()
     {
         isCharging = false;
         chargedUpAmountText.text = chargeAmount.ToString();
+        StopCoroutine(PlayPromptTextSequence());
         promptText.gameObject.SetActive(false);
+
+    }
+
+    private IEnumerator PlayPromptTextSequence()
+    {
+        Debug.Log("Starting prompt text display coroutine");
+        promptText.gameObject.SetActive(true);
+        
+        for (int i = 0; i < promptTextList.Count; i++)
+        {
+            Debug.Log("Playing Prompt Text " + i);
+            textAnimatorPlayer.ShowText(promptTextList[i]);
+            yield return new WaitUntil(() => textAnimator.allLettersShown);
+            if (i == promptTextList.Count)
+            {
+                i = 0;
+            }
+        }
+
     }
 
     void Update()
