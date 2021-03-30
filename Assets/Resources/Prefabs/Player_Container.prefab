@@ -275,8 +275,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -259573493
-  m_SortingLayer: 3
+  m_SortingLayerID: -1050798657
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 4807213595197823473, guid: 9d8445e10dccca742afd0e1e9917b635,
     type: 3}
@@ -364,7 +364,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHealth: 6
-  playerEnergy: 0
+  playerEnergy: 50
   isAlive: 1
   canAttack: 1
   canTakeDamage: 1

@@ -211,18 +211,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1540930982, guid: 4c9fe4f40b4cd8d4aab0f4a1270eae72, type: 3}
-      propertyPath: frontAttack
-      value: 
-      objectReference: {fileID: 896520697}
-    - target: {fileID: 1540930982, guid: 4c9fe4f40b4cd8d4aab0f4a1270eae72, type: 3}
-      propertyPath: egg
-      value: 
-      objectReference: {fileID: 758183984}
-    - target: {fileID: 1540930982, guid: 4c9fe4f40b4cd8d4aab0f4a1270eae72, type: 3}
-      propertyPath: playerEnergy
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 1540930982, guid: 4c9fe4f40b4cd8d4aab0f4a1270eae72, type: 3}
       propertyPath: heartCounter.Array.data[0]
       value: 
       objectReference: {fileID: 1539088970}
@@ -246,30 +234,14 @@ PrefabInstance:
       propertyPath: heartCounter.Array.data[5]
       value: 
       objectReference: {fileID: 2108664045}
+    - target: {fileID: 1540930982, guid: 4c9fe4f40b4cd8d4aab0f4a1270eae72, type: 3}
+      propertyPath: egg
+      value: 
+      objectReference: {fileID: 758183984}
     - target: {fileID: 2338584062175401242, guid: 4c9fe4f40b4cd8d4aab0f4a1270eae72,
         type: 3}
       propertyPath: m_Name
       value: Player_Container
-      objectReference: {fileID: 0}
-    - target: {fileID: 2483713001864275841, guid: 4c9fe4f40b4cd8d4aab0f4a1270eae72,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: -1050798657
-      objectReference: {fileID: 0}
-    - target: {fileID: 2483713001864275841, guid: 4c9fe4f40b4cd8d4aab0f4a1270eae72,
-        type: 3}
-      propertyPath: m_SortingLayer
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 4829782328390188660, guid: 4c9fe4f40b4cd8d4aab0f4a1270eae72,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: -259573493
-      objectReference: {fileID: 0}
-    - target: {fileID: 4829782328390188660, guid: 4c9fe4f40b4cd8d4aab0f4a1270eae72,
-        type: 3}
-      propertyPath: m_SortingLayer
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 6219018131698027136, guid: 4c9fe4f40b4cd8d4aab0f4a1270eae72,
         type: 3}
@@ -701,12 +673,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 301876136, guid: 697c2429769cb17438babc05c69a002e,
     type: 3}
   m_PrefabInstance: {fileID: 1542946760}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &896520697 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 896520697, guid: 4c9fe4f40b4cd8d4aab0f4a1270eae72,
-    type: 3}
-  m_PrefabInstance: {fileID: 284892408}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &1026769711
 GameObject:
