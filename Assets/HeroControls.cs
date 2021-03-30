@@ -6,12 +6,12 @@ public class HeroControls : MonoBehaviour
 {
     //Stats
     [SerializeField] private int playerHealth = 100;
-    [SerializeField] private int playerEnergy = 100;
+    [SerializeField] private int playerEnergy = 50;
     [SerializeField] private bool isAlive = true;
     [SerializeField] private bool canAttack = true;
     [SerializeField] private bool canTakeDamage = true;
     private bool canCharge = true;
-    
+
     //Movement Variables
     public float horizontalSpeed = 8f;
     public float verticalSpeed = 4f;
@@ -26,22 +26,24 @@ public class HeroControls : MonoBehaviour
     [SerializeField] bool canJump;
 
     //Attack Variables
-    [SerializeField] GameObject attackHands;
-    private CircleCollider2D attackZone;
+    [SerializeField] CircleCollider2D attackZone;
     [SerializeField] int attackDamage;
 
+    //Charging Variables
+    [SerializeField] private int energyCharged = 0;
+    private bool startCharging = false;
+    [SerializeField] GameObject egg;
 
+    //Animator
     Animator _anim;
     [SerializeField] GameObject chargeUp;
 
 
     void Awake()
     {
-        rigidBod = GetComponent<Rigidbody2D>();
-        attackZone = attackHands.GetComponent<CircleCollider2D>();
-        //attackZone = GetComponent<CircleCollider2D>();
+        rigidBod = GetComponentInParent<Rigidbody2D>();
+        attackZone = GetComponentInChildren<CircleCollider2D>();
         attackZone.enabled = false;
-
         _anim = GetComponent<Animator>();
         attackDamage = 0;
         canJump = true;
@@ -50,14 +52,17 @@ public class HeroControls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (isAlive)
         {
             if (Input.GetKey(KeyCode.Space))
             {
+                rigidBod.velocity = Vector2.zero;
                 //start or continue charging animation/sprite
-                energyCharge();
                 _anim.SetBool("isCharge", true);
+                chargeUp.SetActive(true);
                 chargeUp.GetComponent<Animator>().SetBool("isCharge", true);
+                energyCharge();
             }
             else
             {
@@ -65,8 +70,15 @@ public class HeroControls : MonoBehaviour
                 verticalMove = Input.GetAxis("Vertical");
                 moveCharacter(horizontalMove, verticalMove);
 
-                _anim.SetBool("isCharge", false);
-                chargeUp.GetComponent<Animator>().SetBool("isCharge", false);
+                //Charging Resets
+                if (startCharging)
+                {
+                    _anim.SetBool("isCharge", false);
+                    energyCharged = 0;
+                    startCharging = false;
+                    chargeUp.GetComponent<Animator>().SetBool("isCharge", false);
+                }
+
 
                 //Attack 1
                 if (Input.GetKeyDown(KeyCode.J))
@@ -76,14 +88,10 @@ public class HeroControls : MonoBehaviour
                 }
 
                 //Jump, K right now
-                if(canJump)
-                {
-                    if(Input.GetKeyDown(KeyCode.K))
-                    {
-                        canJump = false;
-                        _anim.SetTrigger("isJump");
-                    }
-                }
+               if (Input.GetKeyDown(KeyCode.K))
+               {
+                   jump();
+               }
             }
         }
     }
@@ -91,18 +99,17 @@ public class HeroControls : MonoBehaviour
     //Movement script via Rigidbody 2D velocity
     public void moveCharacter(float hMove, float vMove)
     {
-        if(canMove)
+        if (canMove)
         {
             Vector3 targetV = new Vector2(hMove * horizontalSpeed, vMove * verticalSpeed);
 
             rigidBod.velocity = Vector3.SmoothDamp(rigidBod.velocity, targetV, ref velocity, movementSmooth);
-            _anim.SetInteger("Walk", Mathf.RoundToInt(Mathf.Abs(horizontalMove)));
 
-            if(hMove > 0 && !facingRight)
+            if (hMove > 0 && !facingRight)
             {
                 flip();
             }
-            else if(hMove < 0 && facingRight)
+            else if (hMove < 0 && facingRight)
             {
                 flip();
             }
@@ -121,9 +128,8 @@ public class HeroControls : MonoBehaviour
     {
         if (canAttack)
         {
-            attackZone.enabled = true;
-            attackDamage = damage; 
-
+            attackDamage = damage;
+            //attackZone.enabled = true;
             canAttack = false;
             _anim.SetTrigger("isAttack");
             StartCoroutine(attackDelay(delayTime));
@@ -142,8 +148,11 @@ public class HeroControls : MonoBehaviour
     //Energy Charge while holding space bar, to add - voice intensity detection to increase charge
     private void energyCharge()
     {
-        if(canCharge)
+        if (canCharge)
         {
+            if(!startCharging){
+                startCharging = true;
+            }
             canCharge = false;
             StartCoroutine(energyDelay());
 
@@ -153,10 +162,19 @@ public class HeroControls : MonoBehaviour
             if (playerEnergy < 100)
             {
                 playerEnergy += energyScream;
+                energyCharged += energyScream;
             }
             else
             {
                 playerEnergy = 100;
+            }
+
+            //Every 40 energy lay an egg
+            if(energyCharged>=40)
+            {
+                //twea
+                StartCoroutine(layEgg());
+                energyCharged -= 40;
             }
         }
     }
@@ -168,16 +186,13 @@ public class HeroControls : MonoBehaviour
         {
             rigidBod.velocity = Vector2.zero;
             canTakeDamage = false;
+            _anim.SetTrigger("isHurt");
             playerHealth -= damage;
             StartCoroutine(damageDelay());
             if (playerHealth <= 0)
             {
                 isAlive = false;
-                //dead animation/sprite
-            }
-            else
-            {
-                //minor flashing animation?
+                _anim.SetBool("isDead", true);
             }
         }
     }
@@ -192,6 +207,37 @@ public class HeroControls : MonoBehaviour
         float energy = (float)playerEnergy / 100f;
         float damage = attackDamage * energy;
         return (int)damage; */
+    }
+
+
+    public void ActivateAttackBox()
+    {
+        
+        if (attackZone.isActiveAndEnabled)
+            attackZone.enabled = false;
+        else
+            attackZone.enabled = true;
+
+    }
+
+    public void jump()
+    {
+        if (canJump)
+        {
+            canJump = false;
+            _anim.SetTrigger("isJump");
+            StartCoroutine(jumpDelay());
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "EnemyAttackBox")
+        {
+            float damage = 10;
+            //float damage = collision.gameObject.GetComponent<EnemyBaseClass>().attackDamage;
+            hitOurHero((int)damage);
+        }
     }
 
     IEnumerator attackDelay(float attackDelay)
@@ -215,27 +261,18 @@ public class HeroControls : MonoBehaviour
         //stop minor flashing animation?
     }
 
-    public void ActivateAttackBox()
+    IEnumerator jumpDelay()
     {
-        if (attackZone.isActiveAndEnabled)
-            attackZone.enabled = false;
-        else
-            attackZone.enabled = true;
-
+        yield return new WaitForSeconds(2.0f);
+        canJump = true;
     }
 
-    public void jump()
+    IEnumerator layEgg()
     {
-        canJump = !canJump;
-    }
-
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        if (collision.transform.CompareTag("EnemyAttackBox"))
-        {
-            float damage = 5;
-            //float damage = collision.gameObject.GetComponent<EnemyBaseClass>().attackDamage;
-            hitOurHero((int)damage);
-        }
+        yield return new WaitForSeconds(1.0f);
+        GameObject littleAttacker = Instantiate(egg);
+        Vector3 eggPosition = transform.position;
+        eggPosition.y = eggPosition.y - 3;
+        littleAttacker.transform.position = eggPosition;
     }
 }
