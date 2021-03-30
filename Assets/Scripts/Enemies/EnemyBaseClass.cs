@@ -6,39 +6,58 @@ using UnityEngine;
 public class EnemyBaseClass : MonoBehaviour {
     [Header("Enemy Attributes")]
     [SerializeField] int Health = 0;
-    [SerializeField] float movementSpeed = 0;
+    public float movementSpeed = 0;
     [SerializeField] float attackDamage = 0;
     [SerializeField] float attackSpeed = 0;
-
-    Transform player;
-
+    [SerializeField] CircleCollider2D _attackBox;
+    BoxCollider2D _hitBox;
+    SpriteRenderer _rend;
+    public HeroControls _player;
+    public GameObject _parent;
+    [SerializeField] Transform _layerOrd;
     bool isAlive = true;
-
-    void Awake(){
-        player = GameManager.Instance.GetPlayerTransform();
+    Animator _anim;
+    public virtual void Awake(){
+        _anim = GetComponent<Animator>();
+        //player = GameManager.Instance.GetPlayerTransform();
+        _attackBox = GetComponentInChildren<CircleCollider2D>();
+        _hitBox = GetComponent<BoxCollider2D>();
+        _rend = GetComponent<SpriteRenderer>();
+        _player = FindObjectOfType<HeroControls>();
+        _parent = transform.parent.gameObject;
+    }
+    public virtual void Start()
+    {
+        _attackBox.isTrigger = true;
+        _attackBox.enabled = false;
+        _hitBox.isTrigger = true;
     }
 
-    void Update() {
-        
+    public virtual void LateUpdate() {
+        _rend.sortingOrder = Mathf.RoundToInt(_layerOrd.position.y) * -1;
     }
 
-    public virtual void MoveTowardsPlayer() { }
+    public virtual void MoveTowardsPlayer() {
+
+
+    }
 
     public virtual void EvadePlayer() { }
 
-    public virtual void AttackPlayer() { }
-
-    void OnCollisionEnter(Collision collision){
-        if (collision.transform.CompareTag("PlayerHand") || collision.transform.CompareTag("PlayerFeet"))
-            TakeDamage();
+    public virtual void AttackPlayer() {
+        _anim.SetTrigger("isAttack");
     }
 
-    public void TakeDamage(){
+    public virtual void TakeDamage(){
         if (!isAlive)
             return;
 
         //Call player damage method
-
+        _anim.SetTrigger("isHurt");
+        if(Health > 0)
+        {
+            Health--;
+        }
         if(Health <= 0)
         {
             isAlive = false;
@@ -46,12 +65,32 @@ public class EnemyBaseClass : MonoBehaviour {
         }
     }
 
-    void Die() {
-        //Play death animation
-        //Disbale colliders
+    public virtual void Die() {
+        _anim.SetBool("isDead", true);
     }
 
-    public void DeactivateEnemy() {
+    public virtual void DeactivateEnemy() {
         gameObject.SetActive(false);
+    }
+
+    public virtual void ActivateAttackBox()
+    {
+        if (_attackBox.isActiveAndEnabled)
+            _attackBox.enabled = false;
+        else
+            _attackBox.enabled = true;
+
+    }
+    public virtual void ActivateHitBox()
+    {
+        if (_hitBox.isActiveAndEnabled)
+            _hitBox.enabled = false;
+        else
+            _hitBox.enabled = true;
+
+    }
+    private void OnTriggerEnter2D(Collider2D c)
+    {
+        if (c.tag == "PlayerAttackBox") TakeDamage();
     }
 }
