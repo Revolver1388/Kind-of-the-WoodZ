@@ -3,6 +3,7 @@ using UnityEngine.UI;
 using System;
 using System.Collections;
 using TMPro;
+using System.IO;
 
 public class AudioMeasure : MonoBehaviour
 {
@@ -27,10 +28,15 @@ public class AudioMeasure : MonoBehaviour
     private float movingAverage;
 
     public int movingAverageLength = 10;
-
-    private float audioChargeMeterLevel;
+    public bool isCharging;
+    public float chargeAmount;
 
     public int chargeBarDamperAmount = 5;
+
+    public float chargeTime;
+
+    [SerializeField] TextMeshProUGUI runningChargeUpText;
+    [SerializeField] TextMeshProUGUI chargedUpAmountText;
 
     void Start()
     {
@@ -47,20 +53,50 @@ public class AudioMeasure : MonoBehaviour
 
     }
      
-
-    void Update()
+    private void StartChargeUp()
     {
-        count++;
+        chargeAmount = 0;
+        isCharging = true;       
+    }
 
-        AnalyzeSound();
+    private void StopCharging()
+    {
+        isCharging = false;
+        chargedUpAmountText.text = chargeAmount.ToString();
+    }
 
-        CalculateMovingAverage();
+    void FixedUpdate()
+    {
+        chargeAmount = chargeAmount - (chargeAmount * 0.01f);
+        if (Input.GetKeyDown(KeyCode.Space) && !isCharging)
+        {
+            StartChargeUp();
+        }
 
-        chargeLevelText.text = movingAverage.ToString();
+        if (Input.GetKeyUp(KeyCode.Space) && isCharging)
+        {
+            StopCharging();
+        }
 
-        if (chargeBarDamperAmount <= 0) chargeBarDamperAmount = 1;
+       
 
-        chargeMeterFillBarImage.fillAmount = movingAverage / chargeBarDamperAmount;
+        if (isCharging)
+        {
+            count++;
+
+            AnalyzeSound();
+
+            CalculateMovingAverage();
+
+            chargeLevelText.text = movingAverage.ToString();
+
+            if (chargeBarDamperAmount <= 0) chargeBarDamperAmount = 1;
+
+            chargeMeterFillBarImage.fillAmount = movingAverage / chargeBarDamperAmount;
+            chargeAmount += movingAverage;
+            runningChargeUpText.text = chargeAmount.ToString();
+        }
+  
 
     }
 
