@@ -36,6 +36,7 @@ public class AudioMeasure : MonoBehaviour
 
     [SerializeField] TextMeshProUGUI runningChargeUpText;
     [SerializeField] TextMeshProUGUI chargedUpAmountText;
+    [SerializeField] TextMeshProUGUI promptText;
 
 
 #if UNITY_WEBGL && !UNITY_EDITOR
@@ -55,6 +56,8 @@ public class AudioMeasure : MonoBehaviour
 
     void Start()
     {
+        promptText.gameObject.SetActive(false);
+
 #if !UNITY_WEBGL
 
         micAudioSource = GetComponent<AudioSource>();
@@ -76,13 +79,15 @@ public class AudioMeasure : MonoBehaviour
 
     public void StartChargeUp()
     {
-        isCharging = true;       
+        isCharging = true;
+        promptText.gameObject.SetActive(true);
     }
 
     public void StopCharging()
     {
         isCharging = false;
         chargedUpAmountText.text = chargeAmount.ToString();
+        promptText.gameObject.SetActive(false);
     }
 
     void Update()
