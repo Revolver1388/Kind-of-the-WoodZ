@@ -49,79 +49,43 @@ public class Bear : EnemyBaseClass
 
     private void Update()
     {
-        print(currentlyFacing);
         if (currentlyFacing == FacingDir.right)
         {
             if (_parent.transform.position.x <= _player.transform.position.x)
             {
-                print("infront");
                 _parent.transform.right = new Vector2(-1, 0);
                 currentlyFacing = FacingDir.left;
             }
         }
         else
         {
-            print("facing left");
             if (_parent.transform.position.x > _player.transform.position.x)
             {
-                print("behind");
                 _parent.transform.right = new Vector2(1, 0);
                 currentlyFacing = FacingDir.right;
             }
         }
-    }
-
-    //private void Position()
-    //{
-    //    if (moveDirection == MoveDir.vert)
-    //    {
-    //        if (_parent.transform.position.y - _player.transform.position.y <= 3 && _parent.transform.position.y >= _player.transform.position.y)
-    //        {
-    //            _parent.transform.position = new Vector2(_parent.transform.position.x, _parent.transform.position.y + movementSpeed * Time.fixedDeltaTime);
-    //        }
-    //        else if (_parent.transform.position.y - _player.transform.position.y >= -3 && _parent.transform.position.y <= _player.transform.position.y)
-    //        {
-    //            _parent.transform.position = new Vector2(_parent.transform.position.x, _parent.transform.position.y - movementSpeed * Time.fixedDeltaTime);
-    //        }
-    //        else
-    //        {
-    //            moveDirection = MoveDir.hor;
-    //        }
-    //    }
-    //    else
-    //    {
-    //        //print(_player.transform.position.x - _player.transform.forward.normalized.x * 3);
-    //        //_parent.transform.position = new Vector2( * Time.fixedDeltaTime, _parent.transform.position.y);
-    //        Vector2 target = new Vector2(_player.transform.position.x - _player.transform.right.normalized.x * 5, _parent.transform.position.y);
-    //        if (Vector2.Distance(_parent.transform.position, target) >= 0.3f)
-    //        {
-    //            _parent.transform.position = Vector2.MoveTowards(_parent.transform.position, target, movementSpeed * Time.fixedDeltaTime);
-    //        }
-    //        else
-    //        {
-    //            approachTarget = new Vector2(_player.transform.position.x - _player.transform.right.normalized.x * 2.5f, _player.transform.position.y);
-    //            bearState = BearStates.approach;
-    //        }
-    //    }
-    //}
+    }   
 
     private void Approach()
     {
-        backApproach = new Vector2(_player.transform.position.x - 1f, _player.transform.position.y);
-        frontApproach = new Vector2(_player.transform.position.x + 1f, _player.transform.position.y);
+        backApproach = new Vector2(_player.transform.position.x - 3f, _player.transform.position.y + 2f);
+        frontApproach = new Vector2(_player.transform.position.x + 3f, _player.transform.position.y + 2f);
         if (Vector2.Distance(_parent.transform.position, backApproach) < Vector2.Distance(_parent.transform.position, frontApproach))
         {
             _parent.transform.position = Vector2.MoveTowards(_parent.transform.position, backApproach, movementSpeed * Time.fixedDeltaTime);
-            if (Vector2.Distance(_parent.transform.position, backApproach) <= 0.1f)
+            if (Vector2.Distance(_parent.transform.position, backApproach) <= 1f)
             {
+                AttackPlayer();
                 bearState = BearStates.attack;
             }
         }
         else
         {
             _parent.transform.position = Vector2.MoveTowards(_parent.transform.position, frontApproach, movementSpeed * Time.fixedDeltaTime);
-            if (Vector2.Distance(_parent.transform.position, backApproach) <= 0.1f)
+            if (Vector2.Distance(_parent.transform.position, frontApproach) <= 1f)
             {
+                AttackPlayer();
                 bearState = BearStates.attack;
             }
         }
@@ -166,7 +130,7 @@ public class Bear : EnemyBaseClass
     IEnumerator AttackWait()
     {
         yield return new WaitForSeconds(1.4f);
-        //bearState = BearStates.backoff;
+        bearState = BearStates.approach;
     }
 
     private void Attack()

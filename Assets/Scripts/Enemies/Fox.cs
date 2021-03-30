@@ -57,22 +57,18 @@ public class Fox : EnemyBaseClass
 
     private void Update()
     {
-        print(currentlyFacing);
         if (currentlyFacing == FacingDir.right)
         {
             if (_parent.transform.position.x <= _player.transform.position.x)
             {
-                print("infront");
                 _parent.transform.right = new Vector2(-1, 0);
                 currentlyFacing = FacingDir.left;
             }
         }
         else
         {
-            print("facing left");
             if (_parent.transform.position.x > _player.transform.position.x)
             {
-                print("behind");
                 _parent.transform.right = new Vector2(1, 0);
                 currentlyFacing = FacingDir.right;
             }
@@ -101,7 +97,7 @@ public class Fox : EnemyBaseClass
             //print(_player.transform.position.x - _player.transform.forward.normalized.x * 3);
             //_parent.transform.position = new Vector2( * Time.fixedDeltaTime, _parent.transform.position.y);
             Vector2 target = new Vector2(_player.transform.position.x - _player.transform.right.normalized.x * 5, _parent.transform.position.y);
-            if (Vector2.Distance(_parent.transform.position, target) >= 0.3f)
+            if (Vector2.Distance(_parent.transform.position, target) >= 0.5f)
             {
                 _parent.transform.position = Vector2.MoveTowards(_parent.transform.position, target, movementSpeed * Time.fixedDeltaTime);
             }
