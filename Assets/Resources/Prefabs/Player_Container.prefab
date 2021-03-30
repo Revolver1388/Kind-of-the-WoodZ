@@ -169,7 +169,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -259573493
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: 10
   m_Sprite: {fileID: -1467833249718252388, guid: 9434cb9a60c5a2b4c82808a1767369a5,
     type: 3}
@@ -276,7 +276,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -259573493
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 4807213595197823473, guid: 9d8445e10dccca742afd0e1e9917b635,
     type: 3}
@@ -297,13 +297,13 @@ BoxCollider2D:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 9037368151995635393}
-  m_Enabled: 0
+  m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.13876653, y: 1.6526086}
+  m_Offset: {x: 0.15323639, y: 1.507868}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0}
@@ -314,7 +314,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.7087722, y: 2.0011454}
+  m_Size: {x: 1.7955971, y: 1.5379753}
   m_EdgeRadius: 0
 --- !u!70 &972246974882135114
 CapsuleCollider2D:
@@ -329,9 +329,9 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.07811365, y: 1.38}
-  m_Size: {x: 0.6517893, y: 1.35}
-  m_Direction: 0
+  m_Offset: {x: 0.22281867, y: 0.23814934}
+  m_Size: {x: 2.4076488, y: 0.52630013}
+  m_Direction: 1
 --- !u!95 &1540930983
 Animator:
   serializedVersion: 3
@@ -383,5 +383,6 @@ MonoBehaviour:
   attackZone: {fileID: 896520699}
   attackDamage: 0
   energyCharged: 0
+  startCharge: 0
   egg: {fileID: 0}
   chargeUp: {fileID: 3187757096066122527}
