@@ -102,7 +102,7 @@ public class HeroControls : MonoBehaviour
                 if (Input.GetKeyDown(KeyCode.J))
                 {
                     //attack for 10 damage with 0.5 seconds delay
-                    attack(10, 0.1f);
+                    attack(10, 0.5f);
                 }
 
                 //Jump, K right now
