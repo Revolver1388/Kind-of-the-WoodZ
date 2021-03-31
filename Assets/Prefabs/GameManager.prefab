@@ -97,9 +97,13 @@ MonoBehaviour:
     clip: {fileID: 8300000, guid: aa5ee0564b13e4b4395ffe5715bb66b8, type: 3}
   lvl_Music:
   - name: Menu
-    clip: {fileID: 8300000, guid: 5e4ce350e0c043e47b23da137201dccc, type: 3}
-  - name: Level
-    clip: {fileID: 8300000, guid: b5b9219cbfce04a4ca06207050741714, type: 3}
+    clip: {fileID: 8300000, guid: 6eca8c27a6606c44fb5e44381044a996, type: 3}
+  - name: Level1
+    clip: {fileID: 8300000, guid: 04d8e0d3349b7864fa0148fdebb89503, type: 3}
+  - name: Level2
+    clip: {fileID: 8300000, guid: 2a99f697fa44c1d458868cd6817b9ec8, type: 3}
+  - name: Level3
+    clip: {fileID: 8300000, guid: d0932ade442972448b922d3ae0de9bec, type: 3}
 --- !u!1 &1409150746
 GameObject:
   m_ObjectHideFlags: 0
@@ -528,4 +532,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7908a9f69aa8bd4e9a981f5f7737063, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnZoneList: []
   levelsPassed: 0000000000
