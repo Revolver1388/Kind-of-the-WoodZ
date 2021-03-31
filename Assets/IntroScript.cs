@@ -17,11 +17,6 @@ public class IntroScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
-    }
-
-    public void MoveScene(string sceneName)
-    {
-        SceneManager.LoadSceneAsync(sceneName);
+        
     }
 }
