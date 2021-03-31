@@ -192,7 +192,7 @@ MonoBehaviour:
   chargeAmount: 0
   chargeDegradePercentPerFrame: 0.0005
   chargeBarDamperAmount: 1
-  energyChargeMultiple: 1
+  energyChargeMultiple: 1.5
   runningChargeUpText: {fileID: 2893400694925835757}
   chargedUpAmountText: {fileID: 2893400695201681455}
   promptText: {fileID: 1620300398763719364}
