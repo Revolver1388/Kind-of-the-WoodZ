@@ -25,6 +25,8 @@ public class EnemyBaseClass : MonoBehaviour {
 
     private AudioManager audioManager;
 
+    [SerializeField] GameObject healthObject;
+
 
     public virtual void Awake()
     {
@@ -93,6 +95,15 @@ public class EnemyBaseClass : MonoBehaviour {
     }
 
     public virtual void Die() {
+
+        if(healthObject != null)
+        {
+            if(Random.Range(1,10)%2==1)
+            {
+                GameObject g = Instantiate(healthObject);
+                g.transform.position = transform.position;
+            }
+        }
         _anim.SetBool("isDead", true);
     }
 
