@@ -108,7 +108,7 @@ public class HeroControls : MonoBehaviour
 
 
                 //Attack 1
-                if (Input.GetKeyDown(KeyCode.J))
+                if (Input.GetMouseButton(0))
                 {
                     //attack for 10 damage with 0.5 seconds delay
                     attack(10, 0.5f);

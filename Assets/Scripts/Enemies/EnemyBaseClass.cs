@@ -139,7 +139,7 @@ public class EnemyBaseClass : MonoBehaviour {
         if (c.tag == "PlayerAttackBox")
         {
             //print(_player.getDamage() * 5);
-            TakeDamage(_player.getDamage() * 5);
+            TakeDamage(_player.getDamage());
         }
         else if (c.tag == "EggBox")
         {

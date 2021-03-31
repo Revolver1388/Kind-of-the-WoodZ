@@ -34,6 +34,11 @@ public class Fox : EnemyBaseClass
             _parent.transform.right = new Vector2(-1, 0);
             currentlyFacing = FacingDir.left;
         }
+        else if (_parent.transform.position.x > _player.transform.position.x)
+        {
+            _parent.transform.right = new Vector2(1, 0);
+            currentlyFacing = FacingDir.right;
+        }
     }
 
     public override void LateUpdate()
