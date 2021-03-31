@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DG.Tweening;
 
 public class HeroControls : MonoBehaviour
 {
@@ -12,6 +13,7 @@ public class HeroControls : MonoBehaviour
     [SerializeField] private bool canTakeDamage = true;
     private bool canCharge = true;
     [SerializeField] private GameObject[] heartCounter;
+    private Transform cameraTransform;
 
     //Movement Variables
     public float horizontalSpeed = 8f;
@@ -49,6 +51,8 @@ public class HeroControls : MonoBehaviour
     private AudioManager audioManager;
     void Awake()
     {
+        DOTween.Init();
+        cameraTransform = Camera.main.transform;
         audioManager = FindObjectOfType<AudioManager>();
         audioMeasure = FindObjectOfType<AudioMeasure>();
         rigidBod = GetComponentInParent<Rigidbody2D>();
@@ -228,6 +232,7 @@ public class HeroControls : MonoBehaviour
     {
         if (canTakeDamage)
         {
+            cameraTransform.DOShakePosition(0.1f, 0.2f, 50, 90, false, false);
             rigidBod.velocity = Vector2.zero;
             canTakeDamage = false;
             _anim.SetTrigger("isHurt");
