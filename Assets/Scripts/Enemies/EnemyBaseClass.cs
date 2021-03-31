@@ -15,7 +15,7 @@ public class EnemyBaseClass : MonoBehaviour {
     public HeroControls _player;
     public GameObject _parent;
     [SerializeField] Transform _layerOrd;
-    bool isAlive = true;
+    public bool isAlive = true;
     public Animator _anim;
     public virtual void Awake(){
         _anim = GetComponent<Animator>();
@@ -95,12 +95,15 @@ public class EnemyBaseClass : MonoBehaviour {
     {
         if (c.tag == "PlayerAttackBox")
         {
-            if (_player.playerEnergy < 10)
+            TakeDamage(_player.getDamage());
+        }
+        else if (c.tag == "EggBox")
+        {
+            if (c.gameObject.GetComponent<EggScript>().isHeroEgg && !c.gameObject.GetComponent<EggScript>().hasHit)
             {
-                TakeDamage(10);
+                Health -= 10;
+                c.gameObject.GetComponent<EggScript>().eggCollision();
             }
-            else
-                TakeDamage(_player.playerEnergy);
         }
     }
 }
