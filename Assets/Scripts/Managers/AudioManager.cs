@@ -7,22 +7,17 @@ using UnityEngine.Audio;
 using UnityEngine.SceneManagement;
 public class AudioManager : MonoBehaviour
 {
+    public static AudioManager Instance { get; private set; }
+
     [SerializeField] AudioMixer audioMixer = null;
 
     readonly string[] mixerChannel = { "Master", "Music", "SFX", "Menu" };
     readonly string[] mixerKey = { "MasterVolume", "MusicVolume", "SFXVolume", "MenuVolume" };
-    string _currentSong;
-    #region AudioMixer
-    [SerializeField] AudioMixer MainMix;
-    [SerializeField] AudioMixerGroup musicGroup;
-    [SerializeField] AudioMixerGroup sfxGroup;
-    #endregion
 
     #region AudioSources
     [SerializeField] AudioSource levelMusic;
     [SerializeField] AudioSource sfxSource;
     #endregion
-    public static AudioManager a_Instance;
     #region Audio Clips
     public SfxClip[] sfx;
     public LevelMusic[] lvl_Music;
@@ -30,46 +25,39 @@ public class AudioManager : MonoBehaviour
 
     readonly float levelMusicDelay = 0.4f;
 
-    private void Awake()
+    void Awake()
     {
-        if (a_Instance == null)
-            a_Instance = this;
-        else if (a_Instance != this)
-            Destroy(this);
+        Instance = this;
     }
-    private void OnEnable()
-    {
-      
-    }
-    private void Start()
-    {
-     
+
+    void Start(){
         for (int i = 0; i < mixerChannel.Length; i++)
         {
             audioMixer.SetFloat(mixerKey[i], PlayerPrefs.GetFloat(mixerChannel[i]));
         }
-
-
-
+            
+        StartCoroutine(PlayMusic("Menu"));
     }
 
-    public void FUCK()
+    public void CheckMusicTrack()
     {
-
-        if (SceneManager.GetActiveScene().name == "Main_Menu")
-        {
-            StopMusic();
-            StartCoroutine(PlayMusic("Menu"));
-        }
-        else
-        {
-            StopMusic();
-            StartCoroutine(PlayMusic("Level"));
-        }
+        Invoke(nameof(StartNewMusic), 0.5f);
     }
-    private void Update()
+
+    void StartNewMusic()
     {
-        //if (SceneManager.GetActiveScene().name != "Main_Menu") _currentSong = "Level";
+        for (int i = 1; i < 4; i++)
+        {
+            if (SceneManager.GetActiveScene().buildIndex == i)
+            {
+                StopMusic();
+                StartCoroutine(PlayMusic("Level"));
+                return;
+            }
+        }
+
+        StopMusic();
+        StartCoroutine(PlayMusic("Menu"));
     }
 
     public IEnumerator PlayMusic(string clipName)
@@ -80,7 +68,6 @@ public class AudioManager : MonoBehaviour
         levelMusic.Play();
         levelMusic.loop = true;
     }
-
 
     public void PlayOneShotByName(string sound)
     { foreach (SfxClip clip in sfx) if (clip.name == sound) sfxSource.PlayOneShot(clip.clip); }
