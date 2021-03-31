@@ -351,6 +351,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main_Menu_Canvas
       objectReference: {fileID: 0}
+    - target: {fileID: 5519452845033212963, guid: e093df4301ceaf44cbf941a74fb4d078,
+        type: 3}
+      propertyPath: m_UiScaleMode
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5519452845033212965, guid: e093df4301ceaf44cbf941a74fb4d078,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -455,6 +460,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519452845994249287, guid: e093df4301ceaf44cbf941a74fb4d078,
+        type: 3}
+      propertyPath: m_LocalScale.x
+      value: 1.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 5519452845994249287, guid: e093df4301ceaf44cbf941a74fb4d078,
+        type: 3}
+      propertyPath: m_LocalScale.y
+      value: 1.8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: e093df4301ceaf44cbf941a74fb4d078, type: 3}

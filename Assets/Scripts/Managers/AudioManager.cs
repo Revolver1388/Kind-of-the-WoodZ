@@ -39,7 +39,11 @@ public class AudioManager : MonoBehaviour
     }
     private void OnEnable()
     {
-        if (SceneManager.GetActiveScene().name == "Main_Menu")
+      
+    }
+    private void Start()
+    {
+        if (SceneManager.GetActiveScene().name.Contains("Menu"))
         {
             StartCoroutine(PlayMusic("Menu"));
         }
