@@ -17,7 +17,7 @@ public class SpawnZone : MonoBehaviour
 
     private int enemiesDefeated;
     private bool active;
-
+    [SerializeField] Camera _cam;
     private List<GameObject> enemiesAlive = new List<GameObject>();
     // Start is called before the first frame update
     void Start()
@@ -25,6 +25,7 @@ public class SpawnZone : MonoBehaviour
         active = false;
         leftBlocker.enabled = false;
         rightBlocker.enabled = false;
+        _cam = Camera.main;
     }
 
     // Update is called once per frame
@@ -57,11 +58,12 @@ public class SpawnZone : MonoBehaviour
     }
 
     //when trigger is crossed by the player enable the blockers and start spawning
-    private void OnTriggerEnter2D(Collider2D collision)
+    private void OnTriggerEnter2D(Collider2D c)
     {
-        if (collision.tag == "Player")
+        if (c.gameObject.tag == "Player")
         {
-            //lock camera
+            //_cam.GetComponent<PlayerCamera>()._holdPos = this.transform;
+            //_cam.GetComponent<PlayerCamera>().togglePause();
             StartCoroutine(spawnTimer(spawnRate));
             enemiesDefeated = 0;
             active = true;
@@ -90,7 +92,11 @@ public class SpawnZone : MonoBehaviour
         }
         while (bodyCountRequired > enemiesDefeated);
 
+
+
         //unlock camera
+        //_cam.GetComponent<PlayerCamera>().togglePause();
+        //_cam.GetComponent<PlayerCamera>()._holdPos = null;
         Destroy(gameObject);
     }
 }
