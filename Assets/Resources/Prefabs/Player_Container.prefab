@@ -495,6 +495,7 @@ GameObject:
   - component: {fileID: 8456088261891541817}
   - component: {fileID: 2780537009759353236}
   - component: {fileID: 724097482578279465}
+  - component: {fileID: 26268502981619980}
   m_Layer: 5
   m_Name: HitImage
   m_TagString: Untagged
@@ -560,6 +561,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!111 &26268502981619980
+Animation:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5513711905108662754}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Animation: {fileID: 7400000, guid: d1fe4f8cd7ccfb742b292c8a513facc0, type: 2}
+  m_Animations:
+  - {fileID: 7400000, guid: d1fe4f8cd7ccfb742b292c8a513facc0, type: 2}
+  m_WrapMode: 0
+  m_PlayAutomatically: 1
+  m_AnimatePhysics: 0
+  m_CullingType: 0
 --- !u!1 &6750994165097805923
 GameObject:
   m_ObjectHideFlags: 0
@@ -603,7 +620,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2c399aa4e2f2da419ae0855009d636f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hitAmountText: {fileID: 0}
+  hitAmountText: {fileID: 3657868296087758304}
+  hitpopup: {fileID: 5513711905108662754}
 --- !u!1 &9037368151995635393
 GameObject:
   m_ObjectHideFlags: 0
@@ -749,6 +767,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 111fc9287c9291d47aa44d01f20c66b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hitPopupController: {fileID: 3956537198508607427}
   playerHealth: 6
   playerEnergy: 0
   isAlive: 1

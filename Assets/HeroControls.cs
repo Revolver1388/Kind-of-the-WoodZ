@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class HeroControls : MonoBehaviour
 {
-
+    [SerializeField] HitPopupController hitPopupController;
 
     //Stats
     [SerializeField] private int playerHealth = 6;
@@ -264,9 +264,9 @@ public class HeroControls : MonoBehaviour
     //Return attack damage for enemies hit by attack
     public int getDamage()
     {
-        float energy = (float)playerEnergy / 100f;
-        float damage = 5 + (attackDamage * energy);
-        return (int)damage;
+        /*float energy = (float)playerEnergy / 100f;
+        float damage = 5 + (attackDamage * energy);*/
+        return playerEnergy;
     }
 
     private void pickUpHealth()
