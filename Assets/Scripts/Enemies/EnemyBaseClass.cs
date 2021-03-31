@@ -91,6 +91,7 @@ public class EnemyBaseClass : MonoBehaviour {
         {     
             isAlive = false;
             this.enabled = false;
+            _attackBox.enabled = false;
             Die();
         }
     }
