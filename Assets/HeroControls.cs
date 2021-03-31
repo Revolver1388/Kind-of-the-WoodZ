@@ -18,7 +18,7 @@ public class HeroControls : MonoBehaviour
     public float verticalSpeed = 4f;
     private Rigidbody2D rigidBod;
     [SerializeField] bool canMove = true;
-    private bool facingRight = true;
+    public bool facingRight = true;
     [Range(0, 1.0f)]
     [SerializeField] float movementSmooth = 0.1f;
     private Vector3 velocity = Vector3.zero;
@@ -29,6 +29,7 @@ public class HeroControls : MonoBehaviour
     //Attack Variables
     [SerializeField] CircleCollider2D attackZone;
     [SerializeField] int attackDamage;
+    private BoxCollider2D hitBox;
 
     //Charging Variables
     [SerializeField] private float energyCharged = 0;
@@ -51,6 +52,7 @@ public class HeroControls : MonoBehaviour
         attackZone = GetComponentInChildren<CircleCollider2D>();
         attackZone.enabled = false;
         checkHearts();
+        hitBox = GetComponent<BoxCollider2D>();
         _anim = GetComponent<Animator>();
         attackDamage = 0;
         canJump = true;
@@ -197,11 +199,11 @@ public class HeroControls : MonoBehaviour
             }
 
             //Every 40 energy lay an egg
-            if (energyCharged >= 40)
+            if (energyCharged >= 20)
             {
                 //twea
                 StartCoroutine(layEgg());
-                startCharge += 40;
+                startCharge += 30;
             }
             canCharge = true;
 
@@ -232,7 +234,7 @@ public class HeroControls : MonoBehaviour
     public int getDamage()
     {
         float energy = (float)playerEnergy / 100f;
-        float damage = attackDamage * energy;
+        float damage = 5 + (attackDamage * energy);
         return (int)damage;
     }
 
@@ -252,6 +254,18 @@ public class HeroControls : MonoBehaviour
 
     }
 
+    public void JumpLayerSwap()
+    {
+        SpriteRenderer sprite = GetComponent<SpriteRenderer>();
+        if(sprite.sortingLayerName=="WalkArea")
+        {
+            sprite.sortingLayerName = "JumpArea";
+        }
+        else
+        {
+            sprite.sortingLayerName = "WalkArea";
+        }
+    }
     public void jump()
     {
         if (canJump)
@@ -386,6 +400,7 @@ public class HeroControls : MonoBehaviour
         }
     }
 
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "EnemyAttackBox")
@@ -393,6 +408,15 @@ public class HeroControls : MonoBehaviour
             float damage = 1;
             //float damage = collision.gameObject.GetComponent<EnemyBaseClass>().attackDamage;
             hitOurHero((int)damage);
+        }
+
+        else if (collision.tag == "EggBox")
+        {
+            if(collision.gameObject.GetComponent<EggScript>().isEnemyEgg && !collision.gameObject.GetComponent<EggScript>().hasHit)
+            {
+                hitOurHero(1);
+                collision.gameObject.GetComponent<EggScript>().eggCollision();
+            }
         }
     }
 
@@ -413,7 +437,7 @@ public class HeroControls : MonoBehaviour
 
     IEnumerator jumpDelay()
     {
-        yield return new WaitForSeconds(2.0f);
+        yield return new WaitForSeconds(1.5f);
         canJump = true;
     }
 
@@ -424,7 +448,8 @@ public class HeroControls : MonoBehaviour
         Vector3 eggPosition = transform.position;
 
         //move the egg slightly down
-        eggPosition.y = eggPosition.y - 3;
+        eggPosition.y = eggPosition.y - Random.Range(0.000f, 2.000f);
+        eggPosition.x = eggPosition.x - Random.Range(-4.00f, 4.00f);
         littleAttacker.transform.position = eggPosition;
     }
 }
