@@ -8,9 +8,12 @@ using DG.Tweening;
 
 public class EnemyBaseClass : MonoBehaviour {
 
-    
+
 
     [Header("Enemy Attributes")]
+
+    private HitPopupController hitPopupController;
+
     public int Health = 0;
     public float movementSpeed = 0;
     [SerializeField] float attackDamage = 0;
@@ -32,6 +35,7 @@ public class EnemyBaseClass : MonoBehaviour {
     public virtual void Awake()
     {
         DOTween.Init();
+        hitPopupController = gameObject.transform.parent.GetChild(1).GetComponent<HitPopupController>();
         cameraTransform = Camera.main.transform;
         audioManager = FindObjectOfType<AudioManager>();
         _anim = GetComponent<Animator>();
@@ -72,6 +76,8 @@ public class EnemyBaseClass : MonoBehaviour {
             return;
 
         cameraTransform.DOShakePosition(0.1f, 0.2f, 50, 90, false, false);
+
+        hitPopupController.SetHitAmount(damage);
 
         //Call player damage method
         _anim.SetTrigger("isHurt");
