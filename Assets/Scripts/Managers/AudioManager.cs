@@ -13,7 +13,7 @@ public class AudioManager : MonoBehaviour
 
     readonly string[] mixerChannel = { "Master", "Music", "SFX", "Menu" };
     readonly string[] mixerKey = { "MasterVolume", "MusicVolume", "SFXVolume", "MenuVolume" };
-
+    string _currentSong;
     #region AudioSources
     [SerializeField] AudioSource levelMusic;
     [SerializeField] AudioSource sfxSource;
@@ -46,23 +46,29 @@ public class AudioManager : MonoBehaviour
 
     void StartNewMusic()
     {
-        for (int i = 2; i < 5; i++)
+        for (int i = 1; i < 4; i++)
         {
             if (SceneManager.GetActiveScene().buildIndex == i)
             {
-                StopMusic();
-                StartCoroutine(PlayMusic("Level"));
+                StopMusic();  
+                StartCoroutine(PlayMusic("Level" + i));             
                 return;
             }
         }
-
-        StopMusic();
-        StartCoroutine(PlayMusic("Menu"));
+        if (SceneManager.GetActiveScene().name == "Main_Menu")
+        {
+            if (_currentSong != "Menu")
+            {
+                StopMusic();
+                StartCoroutine(PlayMusic("Menu"));
+            }
+        }
     }
 
     public IEnumerator PlayMusic(string clipName)
     {
         StopMusic();
+        _currentSong = clipName;
         yield return new WaitForSeconds(levelMusicDelay);
         foreach (LevelMusic song in lvl_Music) { if (song.name == clipName) levelMusic.clip = song.clip; levelMusic.Play(); }
         levelMusic.Play();
