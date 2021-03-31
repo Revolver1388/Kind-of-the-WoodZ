@@ -77,6 +77,8 @@ public class HeroControls : MonoBehaviour
         paused = false;
     }
 
+    public bool isChargingUp;
+
     // Update is called once per frame
     void Update()
     {
@@ -85,6 +87,7 @@ public class HeroControls : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.Space))
             {
+                isChargingUp = true;
                 rigidBod.velocity = Vector2.zero;
                 //start or continue charging animation/sprite
                 energyCharge();
@@ -98,6 +101,7 @@ public class HeroControls : MonoBehaviour
             }
             else
             {
+                isChargingUp = false;
                 horizontalMove = Input.GetAxis("Horizontal");
                 verticalMove = Input.GetAxis("Vertical");
                 moveCharacter(horizontalMove, verticalMove);
