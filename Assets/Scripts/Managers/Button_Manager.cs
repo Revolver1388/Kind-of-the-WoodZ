@@ -53,7 +53,7 @@ public class Button_Manager : MonoBehaviour {
 
         int currentScene = SceneManager.GetActiveScene().buildIndex;
 
-        SceneManager.LoadSceneAsync(GameManager.Instance.GetLevelProgression()+1);
+        SceneManager.LoadSceneAsync(GameManager.Instance.GetLevelProgression());
         SceneManager.UnloadSceneAsync(currentScene);
 
         AudioManager.Instance.CheckMusicTrack();
