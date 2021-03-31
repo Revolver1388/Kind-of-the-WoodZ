@@ -1322,6 +1322,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: InGameUI
       objectReference: {fileID: 0}
+    - target: {fileID: 8531230865600959088, guid: 697c2429769cb17438babc05c69a002e,
+        type: 3}
+      propertyPath: m_AdditionalShaderChannelsFlag
+      value: 25
+      objectReference: {fileID: 0}
     - target: {fileID: 8531230865600959089, guid: 697c2429769cb17438babc05c69a002e,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -68,7 +68,7 @@ public class EnemyBaseClass : MonoBehaviour {
         if (!isAlive)
             return;
 
-        cameraTransform.DOShakePosition(0.2f, 0.2f, 50, 90, false, false);
+        cameraTransform.DOShakePosition(0.1f, 0.2f, 50, 90, false, false);
 
         //Call player damage method
         _anim.SetTrigger("isHurt");
