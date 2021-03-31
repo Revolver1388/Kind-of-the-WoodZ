@@ -9,7 +9,8 @@ public class PlayerCamera : MonoBehaviour
     Vector3 smoothingVelocity;
     [SerializeField] float distFromPlayer = 8, c_Lerp = 0.5f, cameraOffsetX = 0.2f;
     public float cameraOffsetY;
-    private bool isPause;
+    public bool isPause = false;
+    public Transform _holdPos;
     void Start()
     {
 
@@ -20,17 +21,17 @@ public class PlayerCamera : MonoBehaviour
 
     private void LateUpdate()
     {
-        if(!isPause)
-            CamMovement();
-        //else
-            ///do shit here
+        CamMovement();
     }
     void CamMovement()
     {
-        transform.position = Vector3.SmoothDamp(transform.position, player.position - (transform.forward - (transform.right * cameraOffsetX) - (transform.up * cameraOffsetY)) * distFromPlayer, ref smoothingVelocity, c_Lerp);
+        if (!isPause)
+            transform.position = Vector3.SmoothDamp(transform.position, player.position - (transform.forward - (transform.right * cameraOffsetX) - (transform.up * cameraOffsetY)) * distFromPlayer, ref smoothingVelocity, c_Lerp);
+        else
+            transform.position = Vector3.SmoothDamp(transform.position, _holdPos.position - (transform.forward - (transform.up * cameraOffsetY)) * distFromPlayer, ref smoothingVelocity, c_Lerp);
     }
 
-public void togglePause()
+    public void togglePause()
     {
         isPause = !isPause;
     }
