@@ -32,10 +32,17 @@ public class Button_Manager : MonoBehaviour {
         audioSource.PlayOneShot(mousedOverAudio);
     }
 
+    public void ResetLevelProgression()
+    {
+        GameManager.Instance.ResetLevelProgression();
+    }
+
     public void OnChangeScene() {
         audioSource.PlayOneShot(buttonPressedAudio);
 
         int currentScene = SceneManager.GetActiveScene().buildIndex;
+
+
 
         SceneManager.LoadSceneAsync(goToSceneName);
         SceneManager.UnloadSceneAsync(currentScene);

@@ -49,7 +49,24 @@ public class GameManager : MonoBehaviour {
                 levelsPassed[i] = true;
     }
 
+    public void ResetLevelProgression()
+    {
+        levelProgression = 0;
+    }
+
     public void SetLevelPassed(int level){
+
+        Scene currentScene = SceneManager.GetActiveScene();
+
+        if (level == 4)
+        {
+
+            SceneManager.LoadSceneAsync(levelProgression);
+            SceneManager.UnloadSceneAsync(currentScene);
+
+            return;
+        }
+
         levelProgression++;
         levelsPassed[level] = true;
 
@@ -57,7 +74,6 @@ public class GameManager : MonoBehaviour {
         PlayerPrefs.SetInt("LevelProgression", level);
         PlayerPrefs.Save();
 
-        Scene currentScene = SceneManager.GetActiveScene();
 
         SceneManager.LoadSceneAsync(levelProgression);
         SceneManager.UnloadSceneAsync(currentScene);
