@@ -57,9 +57,9 @@ MonoBehaviour:
   sfx: []
   lvl_Music:
   - name: Menu
-    clip: {fileID: 8300000, guid: cfce4ef7ac733c146b8533b488d7b6c5, type: 3}
+    clip: {fileID: 8300000, guid: 5e4ce350e0c043e47b23da137201dccc, type: 3}
   - name: Level
-    clip: {fileID: 8300000, guid: 25f7ba7d3b7da9049a1bb5fced873bbd, type: 3}
+    clip: {fileID: 8300000, guid: b5b9219cbfce04a4ca06207050741714, type: 3}
 --- !u!1 &1409150746
 GameObject:
   m_ObjectHideFlags: 0

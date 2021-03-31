@@ -35,7 +35,7 @@ public class AudioManager : MonoBehaviour
         if (a_Instance == null)
             a_Instance = this;
         else if (a_Instance != this)
-            Destroy(a_Instance);
+            Destroy(this);
     }
     private void OnEnable()
     {
@@ -50,7 +50,7 @@ public class AudioManager : MonoBehaviour
     }
     private void Update()
     {
-
+        if (SceneManager.GetActiveScene().name != "Main_Menu") _currentSong = "Level";
     }
 
     public IEnumerator PlayMusic(string clipName)
