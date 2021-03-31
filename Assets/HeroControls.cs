@@ -7,7 +7,7 @@ public class HeroControls : MonoBehaviour
     //Stats
     [SerializeField] private int playerHealth = 6;
     [SerializeField] public int playerEnergy = 0;
-    [SerializeField] private bool isAlive = true;
+    [SerializeField] public bool isAlive = true;
     [SerializeField] private bool canAttack = true;
     [SerializeField] private bool canTakeDamage = true;
     private bool canCharge = true;
@@ -40,7 +40,7 @@ public class HeroControls : MonoBehaviour
     //Animator
     Animator _anim;
     [SerializeField] GameObject chargeUp;
-
+    SpriteRenderer _rend;
 
     //Microphone
     private AudioMeasure audioMeasure;
@@ -56,6 +56,7 @@ public class HeroControls : MonoBehaviour
         _anim = GetComponent<Animator>();
         attackDamage = 0;
         canJump = true;
+        _rend = GetComponent<SpriteRenderer>();
     }
 
     // Update is called once per frame
@@ -116,6 +117,11 @@ public class HeroControls : MonoBehaviour
         }
     }
 
+
+    private void LateUpdate()
+    {
+        _rend.sortingOrder = Mathf.RoundToInt(transform.position.y) * -1;
+    }
     //Movement script via Rigidbody 2D velocity
     public void moveCharacter(float hMove, float vMove)
     {
