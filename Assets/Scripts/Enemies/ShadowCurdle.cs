@@ -126,6 +126,17 @@ public class ShadowCurdle : EnemyBaseClass
                 currentlyFacing = FacingDir.right;
             }
         }
+
+        //RaycastHit2D hit;
+        //hit = Physics2D.BoxCast(new Vector2(transform.position.x, transform.position.y + 0.5f), new Vector2(3, 1), 0, -transform.right, 3);   //(new Vector2(transform.position.x, transform.position.y + 0.5f), transform.right, 3);
+        //if (hit)
+        //{
+        //    Debug.Log(hit.collider.gameObject.name);
+        //    if (hit.collider.gameObject.GetComponent<EggScript>())
+        //    {
+        //        AttackPlayer();
+        //    }
+        //}
     }
 
     public void ShootEgg()

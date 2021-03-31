@@ -75,9 +75,6 @@ public class EnemyBaseClass : MonoBehaviour {
         if(Health > 0)
         {
             Health -= damage;
-
-            
-
         }
         if(Health <= 0)
         {     
@@ -97,7 +94,7 @@ public class EnemyBaseClass : MonoBehaviour {
     }
 
     public virtual void DeactivateEnemy() {
-        gameObject.SetActive(false);
+        transform.parent.gameObject.SetActive(false);
     }
 
     public virtual void ActivateAttackBox()
@@ -121,13 +118,14 @@ public class EnemyBaseClass : MonoBehaviour {
     {
         if (c.tag == "PlayerAttackBox")
         {
-            TakeDamage(_player.getDamage());
+            //print(_player.getDamage() * 5);
+            TakeDamage(_player.getDamage() * 5);
         }
         else if (c.tag == "EggBox")
         {
             if (c.gameObject.GetComponent<EggScript>().isHeroEgg && !c.gameObject.GetComponent<EggScript>().hasHit)
             {
-                Health -= 10;
+                TakeDamage(25);
                 c.gameObject.GetComponent<EggScript>().eggCollision();
             }
         }
