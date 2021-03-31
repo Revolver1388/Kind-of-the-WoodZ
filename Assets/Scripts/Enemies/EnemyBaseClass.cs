@@ -104,7 +104,7 @@ public class EnemyBaseClass : MonoBehaviour {
 
         if(healthObject != null)
         {
-            if(Random.Range(1,10)%2==1)
+            if(Random.Range(1,3)==1)
             {
                 GameObject g = Instantiate(healthObject);
                 g.transform.position = transform.position;
