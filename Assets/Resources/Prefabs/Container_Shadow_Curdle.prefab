@@ -89,9 +89,9 @@ GameObject:
   - component: {fileID: 7114562893675869424}
   - component: {fileID: 7114562893675869438}
   - component: {fileID: 7114562893675869439}
-  - component: {fileID: 2785454143527342358}
   - component: {fileID: 6359413058088409987}
   - component: {fileID: 6359413058088409989}
+  - component: {fileID: 8495903565284006049}
   m_Layer: 0
   m_Name: Atlas_Curdle
   m_TagString: Untagged
@@ -111,6 +111,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6359413058157940253}
+  - {fileID: 4368936813708510081}
   m_Father: {fileID: 7114562892259631205}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -150,8 +151,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -259573493
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: -1221235343739073621, guid: 755ba521a4fd64e4f8de9d35b17cf001,
     type: 3}
@@ -184,24 +185,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &2785454143527342358
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7114562893675869425}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ac9ad49a690bac34da8397858a0ca061, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Health: 3
-  movementSpeed: 2
-  attackDamage: 0
-  attackSpeed: 0
-  _attackBox: {fileID: 0}
-  _layerOrd: {fileID: 6359413058157940253}
 --- !u!50 &6359413058088409987
 Rigidbody2D:
   serializedVersion: 4
@@ -249,3 +232,62 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 2.2861376, y: 3.0230317}
   m_EdgeRadius: 0
+--- !u!114 &8495903565284006049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7114562893675869425}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c39881f29d77114eb6692f2b2aa5c60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 1000
+  movementSpeed: 8
+  attackDamage: 2
+  attackSpeed: 0
+  _attackBox: {fileID: 0}
+  _hitBox: {fileID: 0}
+  _player: {fileID: 0}
+  _parent: {fileID: 0}
+  _layerOrd: {fileID: 6359413058157940253}
+  isAlive: 1
+  _anim: {fileID: 0}
+  eggShootPrefab: {fileID: 3851407523229397007, guid: 499798a5683154b4bb61fa68faffd456,
+    type: 3}
+  eggLayPrefab: {fileID: 8262271854818120537, guid: 958e732104f1d2340b061ae37d50ba00,
+    type: 3}
+  shotEggloc: {fileID: 4368936813708510081}
+  followSpeed: 1
+--- !u!1 &7928653505759466853
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4368936813708510081}
+  m_Layer: 0
+  m_Name: EggShoot tranform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4368936813708510081
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7928653505759466853}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.45, y: 1.02, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7114562893675869424}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
