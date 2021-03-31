@@ -79,6 +79,8 @@ public class SpawnZone : MonoBehaviour
         }
     }
 
+    [SerializeField] GameObject moveArrow;
+
     //spawn enemies every x seconds equal to your set preference, also destroys object once limits are hit
     IEnumerator spawnTimer (float time)
     {
@@ -92,7 +94,9 @@ public class SpawnZone : MonoBehaviour
         }
         while (bodyCountRequired > enemiesDefeated);
 
+        moveArrow.SetActive(true);
 
+        yield return new WaitForSeconds(3);
 
         //unlock camera
         //_cam.GetComponent<PlayerCamera>().togglePause();
