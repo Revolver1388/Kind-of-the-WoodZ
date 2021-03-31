@@ -34,7 +34,7 @@ public class AudioMeasure : MonoBehaviour
     public float chargeAmount;
     public float chargeDegradePercentPerFrame;
     public int chargeBarDamperAmount = 5;
-    public int energyChargeMultiple;
+    public float energyChargeMultiple;
 
     [SerializeField] TextMeshProUGUI runningChargeUpText;
     [SerializeField] TextMeshProUGUI chargedUpAmountText;
@@ -46,6 +46,9 @@ public class AudioMeasure : MonoBehaviour
 
     private Febucci.UI.TextAnimator textAnimator;
     private Febucci.UI.TextAnimatorPlayer textAnimatorPlayer;
+
+    Coroutine playTextCoroutine;
+    Coroutine cameraShakeCoroutine;
 
 #if UNITY_WEBGL && !UNITY_EDITOR
         void Awake()
@@ -94,28 +97,31 @@ public class AudioMeasure : MonoBehaviour
     {
         isCharging = true;
         promptText.gameObject.SetActive(true);
-        StartCoroutine(cameraShakeHelper());
-        StartCoroutine(PlayPromptTextSequence());
+        cameraTranform.DOShakePosition(2, 1, 30, 90, false, false);
+        //cameraShakeCoroutine = StartCoroutine(cameraShakeHelper());
+        playTextCoroutine = StartCoroutine(PlayPromptTextSequence());
     }
 
     public void StopCharging()
     {
         isCharging = false;
-        chargedUpAmountText.text = chargeAmount.ToString();
-        StopCoroutine(PlayPromptTextSequence());
-        promptText.gameObject.SetActive(false);
+
+        StopCoroutine(playTextCoroutine);
+        //StopCoroutine(cameraShakeCoroutine);
         cameraTranform.DOKill();
-        StopCoroutine(cameraShakeHelper());
+
+        promptText.gameObject.SetActive(false);
+        //StopCoroutine(cameraShakeHelper());
 
 
     }
 
     private IEnumerator cameraShakeHelper()
     {
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 30; i++)
         {
-            cameraTranform.DOShakePosition(0.2f, (0.1f + (i/5)), Mathf.RoundToInt(10f*(0.1f + (i / 5f))), 90, false, false);
-            yield return new WaitForSeconds(0.5f);
+            cameraTranform.DOShakePosition(0.2f, (0.1f + (i / 5)), Mathf.RoundToInt(100f * (0.1f + (i / 5f))), 90, false, false);
+            yield return new WaitForSeconds(0.2f);
 
         }
     }
