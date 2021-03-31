@@ -3,6 +3,7 @@
 
 using UnityEngine;
 using System.Collections;
+using DG.Tweening;
 
 
 public class EnemyBaseClass : MonoBehaviour {
@@ -20,10 +21,15 @@ public class EnemyBaseClass : MonoBehaviour {
     public bool isAlive = true;
     public Animator _anim;
 
+    private Transform cameraTransform;
+
     private AudioManager audioManager;
 
 
-    public virtual void Awake(){
+    public virtual void Awake()
+    {
+        DOTween.Init();
+        cameraTransform = Camera.main.transform;
         audioManager = FindObjectOfType<AudioManager>();
         _anim = GetComponent<Animator>();
         //player = GameManager.Instance.GetPlayerTransform();
@@ -62,11 +68,16 @@ public class EnemyBaseClass : MonoBehaviour {
         if (!isAlive)
             return;
 
+        cameraTransform.DOShakePosition(0.2f, 0.5f, 50, 90, false, false);
+
         //Call player damage method
         _anim.SetTrigger("isHurt");
         if(Health > 0)
         {
             Health -= damage;
+
+            
+
         }
         if(Health <= 0)
         {     
