@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class HeroControls : MonoBehaviour
 {
-
+    [SerializeField] HitPopupController hitPopupController;
 
     //Stats
     [SerializeField] private int playerHealth = 6;
