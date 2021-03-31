@@ -20,8 +20,10 @@ public class SpawnZone : MonoBehaviour
     [SerializeField] Camera _cam;
     private List<GameObject> enemiesAlive = new List<GameObject>();
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
+        GameManager.Instance.spawnZoneList.Add(this);
+
         active = false;
         leftBlocker.enabled = false;
         rightBlocker.enabled = false;
@@ -104,6 +106,10 @@ public class SpawnZone : MonoBehaviour
         moveArrow.SetActive(true);
 
         yield return new WaitForSeconds(3);
+
+        GameManager.Instance.spawnZoneList.Remove(this);
+
+        GameManager.Instance.CheckIfLevelComplete();
 
         //unlock camera
         _cam.GetComponent<PlayerCamera>().togglePause();

@@ -33,11 +33,11 @@ public class GameManager : MonoBehaviour {
         DontDestroyOnLoad(gameObject);
     }
 
-    public void CheckIfLevelComplete(int levelNumber)
+    public void CheckIfLevelComplete()
     {
         if (spawnZoneList.Count == 0)
         {
-            SetLevelPassed(levelNumber);
+            SetLevelPassed(levelProgression);
         }
     }
 
