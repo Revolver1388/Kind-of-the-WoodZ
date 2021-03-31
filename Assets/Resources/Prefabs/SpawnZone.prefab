@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 7093451783711998054}
   - component: {fileID: 6076976027322505300}
   m_Layer: 5
-  m_Name: Image
+  m_Name: moveArrow
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -367,6 +367,8 @@ MonoBehaviour:
   startingEnemies: 3
   bodyCountRequired: 2
   spawnRate: 1
+  _cam: {fileID: 0}
+  moveArrow: {fileID: 1799183305371082220}
 --- !u!61 &4092567212918081241
 BoxCollider2D:
   m_ObjectHideFlags: 0

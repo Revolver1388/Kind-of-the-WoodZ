@@ -1148,6 +1148,8 @@ MonoBehaviour:
   c_Lerp: 0.5
   cameraOffsetX: 0
   cameraOffsetY: 0.21
+  isPause: 0
+  _holdPos: {fileID: 0}
 --- !u!1001 &1204687452
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1645,91 +1647,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Pivot.y
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2893400694919146165, guid: c78468457bd95b94d968eaa1ed37b7c5,
-        type: 3}
-      propertyPath: promptTextList.Array.size
-      value: 30
-      objectReference: {fileID: 0}
-    - target: {fileID: 2893400694919146165, guid: c78468457bd95b94d968eaa1ed37b7c5,
-        type: 3}
-      propertyPath: promptTextList.Array.data[14]
-      value: SKILLZ!!!!!11
-      objectReference: {fileID: 0}
-    - target: {fileID: 2893400694919146165, guid: c78468457bd95b94d968eaa1ed37b7c5,
-        type: 3}
-      propertyPath: promptTextList.Array.data[15]
-      value: Say "what" again!
-      objectReference: {fileID: 0}
-    - target: {fileID: 2893400694919146165, guid: c78468457bd95b94d968eaa1ed37b7c5,
-        type: 3}
-      propertyPath: promptTextList.Array.data[16]
-      value: SKILLZ!!!!!11
-      objectReference: {fileID: 0}
-    - target: {fileID: 2893400694919146165, guid: c78468457bd95b94d968eaa1ed37b7c5,
-        type: 3}
-      propertyPath: promptTextList.Array.data[17]
-      value: SKILLZ!!!!!11
-      objectReference: {fileID: 0}
-    - target: {fileID: 2893400694919146165, guid: c78468457bd95b94d968eaa1ed37b7c5,
-        type: 3}
-      propertyPath: promptTextList.Array.data[18]
-      value: SKILLZ!!!!!11
-      objectReference: {fileID: 0}
-    - target: {fileID: 2893400694919146165, guid: c78468457bd95b94d968eaa1ed37b7c5,
-        type: 3}
-      propertyPath: promptTextList.Array.data[19]
-      value: SKILLZ!!!!!11
-      objectReference: {fileID: 0}
-    - target: {fileID: 2893400694919146165, guid: c78468457bd95b94d968eaa1ed37b7c5,
-        type: 3}
-      propertyPath: promptTextList.Array.data[20]
-      value: SKILLZ!!!!!11
-      objectReference: {fileID: 0}
-    - target: {fileID: 2893400694919146165, guid: c78468457bd95b94d968eaa1ed37b7c5,
-        type: 3}
-      propertyPath: promptTextList.Array.data[21]
-      value: SKILLZ!!!!!11
-      objectReference: {fileID: 0}
-    - target: {fileID: 2893400694919146165, guid: c78468457bd95b94d968eaa1ed37b7c5,
-        type: 3}
-      propertyPath: promptTextList.Array.data[22]
-      value: SKILLZ!!!!!11
-      objectReference: {fileID: 0}
-    - target: {fileID: 2893400694919146165, guid: c78468457bd95b94d968eaa1ed37b7c5,
-        type: 3}
-      propertyPath: promptTextList.Array.data[23]
-      value: SKILLZ!!!!!11
-      objectReference: {fileID: 0}
-    - target: {fileID: 2893400694919146165, guid: c78468457bd95b94d968eaa1ed37b7c5,
-        type: 3}
-      propertyPath: promptTextList.Array.data[24]
-      value: SKILLZ!!!!!11
-      objectReference: {fileID: 0}
-    - target: {fileID: 2893400694919146165, guid: c78468457bd95b94d968eaa1ed37b7c5,
-        type: 3}
-      propertyPath: promptTextList.Array.data[25]
-      value: SKILLZ!!!!!11
-      objectReference: {fileID: 0}
-    - target: {fileID: 2893400694919146165, guid: c78468457bd95b94d968eaa1ed37b7c5,
-        type: 3}
-      propertyPath: promptTextList.Array.data[26]
-      value: SKILLZ!!!!!11
-      objectReference: {fileID: 0}
-    - target: {fileID: 2893400694919146165, guid: c78468457bd95b94d968eaa1ed37b7c5,
-        type: 3}
-      propertyPath: promptTextList.Array.data[27]
-      value: SKILLZ!!!!!11
-      objectReference: {fileID: 0}
-    - target: {fileID: 2893400694919146165, guid: c78468457bd95b94d968eaa1ed37b7c5,
-        type: 3}
-      propertyPath: promptTextList.Array.data[28]
-      value: SKILLZ!!!!!11
-      objectReference: {fileID: 0}
-    - target: {fileID: 2893400694919146165, guid: c78468457bd95b94d968eaa1ed37b7c5,
-        type: 3}
-      propertyPath: promptTextList.Array.data[29]
-      value: SKILLZ!!!!!11
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c78468457bd95b94d968eaa1ed37b7c5, type: 3}
