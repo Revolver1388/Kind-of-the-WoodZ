@@ -663,10 +663,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 160629593271172817, guid: 884eb182d26999142b9dd2d5d6053821,
+        type: 3}
+      propertyPath: spawnRate
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 160629593271172817, guid: 884eb182d26999142b9dd2d5d6053821,
+        type: 3}
+      propertyPath: bodyCountRequired
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 729043282615905561, guid: 884eb182d26999142b9dd2d5d6053821,
+        type: 3}
+      propertyPath: bodyCountRequired
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 729043282615905561, guid: 884eb182d26999142b9dd2d5d6053821,
+        type: 3}
+      propertyPath: spawnRate
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1238235104307211594, guid: 884eb182d26999142b9dd2d5d6053821,
         type: 3}
       propertyPath: enemies.Array.size
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 1238235104307211594, guid: 884eb182d26999142b9dd2d5d6053821,
         type: 3}
@@ -674,10 +694,41 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7114562892259631206, guid: 98592e5eafdc6e94b915265e3956ed3d,
         type: 3}
+    - target: {fileID: 1238235104307211594, guid: 884eb182d26999142b9dd2d5d6053821,
+        type: 3}
+      propertyPath: enemies.Array.data[2]
+      value: 
+      objectReference: {fileID: 7114562892259631206, guid: 98592e5eafdc6e94b915265e3956ed3d,
+        type: 3}
+    - target: {fileID: 1238235104307211594, guid: 884eb182d26999142b9dd2d5d6053821,
+        type: 3}
+      propertyPath: bodyCountRequired
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1238235104307211594, guid: 884eb182d26999142b9dd2d5d6053821,
+        type: 3}
+      propertyPath: spawnRate
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 3089869738217653387, guid: 884eb182d26999142b9dd2d5d6053821,
         type: 3}
       propertyPath: m_Name
       value: SpawnZones
+      objectReference: {fileID: 0}
+    - target: {fileID: 6083686181886514835, guid: 884eb182d26999142b9dd2d5d6053821,
+        type: 3}
+      propertyPath: bodyCountRequired
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6906694711273034468, guid: 884eb182d26999142b9dd2d5d6053821,
+        type: 3}
+      propertyPath: bodyCountRequired
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 8052297272539379353, guid: 884eb182d26999142b9dd2d5d6053821,
+        type: 3}
+      propertyPath: bodyCountRequired
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 8708463574783514523, guid: 884eb182d26999142b9dd2d5d6053821,
         type: 3}
