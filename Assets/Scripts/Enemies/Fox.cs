@@ -15,6 +15,8 @@ public class Fox : EnemyBaseClass
 
     Vector2 approachTarget;
 
+    Coroutine hitting;
+
     public override void Awake()
     {
         base.Awake();
@@ -23,7 +25,16 @@ public class Fox : EnemyBaseClass
     public override void Start()
     {
         base.Start();
-    }   
+    }
+
+    private void OnEnable()
+    {
+        if (_parent.transform.position.x <= _player.transform.position.x)
+        {
+            _parent.transform.right = new Vector2(-1, 0);
+            currentlyFacing = FacingDir.left;
+        }
+    }
 
     public override void LateUpdate()
     {
@@ -184,15 +195,18 @@ public class Fox : EnemyBaseClass
 
     private void Dodge()
     {
-        _parent.transform.position = new Vector2(_parent.transform.position.x - movementSpeed * 8 * Time.fixedDeltaTime, _parent.transform.position.y);
+        _parent.transform.position = new Vector2(_parent.transform.position.x - movementSpeed * 5 * Time.fixedDeltaTime, _parent.transform.position.y);
     }    
 
     public override void TakeDamage(int damage)
     {
         base.TakeDamage(damage);
         foxState = FoxStates.hit;
-        StopCoroutine(Hit());
-        StartCoroutine(Hit());
+        if(hitting != null)
+        {
+            StopCoroutine(Hit());
+        }
+        hitting = StartCoroutine(Hit());
     }
 
     //waits to change states

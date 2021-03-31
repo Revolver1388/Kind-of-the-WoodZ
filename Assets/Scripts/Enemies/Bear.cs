@@ -16,6 +16,8 @@ public class Bear : EnemyBaseClass
     Vector2 backApproach;
     Vector2 frontApproach;
 
+    Coroutine hitting;
+
     public override void Awake()
     {
         base.Awake();
@@ -47,6 +49,15 @@ public class Bear : EnemyBaseClass
                 break;
         }
 
+    }
+
+    private void OnEnable()
+    {
+        if (_parent.transform.position.x <= _player.transform.position.x)
+        {
+            _parent.transform.right = new Vector2(-1, 0);
+            currentlyFacing = FacingDir.left;
+        }
     }
 
     private void Update()
@@ -111,8 +122,11 @@ public class Bear : EnemyBaseClass
         if (rando >= 7)
         {
             bearState = BearStates.hit;
-            StopCoroutine(Hit());
-            StartCoroutine(Hit());
+            if (hitting != null)
+            {
+                StopCoroutine(Hit());
+            }
+            hitting = StartCoroutine(Hit());
         }
     }
 

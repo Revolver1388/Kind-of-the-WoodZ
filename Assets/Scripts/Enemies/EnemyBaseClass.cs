@@ -8,7 +8,7 @@ using DG.Tweening;
 
 public class EnemyBaseClass : MonoBehaviour {
     [Header("Enemy Attributes")]
-    [SerializeField] int Health = 0;
+    public int Health = 0;
     public float movementSpeed = 0;
     [SerializeField] float attackDamage = 0;
     [SerializeField] float attackSpeed = 0;

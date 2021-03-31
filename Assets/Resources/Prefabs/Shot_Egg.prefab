@@ -1,6 +1,6 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
---- !u!1 &7614976145878281478
+--- !u!1 &3851407523229397007
 GameObject:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -8,38 +8,39 @@ GameObject:
   m_PrefabAsset: {fileID: 0}
   serializedVersion: 6
   m_Component:
-  - component: {fileID: 7614976145878281475}
-  - component: {fileID: 7614976145878281476}
-  - component: {fileID: 7614976145878281477}
-  - component: {fileID: 63898605027808065}
+  - component: {fileID: 3851407523229397002}
+  - component: {fileID: 3851407523229397005}
+  - component: {fileID: 3851407523229397004}
+  - component: {fileID: 6646228625402908232}
+  - component: {fileID: 1312043997639499949}
   m_Layer: 0
-  m_Name: Shadow_Egg
-  m_TagString: Untagged
+  m_Name: Shot_Egg
+  m_TagString: EnemyAttackBox
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!4 &7614976145878281475
+--- !u!4 &3851407523229397002
 Transform:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7614976145878281478}
+  m_GameObject: {fileID: 3851407523229397007}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 2.3065124, y: -2.6720123, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!212 &7614976145878281476
+--- !u!212 &3851407523229397005
 SpriteRenderer:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7614976145878281478}
+  m_GameObject: {fileID: 3851407523229397007}
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
@@ -84,15 +85,15 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!95 &7614976145878281477
+--- !u!95 &3851407523229397004
 Animator:
   serializedVersion: 3
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7614976145878281478}
-  m_Enabled: 1
+  m_GameObject: {fileID: 3851407523229397007}
+  m_Enabled: 0
   m_Avatar: {fileID: 0}
   m_Controller: {fileID: 9100000, guid: dba122be5840fc641a271160ee3a5220, type: 2}
   m_CullingMode: 0
@@ -103,13 +104,13 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!58 &63898605027808065
+--- !u!58 &6646228625402908232
 CircleCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7614976145878281478}
+  m_GameObject: {fileID: 3851407523229397007}
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
@@ -119,3 +120,26 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0.7}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!114 &1312043997639499949
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3851407523229397007}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4f32bcd60d77c0f44bcf1f0ad1682ab5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 1
+  movementSpeed: 7
+  attackDamage: 1
+  attackSpeed: 0
+  _attackBox: {fileID: 0}
+  _hitBox: {fileID: 0}
+  _player: {fileID: 0}
+  _parent: {fileID: 0}
+  _layerOrd: {fileID: 3851407523229397002}
+  isAlive: 1
+  _anim: {fileID: 0}
