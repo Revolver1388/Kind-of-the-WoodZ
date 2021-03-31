@@ -3,21 +3,42 @@
 //Last Modified 28/03/21 (Kyle Ennis)
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 public class GameManager : MonoBehaviour {
     public static GameManager Instance { get; private set; }
+
+    public List<SpawnZone> spawnZoneList;
 
     private Transform player;
     [SerializeField] bool[] levelsPassed = null;
 
     int levelProgression = 0;
 
-    void Awake(){
+    string level1 = "City_Scene";
+    string level2 = "Night_Scene";
+    string level3 = "Forest_Scene";
+    string level4 = "Mountain_Scene";
+    string endScene = "EndScene";
+    string introScene = "IntroScene";
+
+
+    void Awake()
+    {
+        spawnZoneList = new List<SpawnZone>(); // spawn zones add themselves to this list when they are instatiated in scene
         if (Instance != null)
             Destroy(gameObject);
         else
             Instance = this;
 
         DontDestroyOnLoad(gameObject);
+    }
+
+    public void CheckIfLevelComplete(int levelNumber)
+    {
+        if (spawnZoneList.Count == 0)
+        {
+            SetLevelPassed(levelNumber);
+        }
     }
 
     void Start(){
@@ -35,6 +56,12 @@ public class GameManager : MonoBehaviour {
         PlayerPrefs.SetInt("LevelPassed" + level, 1);
         PlayerPrefs.SetInt("LevelProgression", level);
         PlayerPrefs.Save();
+
+        Scene currentScene = SceneManager.GetActiveScene();
+
+        SceneManager.LoadSceneAsync(levelProgression);
+        SceneManager.UnloadSceneAsync(currentScene);
+
     }
 
     public string GetActiveScene()
@@ -48,7 +75,10 @@ public class GameManager : MonoBehaviour {
     }
 
     public int GetLevelProgression(){
+
+
         return levelProgression;
+
     }
 
     public bool[] GetLevelsPassed(){

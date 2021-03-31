@@ -8,6 +8,6 @@ public class LevelManager : MonoBehaviour
     [SerializeField] int levelIndex;
 
     void Start(){
-        GameManager.Instance.SetLevelPassed(levelIndex - 1);
+        GameManager.Instance.SetLevelPassed(levelIndex);
     }
 }
