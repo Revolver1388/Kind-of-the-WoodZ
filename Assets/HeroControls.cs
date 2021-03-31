@@ -120,10 +120,11 @@ public class HeroControls : MonoBehaviour
                     jump();
                 }
 
+                /*
                 if(Input.GetKeyDown(KeyCode.L))
                 {
                     pickUpHealth();
-                }
+                }*/
             }
             playerEnergy = (int)Mathf.Round(audioMeasure.chargeAmount);
         }
@@ -447,6 +448,10 @@ public class HeroControls : MonoBehaviour
                 hitOurHero(1);
                 collision.gameObject.GetComponent<EggScript>().eggCollision();
             }
+        }
+        else if (collision.tag == "HealthPack")
+        {
+            pickUpHealth();
         }
     }
 

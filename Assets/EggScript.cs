@@ -33,7 +33,7 @@ public class EggScript : MonoBehaviour
     {
         if (collision.tag == "PlayerAttackBox")
         {
-            if (collision.gameObject.GetComponentInParent<HeroControls>().facingRight)
+            if (collision.gameObject.transform.position.x < transform.position.x)
             {
                 isHeroEgg = true;
                 startX = transform.position.x;
@@ -48,24 +48,23 @@ public class EggScript : MonoBehaviour
                 //start hit animation
             }
         }
-        //else if (collision.tag == "EnemyAttackBox")
-        //{
-        //    if (collision.gameObject.GetComponentInParent<HeroControls>().facingRight)
-        //    {
-        //     //   contact = collision.GetContacts();
-        //        isEnemyEgg = true;
-        //        startX = transform.position.x;
-        //        eggBody.velocity = new Vector2(5.0f, 0.0f);
-        //        //start hit animation
-        //    }
-        //    else
-        //    {
-        //        isEnemyEgg = true;
-        //        startX = transform.position.x;
-        //        eggBody.velocity = new Vector2(-5.0f, 0.0f);
-        //        //start hit animation
-        //    }
-        //}
+        else if (collision.tag == "EnemyAttackBox")
+        {
+            if (collision.gameObject.transform.position.x < transform.position.x)
+            {
+                isEnemyEgg = true;
+                startX = transform.position.x;
+                eggBody.velocity = new Vector2(5.0f, 0.0f);
+                //start hit animation
+            }
+            else
+            {
+                isEnemyEgg = true;
+                startX = transform.position.x;
+                eggBody.velocity = new Vector2(-5.0f, 0.0f);
+                //start hit animation
+            }
+        }
     }
 
     public void eggCollision()
