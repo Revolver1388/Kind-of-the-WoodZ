@@ -2,9 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
+using UnityEngine.SceneManagement;
 
 public class HeroControls : MonoBehaviour
 {
+
+
     //Stats
     [SerializeField] private int playerHealth = 6;
     [SerializeField] public int playerEnergy = 0;
@@ -13,6 +16,8 @@ public class HeroControls : MonoBehaviour
     [SerializeField] private bool canTakeDamage = true;
     private bool canCharge = true;
     [SerializeField] private GameObject[] heartCounter;
+
+
     private Transform cameraTransform;
 
     //Movement Variables
@@ -232,7 +237,7 @@ public class HeroControls : MonoBehaviour
     {
         if (canTakeDamage)
         {
-            cameraTransform.DOShakePosition(0.1f, 0.2f, 50, 90, false, false);
+            cameraTransform.DOShakePosition(0.1f, 0.5f, 50, 90, false, false);
             rigidBod.velocity = Vector2.zero;
             canTakeDamage = false;
             _anim.SetTrigger("isHurt");
@@ -244,8 +249,15 @@ public class HeroControls : MonoBehaviour
             {
                 isAlive = false;
                 _anim.SetBool("isDead", true);
+                StartCoroutine(DeathHelper());
             }
         }
+    }
+
+    private IEnumerator DeathHelper()
+    {
+        yield return new WaitForSeconds(3);
+        SceneManager.LoadSceneAsync("Game_Over");
     }
 
     //Return attack damage for enemies hit by attack
