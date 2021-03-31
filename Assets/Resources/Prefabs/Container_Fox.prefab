@@ -222,6 +222,8 @@ MonoBehaviour:
   _layerOrd: {fileID: 1506472436}
   isAlive: 1
   _anim: {fileID: 0}
+  healthObject: {fileID: 6089203376809030341, guid: e0543c14dcaef6341be71ee5817c2306,
+    type: 3}
 --- !u!1 &4250603351713603471
 GameObject:
   m_ObjectHideFlags: 0

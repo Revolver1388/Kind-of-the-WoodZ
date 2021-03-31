@@ -254,3 +254,5 @@ MonoBehaviour:
   _layerOrd: {fileID: 143742570330874271}
   isAlive: 1
   _anim: {fileID: 0}
+  healthObject: {fileID: 6089203376809030341, guid: e0543c14dcaef6341be71ee5817c2306,
+    type: 3}
