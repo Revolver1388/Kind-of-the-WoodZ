@@ -15,7 +15,7 @@ public class EnemyBaseClass : MonoBehaviour {
     public HeroControls _player;
     public GameObject _parent;
     [SerializeField] Transform _layerOrd;
-    bool isAlive = true;
+    public bool isAlive = true;
     public Animator _anim;
     public virtual void Awake(){
         _anim = GetComponent<Animator>();

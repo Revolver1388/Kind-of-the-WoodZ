@@ -9,6 +9,7 @@ public class EggScript : MonoBehaviour
     [SerializeField] public bool hasHit;
     private Rigidbody2D eggBody;
     // Start is called before the first frame update
+    private float startX;
     void Start()
     {
         StartCoroutine(deathTimer());
@@ -21,7 +22,10 @@ public class EggScript : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if(((startX - transform.position.x)<-25)||((startX - transform.position.x) > 25))
+        {
+            eggCollision();
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -31,13 +35,15 @@ public class EggScript : MonoBehaviour
             if (collision.gameObject.GetComponentInParent<HeroControls>().facingRight)
             {
                 isHeroEgg = true;
-                eggBody.velocity = new Vector2(4.0f, 0.0f);
+                startX = transform.position.x;
+                eggBody.velocity = new Vector2(5.0f, 0.0f);
                 //start hit animation
             }
             else
             {
                 isHeroEgg = true;
-                eggBody.velocity = new Vector2(-4.0f, 0.0f);
+                startX = transform.position.x;
+                eggBody.velocity = new Vector2(-5.0f, 0.0f);
                 //start hit animation
             }
         }
@@ -46,13 +52,15 @@ public class EggScript : MonoBehaviour
             if (collision.gameObject.GetComponentInParent<HeroControls>().facingRight)
             {
                 isEnemyEgg = true;
-                eggBody.velocity = new Vector2(4.0f, 0.0f);
+                startX = transform.position.x;
+                eggBody.velocity = new Vector2(5.0f, 0.0f);
                 //start hit animation
             }
             else
             {
                 isEnemyEgg = true;
-                eggBody.velocity = new Vector2(-4.0f, 0.0f);
+                startX = transform.position.x;
+                eggBody.velocity = new Vector2(-5.0f, 0.0f);
                 //start hit animation
             }
         }
