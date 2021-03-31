@@ -234,30 +234,6 @@ PrefabInstance:
       propertyPath: heartCounter.Array.data[5]
       value: 
       objectReference: {fileID: 1524910453}
-    - target: {fileID: 1540930982, guid: 4c9fe4f40b4cd8d4aab0f4a1270eae72, type: 3}
-      propertyPath: egg
-      value: 
-      objectReference: {fileID: 456353634}
-    - target: {fileID: 2012211850, guid: 4c9fe4f40b4cd8d4aab0f4a1270eae72, type: 3}
-      propertyPath: m_Offset.x
-      value: 0.25
-      objectReference: {fileID: 0}
-    - target: {fileID: 2012211850, guid: 4c9fe4f40b4cd8d4aab0f4a1270eae72, type: 3}
-      propertyPath: m_Offset.y
-      value: 0.28
-      objectReference: {fileID: 0}
-    - target: {fileID: 2012211850, guid: 4c9fe4f40b4cd8d4aab0f4a1270eae72, type: 3}
-      propertyPath: m_Size.x
-      value: 1.8
-      objectReference: {fileID: 0}
-    - target: {fileID: 2012211850, guid: 4c9fe4f40b4cd8d4aab0f4a1270eae72, type: 3}
-      propertyPath: m_Size.y
-      value: 0.55
-      objectReference: {fileID: 0}
-    - target: {fileID: 2012211850, guid: 4c9fe4f40b4cd8d4aab0f4a1270eae72, type: 3}
-      propertyPath: m_Direction
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 2338584062175401242, guid: 4c9fe4f40b4cd8d4aab0f4a1270eae72,
         type: 3}
       propertyPath: m_Name
@@ -395,12 +371,6 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1542946760}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &456353634 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7614976145878281478, guid: b22810f1ae075a949ad37b37309fd75e,
-    type: 3}
-  m_PrefabInstance: {fileID: 1204687452}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &473427109
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -515,6 +485,7 @@ MonoBehaviour:
   horizontalSpeed: 8
   verticalSpeed: 4
   canMove: 1
+  facingRight: 1
   movementSmooth: 0.1
   canJump: 0
   attackZone: {fileID: 0}
@@ -989,16 +960,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7614976145878281476, guid: b22810f1ae075a949ad37b37309fd75e,
-        type: 3}
-      propertyPath: m_SortingLayerID
-      value: -259573493
-      objectReference: {fileID: 0}
-    - target: {fileID: 7614976145878281476, guid: b22810f1ae075a949ad37b37309fd75e,
-        type: 3}
-      propertyPath: m_SortingLayer
-      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 7614976145878281478, guid: b22810f1ae075a949ad37b37309fd75e,
         type: 3}

@@ -91,9 +91,9 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0.07811365, y: 1.38}
-  m_Size: {x: 0.6517893, y: 1.35}
-  m_Direction: 0
+  m_Offset: {x: 0.25, y: 0.28}
+  m_Size: {x: 1.8, y: 0.55}
+  m_Direction: 1
 --- !u!1 &2338584062175401242
 GameObject:
   m_ObjectHideFlags: 0
@@ -409,11 +409,12 @@ MonoBehaviour:
   horizontalSpeed: 8
   verticalSpeed: 4
   canMove: 1
+  facingRight: 1
   movementSmooth: 0.1
   canJump: 0
   attackZone: {fileID: 896520699}
   attackDamage: 0
   energyCharged: 0
   startCharge: 0
-  egg: {fileID: 0}
+  egg: {fileID: 7614976145878281478, guid: b22810f1ae075a949ad37b37309fd75e, type: 3}
   chargeUp: {fileID: 3187757096066122527}

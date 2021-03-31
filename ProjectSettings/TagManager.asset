@@ -6,6 +6,7 @@ TagManager:
   tags:
   - EnemyAttackBox
   - PlayerAttackBox
+  - EggBox
   layers:
   - Default
   - TransparentFX
