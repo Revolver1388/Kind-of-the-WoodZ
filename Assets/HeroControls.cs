@@ -115,7 +115,7 @@ public class HeroControls : MonoBehaviour
                 }
 
                 //Jump, K right now
-                if (Input.GetKeyDown(KeyCode.K))
+                if (Input.GetMouseButton(1))
                 {
                     jump();
                 }
