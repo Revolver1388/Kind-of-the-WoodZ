@@ -12,7 +12,7 @@ public class GameManager : MonoBehaviour {
     private Transform player;
     [SerializeField] bool[] levelsPassed = null;
 
-    int levelProgression = 0;
+    int levelProgression = 1;
 
     string level1 = "City_Scene";
     string level2 = "Night_Scene";
@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour {
 
     public void ResetLevelProgression()
     {
-        levelProgression = 0;
+        levelProgression = 1;
     }
 
     public void SetLevelPassed(int level){
@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour {
         if (level == 4)
         {
 
-            SceneManager.LoadSceneAsync(levelProgression);
+            SceneManager.LoadSceneAsync("OutroScene");
             SceneManager.UnloadSceneAsync(currentScene);
 
             return;
