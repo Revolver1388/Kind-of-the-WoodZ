@@ -2,6 +2,8 @@
 // Last modified 20/03/21 (Dylan LeClair)
 
 using UnityEngine;
+using System.Collections;
+
 
 public class EnemyBaseClass : MonoBehaviour {
     [Header("Enemy Attributes")]
@@ -17,7 +19,12 @@ public class EnemyBaseClass : MonoBehaviour {
     [SerializeField] Transform _layerOrd;
     public bool isAlive = true;
     public Animator _anim;
+
+    private AudioManager audioManager;
+
+
     public virtual void Awake(){
+        audioManager = FindObjectOfType<AudioManager>();
         _anim = GetComponent<Animator>();
         //player = GameManager.Instance.GetPlayerTransform();
         _attackBox = GetComponentInChildren<CircleCollider2D>();
@@ -48,7 +55,10 @@ public class EnemyBaseClass : MonoBehaviour {
         _anim.SetTrigger("isAttack");
     }
 
-    public virtual void TakeDamage(int damage){
+    
+
+    public virtual void TakeDamage(int damage)
+    {
         if (!isAlive)
             return;
 
@@ -59,11 +69,16 @@ public class EnemyBaseClass : MonoBehaviour {
             Health -= damage;
         }
         if(Health <= 0)
-        {
+        {     
             isAlive = false;
             this.enabled = false;
             Die();
         }
+    }
+
+    public void PlayAudioClip(string audioClip)
+    {
+        audioManager.PlayOneShotByName(audioClip);
     }
 
     public virtual void Die() {

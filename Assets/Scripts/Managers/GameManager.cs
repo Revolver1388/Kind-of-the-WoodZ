@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
     public static GameManager Instance { get; private set; }
 
-    [SerializeField] Transform player;
+    private Transform player;
     [SerializeField] bool[] levelsPassed = null;
 
     int levelProgression = 0;
@@ -43,6 +43,7 @@ public class GameManager : MonoBehaviour {
     }
     public Transform GetPlayerTransform()
     {
+        player = FindObjectOfType<HeroControls>().gameObject.transform;
         return player;
     }
 

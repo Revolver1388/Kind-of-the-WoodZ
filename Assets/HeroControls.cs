@@ -45,8 +45,11 @@ public class HeroControls : MonoBehaviour
     //Microphone
     private AudioMeasure audioMeasure;
 
+
+    private AudioManager audioManager;
     void Awake()
     {
+        audioManager = FindObjectOfType<AudioManager>();
         audioMeasure = FindObjectOfType<AudioMeasure>();
         rigidBod = GetComponentInParent<Rigidbody2D>();
         attackZone = GetComponentInChildren<CircleCollider2D>();
@@ -117,6 +120,10 @@ public class HeroControls : MonoBehaviour
         }
     }
 
+    public void PlayAudioClip(string audioClip)
+    {
+        audioManager.PlayOneShotByName(audioClip);
+    }
 
     private void LateUpdate()
     {

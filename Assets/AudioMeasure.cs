@@ -97,7 +97,7 @@ public class AudioMeasure : MonoBehaviour
     {
         isCharging = true;
         promptText.gameObject.SetActive(true);
-        cameraTranform.DOShakePosition(2, 1, 30, 90, false, false);
+        cameraTranform.DOShakePosition(10f, 0.1f, 30, 90, false, false);
         //cameraShakeCoroutine = StartCoroutine(cameraShakeHelper());
         playTextCoroutine = StartCoroutine(PlayPromptTextSequence());
     }
