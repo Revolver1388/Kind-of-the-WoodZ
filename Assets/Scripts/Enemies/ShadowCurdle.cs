@@ -214,9 +214,9 @@ public class ShadowCurdle : EnemyBaseClass
     IEnumerator Charging()
     {
         yield return new WaitForSeconds(5);
-        Health += 100;
-        if (Health > 1000) //change this if max heath changes
-            Health = 1000;
+        Health += 50;
+        if (Health > 500) //change this if max heath changes
+            Health = 500;
         _anim.SetBool("isCharge", false);
         StartCoroutine(ChargeReset());
         curdleState = CurdleStates.follow;

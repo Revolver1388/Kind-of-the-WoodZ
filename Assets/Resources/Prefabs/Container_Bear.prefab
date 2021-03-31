@@ -104,7 +104,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -259573493
-  m_SortingLayer: 4
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 1140997824564347086, guid: 544ead6f1cd5df6498ac39f3130af91a,
     type: 3}
@@ -177,7 +177,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d03abe26fff2d774683c9f4fb945d98a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 500
+  Health: 250
   movementSpeed: 2
   attackDamage: 1
   attackSpeed: 1
@@ -186,6 +186,7 @@ MonoBehaviour:
   _player: {fileID: 0}
   _parent: {fileID: 0}
   _layerOrd: {fileID: 5170675538887554398}
+  isAlive: 1
   _anim: {fileID: 0}
 --- !u!95 &6268945227818614388
 Animator:
