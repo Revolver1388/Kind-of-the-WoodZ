@@ -823,6 +823,8 @@ MonoBehaviour:
   c_Lerp: 0.5
   cameraOffsetX: 0
   cameraOffsetY: 0.21
+  isPause: 0
+  _holdPos: {fileID: 0}
 --- !u!1001 &1204687452
 PrefabInstance:
   m_ObjectHideFlags: 0

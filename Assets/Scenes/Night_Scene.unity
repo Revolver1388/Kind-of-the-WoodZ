@@ -407,14 +407,17 @@ MonoBehaviour:
   isAlive: 1
   canAttack: 1
   canTakeDamage: 1
+  heartCounter: []
   horizontalSpeed: 8
   verticalSpeed: 4
   canMove: 1
+  facingRight: 1
   movementSmooth: 0.1
   canJump: 0
   attackZone: {fileID: 0}
   attackDamage: 0
   energyCharged: 0
+  startCharge: 0
   egg: {fileID: 0}
   chargeUp: {fileID: 1760876943}
 --- !u!212 &569052244
@@ -747,6 +750,8 @@ MonoBehaviour:
   c_Lerp: 0.5
   cameraOffsetX: 0
   cameraOffsetY: 0.21
+  isPause: 0
+  _holdPos: {fileID: 0}
 --- !u!1001 &1204687452
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -907,6 +912,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3206800229211552854, guid: 697c2429769cb17438babc05c69a002e,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 8531230865600959053, guid: 697c2429769cb17438babc05c69a002e,
         type: 3}
       propertyPath: m_Name
