@@ -61,7 +61,7 @@ public class GameManager : MonoBehaviour {
         if (level == 4)
         {
 
-            SceneManager.LoadSceneAsync(levelProgression);
+            SceneManager.LoadSceneAsync("OutroScene");
             SceneManager.UnloadSceneAsync(currentScene);
 
             return;
