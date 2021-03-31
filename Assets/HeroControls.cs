@@ -238,6 +238,8 @@ public class HeroControls : MonoBehaviour
     {
         if (canTakeDamage)
         {
+            hitPopupController.SetHitAmount(damage);
+
             cameraTransform.DOShakePosition(0.1f, 0.5f, 50, 90, false, false);
             rigidBod.velocity = Vector2.zero;
             canTakeDamage = false;

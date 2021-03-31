@@ -13,9 +13,15 @@ public class HitPopupController : MonoBehaviour
         hitpopup.SetActive(false);
     }
 
-    public void SetHitAmount(int hitAmount)
+    public void SetHitAmount(int hitAmount/*,Transform objectTransform*/)
     {
         hitAmountText.text = hitAmount.ToString();
+
+        //if (objectTransform.rotation.y == 180)
+        //{
+        //    //hitAmountText.transform.rotation = 
+        //}
+
         StartCoroutine(HitPopupHelper());
     }
 
