@@ -43,7 +43,6 @@ public class GameManager : MonoBehaviour {
 
     void Start(){
         levelProgression = PlayerPrefs.GetInt("LevelProgression");
-        AudioManager.a_Instance.FUCK();
 
         for (int i = 0; i < levelsPassed.Length; i++)
             if (PlayerPrefs.GetInt("LevelPassed" + i) != 0)
@@ -78,8 +77,6 @@ public class GameManager : MonoBehaviour {
 
         SceneManager.LoadSceneAsync(levelProgression);
         SceneManager.UnloadSceneAsync(currentScene);
-        AudioManager.a_Instance.FUCK();
-
     }
 
     public string GetActiveScene()
