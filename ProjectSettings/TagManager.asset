@@ -7,6 +7,7 @@ TagManager:
   - EnemyAttackBox
   - PlayerAttackBox
   - EggBox
+  - HealthPack
   layers:
   - Default
   - TransparentFX

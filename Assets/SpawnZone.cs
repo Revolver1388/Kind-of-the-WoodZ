@@ -60,20 +60,23 @@ public class SpawnZone : MonoBehaviour
     //when trigger is crossed by the player enable the blockers and start spawning
     private void OnTriggerEnter2D(Collider2D c)
     {
-        if (c.gameObject.tag == "Player")
+        if (!active)
         {
-            //_cam.GetComponent<PlayerCamera>()._holdPos = this.transform;
-            //_cam.GetComponent<PlayerCamera>().togglePause();
-            StartCoroutine(spawnTimer(spawnRate));
-            enemiesDefeated = 0;
-            active = true;
-            leftBlocker.enabled = true;
-            rightBlocker.enabled = true;
-            if (startingEnemies > 0)
+            if (c.gameObject.tag == "Player")
             {
-                for (int i = 0; i > startingEnemies; i++)
+                _cam.GetComponent<PlayerCamera>()._holdPos = this.transform;
+                _cam.GetComponent<PlayerCamera>().togglePause();
+                StartCoroutine(spawnTimer(spawnRate));
+                enemiesDefeated = 0;
+                active = true;
+                leftBlocker.enabled = true;
+                rightBlocker.enabled = true;
+                if (startingEnemies > 0)
                 {
-                    spawnEnemy();
+                    for (int i = 0; i > startingEnemies; i++)
+                    {
+                        spawnEnemy();
+                    }
                 }
             }
         }
@@ -88,7 +91,11 @@ public class SpawnZone : MonoBehaviour
         {
             if (enemiesAlive.Count < maxEnemies)
             {
-                spawnEnemy();
+                //if enemies defeated + alive is less than bodyCount spawn enemy
+                if (enemiesAlive.Count + enemiesDefeated < bodyCountRequired)
+                {
+                    spawnEnemy();
+                }
             }
             yield return new WaitForSeconds(time);
         }
@@ -99,8 +106,8 @@ public class SpawnZone : MonoBehaviour
         yield return new WaitForSeconds(3);
 
         //unlock camera
-        //_cam.GetComponent<PlayerCamera>().togglePause();
-        //_cam.GetComponent<PlayerCamera>()._holdPos = null;
+        _cam.GetComponent<PlayerCamera>().togglePause();
+        _cam.GetComponent<PlayerCamera>()._holdPos = null;
         Destroy(gameObject);
     }
 }
