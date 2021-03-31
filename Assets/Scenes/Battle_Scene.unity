@@ -415,13 +415,7 @@ MonoBehaviour:
   isAlive: 1
   canAttack: 1
   canTakeDamage: 1
-  heartCounter:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  heartCounter: []
   horizontalSpeed: 8
   verticalSpeed: 4
   canMove: 1
@@ -1145,26 +1139,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 909037069513926880, guid: c78468457bd95b94d968eaa1ed37b7c5,
-        type: 3}
-      propertyPath: startTypewriterMode
-      value: -1
-      objectReference: {fileID: 0}
-    - target: {fileID: 909037069513926880, guid: c78468457bd95b94d968eaa1ed37b7c5,
-        type: 3}
-      propertyPath: canSkipTypewriter
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 909037069513926880, guid: c78468457bd95b94d968eaa1ed37b7c5,
-        type: 3}
-      propertyPath: waitForLastCharacter
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 909037069513926880, guid: c78468457bd95b94d968eaa1ed37b7c5,
-        type: 3}
-      propertyPath: waitForNewLines
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 2893400694820720801, guid: c78468457bd95b94d968eaa1ed37b7c5,
         type: 3}
       propertyPath: m_Name
@@ -1275,45 +1249,15 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2893400694919146165, guid: c78468457bd95b94d968eaa1ed37b7c5,
+    - target: {fileID: 4805574678901557372, guid: c78468457bd95b94d968eaa1ed37b7c5,
         type: 3}
-      propertyPath: promptTextList.Array.size
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 2893400694919146165, guid: c78468457bd95b94d968eaa1ed37b7c5,
-        type: 3}
-      propertyPath: promptTextList.Array.data[0]
-      value: Make some noise!!!!!
-      objectReference: {fileID: 0}
-    - target: {fileID: 2893400694919146165, guid: c78468457bd95b94d968eaa1ed37b7c5,
-        type: 3}
-      propertyPath: promptTextList.Array.data[1]
-      value: You gotta make some noise to keep your energy up!!
-      objectReference: {fileID: 0}
-    - target: {fileID: 2893400694919146165, guid: c78468457bd95b94d968eaa1ed37b7c5,
-        type: 3}
-      propertyPath: promptTextList.Array.data[2]
-      value: Get to the Choppaaaaaa!!!!!!!
-      objectReference: {fileID: 0}
-    - target: {fileID: 2893400694919146165, guid: c78468457bd95b94d968eaa1ed37b7c5,
-        type: 3}
-      propertyPath: promptTextList.Array.data[3]
-      value: Shazaam!
-      objectReference: {fileID: 0}
-    - target: {fileID: 2893400694919146165, guid: c78468457bd95b94d968eaa1ed37b7c5,
-        type: 3}
-      propertyPath: promptTextList.Array.data[4]
-      value: CrakaPow!
-      objectReference: {fileID: 0}
-    - target: {fileID: 2893400694919146165, guid: c78468457bd95b94d968eaa1ed37b7c5,
-        type: 3}
-      propertyPath: energyChargeMultiple
+      propertyPath: tags_fallbackBehaviors.Array.size
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 4805574678901557372, guid: c78468457bd95b94d968eaa1ed37b7c5,
         type: 3}
-      propertyPath: triggerAnimPlayerOnChange
-      value: 0
+      propertyPath: tags_fallbackBehaviors.Array.data[1]
+      value: incr
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c78468457bd95b94d968eaa1ed37b7c5, type: 3}

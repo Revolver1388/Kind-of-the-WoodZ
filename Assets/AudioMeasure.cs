@@ -42,6 +42,8 @@ public class AudioMeasure : MonoBehaviour
 
     [SerializeField] List<string> promptTextList;
 
+    private Transform cameraTranform;
+
     private Febucci.UI.TextAnimator textAnimator;
     private Febucci.UI.TextAnimatorPlayer textAnimatorPlayer;
 
@@ -62,6 +64,8 @@ public class AudioMeasure : MonoBehaviour
 
     void Start()
     {
+        cameraTranform = Camera.main.transform;
+
         textAnimator = promptText.gameObject.GetComponent<Febucci.UI.TextAnimator>();
         textAnimatorPlayer = promptText.gameObject.GetComponent<Febucci.UI.TextAnimatorPlayer>();
 
@@ -90,8 +94,8 @@ public class AudioMeasure : MonoBehaviour
     {
         isCharging = true;
         promptText.gameObject.SetActive(true);
+        StartCoroutine(cameraShakeHelper());
         StartCoroutine(PlayPromptTextSequence());
-
     }
 
     public void StopCharging()
@@ -100,23 +104,57 @@ public class AudioMeasure : MonoBehaviour
         chargedUpAmountText.text = chargeAmount.ToString();
         StopCoroutine(PlayPromptTextSequence());
         promptText.gameObject.SetActive(false);
+        cameraTranform.DOKill();
+        StopCoroutine(cameraShakeHelper());
 
+
+    }
+
+    private IEnumerator cameraShakeHelper()
+    {
+        for (int i = 0; i < 20; i++)
+        {
+            cameraTranform.DOShakePosition(0.2f, (0.1f + (i/5)), Mathf.RoundToInt(10f*(0.1f + (i / 5f))), 90, false, false);
+            yield return new WaitForSeconds(0.5f);
+
+        }
     }
 
     private IEnumerator PlayPromptTextSequence()
     {
-        Debug.Log("Starting prompt text display coroutine");
-        promptText.gameObject.SetActive(true);
-     
-        textAnimatorPlayer.ShowText(promptTextList[UnityEngine.Random.Range(0, 20)]);
-        yield return new WaitUntil(() => textAnimator.allLettersShown);
-        yield return new WaitForSeconds(2);
-        promptText.gameObject.SetActive(false);
-        promptTextContainerTransform.gameObject.SetActive(false);
-        promptTextContainerTransform.localScale = new Vector3(0.5f + (chargeAmount / 100), 0.5f + (chargeAmount / 100), 0.5f + (chargeAmount / 100));
-        promptTextContainerTransform.gameObject.SetActive(true);
-        promptText.gameObject.SetActive(true);
-        StartCoroutine(PlayPromptTextSequence());
+        if (!PlayerPrefs.HasKey("FirstPlayDone"))
+        {
+            PlayerPrefs.SetInt("FirstPlayDone", 1);
+            for (int i = 0; i < 5; i++)
+            {
+                textAnimatorPlayer.ShowText(promptTextList[UnityEngine.Random.Range(0, 20)]);
+                yield return new WaitUntil(() => textAnimator.allLettersShown);
+                yield return new WaitForSeconds(2);
+                promptText.gameObject.SetActive(false);
+                promptTextContainerTransform.gameObject.SetActive(false);
+                promptTextContainerTransform.localScale = new Vector3(0.5f + (chargeAmount / 100), 0.5f + (chargeAmount / 100), 0.5f + (chargeAmount / 100));
+                promptTextContainerTransform.gameObject.SetActive(true);
+                promptText.gameObject.SetActive(true);
+            }
+            StartCoroutine(PlayPromptTextSequence());
+        }
+        else
+        {
+            Debug.Log("Starting prompt text display coroutine");
+            promptText.gameObject.SetActive(true);
+
+            textAnimatorPlayer.ShowText(promptTextList[UnityEngine.Random.Range(0, 20)]);
+            yield return new WaitUntil(() => textAnimator.allLettersShown);
+            yield return new WaitForSeconds(2);
+            promptText.gameObject.SetActive(false);
+            promptTextContainerTransform.gameObject.SetActive(false);
+            promptTextContainerTransform.localScale = new Vector3(0.5f + (chargeAmount / 100), 0.5f + (chargeAmount / 100), 0.5f + (chargeAmount / 100));
+            promptTextContainerTransform.gameObject.SetActive(true);
+            promptText.gameObject.SetActive(true);
+            StartCoroutine(PlayPromptTextSequence());
+        }
+
+       
 
     }
 
