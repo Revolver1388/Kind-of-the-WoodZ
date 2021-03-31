@@ -72,8 +72,8 @@ public class EggScript : MonoBehaviour
         //squish animation
         //Destroy GameObject
         hasHit = true;
-        eggBody.velocity = Vector2.zero;
-        StartCoroutine(runDown());
+        eggBody.velocity = Vector2.zero; 
+        Destroy(gameObject);
     }
 
     IEnumerator deathTimer()
@@ -85,10 +85,4 @@ public class EggScript : MonoBehaviour
         }
     }
 
-    IEnumerator runDown()
-    {
-        yield return new WaitForSeconds(0.7f);       
-            Destroy(gameObject);
-        
-    }
 }
