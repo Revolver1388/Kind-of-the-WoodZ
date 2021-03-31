@@ -7,7 +7,7 @@ public class WarningScene : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        
+        StartCoroutine(ChangeScene());
     }
 
     private IEnumerator ChangeScene()
