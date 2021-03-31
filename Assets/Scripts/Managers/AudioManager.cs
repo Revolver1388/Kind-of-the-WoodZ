@@ -43,18 +43,33 @@ public class AudioManager : MonoBehaviour
     }
     private void Start()
     {
-        if (SceneManager.GetActiveScene().name.Contains("Menu"))
+     
+        for (int i = 0; i < mixerChannel.Length; i++)
         {
+            audioMixer.SetFloat(mixerKey[i], PlayerPrefs.GetFloat(mixerChannel[i]));
+        }
+
+
+
+    }
+
+    public void FUCK()
+    {
+
+        if (SceneManager.GetActiveScene().name == "Main_Menu")
+        {
+            StopMusic();
             StartCoroutine(PlayMusic("Menu"));
         }
         else
         {
+            StopMusic();
             StartCoroutine(PlayMusic("Level"));
         }
     }
     private void Update()
     {
-        if (SceneManager.GetActiveScene().name != "Main_Menu") _currentSong = "Level";
+        //if (SceneManager.GetActiveScene().name != "Main_Menu") _currentSong = "Level";
     }
 
     public IEnumerator PlayMusic(string clipName)
@@ -80,8 +95,6 @@ public class AudioManager : MonoBehaviour
         levelMusic.Stop();
     }
 
-    [System.Serializable]
-    public struct BattleType { public string name; public AudioClip clip; }
 
     [System.Serializable]
     public struct LevelMusic { public string name; public AudioClip clip; }
