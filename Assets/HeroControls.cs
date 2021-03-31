@@ -54,6 +54,10 @@ public class HeroControls : MonoBehaviour
 
 
     private AudioManager audioManager;
+
+    [SerializeField] GameObject pauseMenu;
+    private bool paused;
+
     void Awake()
     {
         DOTween.Init();
@@ -69,6 +73,8 @@ public class HeroControls : MonoBehaviour
         attackDamage = 0;
         canJump = true;
         _rend = GetComponent<SpriteRenderer>();
+        pauseMenu.SetActive(false);
+        paused = false;
     }
 
     // Update is called once per frame
@@ -120,11 +126,19 @@ public class HeroControls : MonoBehaviour
                     jump();
                 }
 
-                /*
-                if(Input.GetKeyDown(KeyCode.L))
+                if(Input.GetKeyDown(KeyCode.Escape))
                 {
-                    pickUpHealth();
-                }*/
+                    if(paused)
+                    {
+                        paused = false;
+                        pauseMenu.SetActive(false);
+                    }
+                    else
+                    {
+                        paused = true;
+                        pauseMenu.SetActive(true);
+                    }
+                }
             }
             playerEnergy = (int)Mathf.Round(audioMeasure.chargeAmount);
         }
