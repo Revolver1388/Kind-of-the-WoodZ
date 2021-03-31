@@ -50,6 +50,7 @@ public class Fox : EnemyBaseClass
             case FoxStates.hit:
                 break;
             case FoxStates.dodge:
+                Dodge();
                 break;
         }
 
@@ -75,7 +76,7 @@ public class Fox : EnemyBaseClass
         }
     }
 
-    private void Position()
+    private void Position() //will try to get behind player before moving in closer to attack
     {
         if (moveDirection == MoveDir.vert)
         {
@@ -93,9 +94,7 @@ public class Fox : EnemyBaseClass
             }
         }
         else
-        {
-            //print(_player.transform.position.x - _player.transform.forward.normalized.x * 3);
-            //_parent.transform.position = new Vector2( * Time.fixedDeltaTime, _parent.transform.position.y);
+        {           
             Vector2 target = new Vector2(_player.transform.position.x - _player.transform.right.normalized.x * 5, _parent.transform.position.y);
             if (Vector2.Distance(_parent.transform.position, target) >= 0.5f)
             {
@@ -116,7 +115,7 @@ public class Fox : EnemyBaseClass
         }
     }
 
-    private void Approach()
+    private void Approach() //approaches player from behind then will attack when close enough
     {
         _parent.transform.position = Vector2.MoveTowards(_parent.transform.position, approachTarget, movementSpeed * Time.fixedDeltaTime);
         if(Vector2.Distance(_parent.transform.position, approachTarget) <= 0.1f)
@@ -133,7 +132,7 @@ public class Fox : EnemyBaseClass
             }
             else
             {
-                //if the player is facing the fox chance to dodge
+                //if the player is facing the fox, chance to dodge
                 //else will attack
                 if (Vector2.Dot(_player.transform.right, _player.transform.position - _parent.transform.position) < 0)
                 {
@@ -142,6 +141,7 @@ public class Fox : EnemyBaseClass
                     {
                         foxState = FoxStates.dodge;
                         _hitBox.enabled = false;
+                        _anim.SetTrigger("isDodge");
                         StartCoroutine(DodgeWait());
                     }
                     else
@@ -161,11 +161,7 @@ public class Fox : EnemyBaseClass
         }
     }
 
-    IEnumerator AttackWait()
-    {
-        yield return new WaitForSeconds(1.4f);
-        foxState = FoxStates.backoff;
-    }
+   
 
     private void Attack()
     {
@@ -174,7 +170,6 @@ public class Fox : EnemyBaseClass
         //    _anim.SetBool("isAttack", false);
         //    foxState = FoxStates.backoff;
         //}
-
     }
 
     private void BackOff()
@@ -189,7 +184,28 @@ public class Fox : EnemyBaseClass
 
     private void Dodge()
     {
-        _parent.transform.position = new Vector2(_parent.transform.position.x - movementSpeed * 3 * Time.fixedDeltaTime, _parent.transform.position.y);
+        _parent.transform.position = new Vector2(_parent.transform.position.x - movementSpeed * 8 * Time.fixedDeltaTime, _parent.transform.position.y);
+    }    
+
+    public override void TakeDamage(int damage)
+    {
+        base.TakeDamage(damage);
+        foxState = FoxStates.hit;
+        StopCoroutine(Hit());
+        StartCoroutine(Hit());
+    }
+
+    //waits to change states
+    IEnumerator Hit()
+    {
+        yield return new WaitForSeconds(0.6f);
+        foxState = FoxStates.backoff;
+    }
+
+    IEnumerator AttackWait()
+    {
+        yield return new WaitForSeconds(1.4f);
+        foxState = FoxStates.backoff;
     }
 
     IEnumerator DodgeWait()
@@ -230,17 +246,4 @@ public class Fox : EnemyBaseClass
         base.EvadePlayer();
     }
 
-    public override void TakeDamage(int damage)
-    {
-        base.TakeDamage(damage);
-        foxState = FoxStates.hit;
-        StopCoroutine(Hit());
-        StartCoroutine(Hit());
-    }
-
-    IEnumerator Hit()
-    {
-        yield return new WaitForSeconds(0.6f);
-        foxState = FoxStates.backoff;
-    }
 }
