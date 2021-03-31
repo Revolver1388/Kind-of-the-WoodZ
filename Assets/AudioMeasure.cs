@@ -143,7 +143,7 @@ public class AudioMeasure : MonoBehaviour
             Debug.Log("Starting prompt text display coroutine");
             promptText.gameObject.SetActive(true);
 
-            textAnimatorPlayer.ShowText(promptTextList[UnityEngine.Random.Range(0, 20)]);
+            textAnimatorPlayer.ShowText(promptTextList[UnityEngine.Random.Range(0, promptTextList.Count)]);
             yield return new WaitUntil(() => textAnimator.allLettersShown);
             yield return new WaitForSeconds(2);
             promptText.gameObject.SetActive(false);

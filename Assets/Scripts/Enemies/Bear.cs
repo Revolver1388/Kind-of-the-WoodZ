@@ -39,7 +39,7 @@ public class Bear : EnemyBaseClass
                 Approach();
                 break;
             case BearStates.attack:
-                Attack();
+                    Attack();
                 break;           
             case BearStates.hit:
                 break;
