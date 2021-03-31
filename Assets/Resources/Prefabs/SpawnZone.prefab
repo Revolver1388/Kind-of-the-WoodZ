@@ -363,6 +363,7 @@ MonoBehaviour:
   enemies:
   - {fileID: 4250603351713603471, guid: 16e7dd231b0d5eb4e9fde3fdac74e86c, type: 3}
   - {fileID: 5170675538173210875, guid: 6790d1b74d1c4c94cb6c79277ccb4180, type: 3}
+  - {fileID: 4252383353356931044, guid: b3514c1c3a360d841b1c035af059acf0, type: 3}
   maxEnemies: 5
   startingEnemies: 3
   bodyCountRequired: 2

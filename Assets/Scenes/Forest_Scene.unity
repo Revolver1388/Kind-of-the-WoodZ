@@ -1035,6 +1035,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1238235104307211594, guid: 884eb182d26999142b9dd2d5d6053821,
+        type: 3}
+      propertyPath: enemies.Array.size
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1238235104307211594, guid: 884eb182d26999142b9dd2d5d6053821,
+        type: 3}
+      propertyPath: enemies.Array.data[3]
+      value: 
+      objectReference: {fileID: 7114562892259631206, guid: 98592e5eafdc6e94b915265e3956ed3d,
+        type: 3}
     - target: {fileID: 3089869738217653387, guid: 884eb182d26999142b9dd2d5d6053821,
         type: 3}
       propertyPath: m_Name
