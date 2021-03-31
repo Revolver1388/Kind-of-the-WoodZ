@@ -54,7 +54,47 @@ MonoBehaviour:
     type: 2}
   levelMusic: {fileID: 1409150747}
   sfxSource: {fileID: 1826106457}
-  sfx: []
+  sfx:
+  - name: Hit1
+    clip: {fileID: 8300000, guid: 5f10530270651ac4fb935decd6e1aa03, type: 3}
+  - name: Hit2
+    clip: {fileID: 8300000, guid: b2a4d49b581ebf34f8c824639a46743b, type: 3}
+  - name: Hit3
+    clip: {fileID: 8300000, guid: 9c52249806a35834995e656eb715d378, type: 3}
+  - name: Whimper1
+    clip: {fileID: 8300000, guid: 4a275c0fd50922c4bb738385497be422, type: 3}
+  - name: Whimper2
+    clip: {fileID: 8300000, guid: 932d3e3bebe34314c86f27e20030a3d1, type: 3}
+  - name: Whimper3
+    clip: {fileID: 8300000, guid: 266a1c7ff96cf924b8f0be31206eb5f8, type: 3}
+  - name: Whimper4
+    clip: {fileID: 8300000, guid: 202db5aeb83a9a046845c6571e8ebcd5, type: 3}
+  - name: RoarLoud1
+    clip: {fileID: 8300000, guid: 81b854be8af54c4439b2d4d86bd458fb, type: 3}
+  - name: RoarLoud2
+    clip: {fileID: 8300000, guid: de72021882d7d504a9827a76a3332ceb, type: 3}
+  - name: RoarSoft1
+    clip: {fileID: 8300000, guid: 855d42b0c01f9e7408ec31bd52581196, type: 3}
+  - name: RoarSoft2
+    clip: {fileID: 8300000, guid: a89167b7076af474ca4b0244054fec2e, type: 3}
+  - name: Hit4
+    clip: {fileID: 8300000, guid: 2d92aa11d4ad85e43b84d4060a2feaa7, type: 3}
+  - name: Hit5
+    clip: {fileID: 8300000, guid: 3959656adac4eae44bc06731ea2012cd, type: 3}
+  - name: Hit6
+    clip: {fileID: 8300000, guid: e5c4acfcb6bfe64458b262a95993abd8, type: 3}
+  - name: Whoosh1
+    clip: {fileID: 8300000, guid: cca8e13b847142340b907863afe07f02, type: 3}
+  - name: Whoosh2
+    clip: {fileID: 8300000, guid: 4d68c63254bf68d48a4169e97e08556f, type: 3}
+  - name: Collect1
+    clip: {fileID: 8300000, guid: bec044603f3461349a90bc725ab3b119, type: 3}
+  - name: Collect2
+    clip: {fileID: 8300000, guid: 6b8552cd159f58c44be8e1a5cd1551ec, type: 3}
+  - name: Collect3
+    clip: {fileID: 8300000, guid: 06d3ccf7adac23740a52e82463c84324, type: 3}
+  - name: Collect4
+    clip: {fileID: 8300000, guid: aa5ee0564b13e4b4395ffe5715bb66b8, type: 3}
   lvl_Music:
   - name: Menu
     clip: {fileID: 8300000, guid: 5e4ce350e0c043e47b23da137201dccc, type: 3}
@@ -488,5 +528,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7908a9f69aa8bd4e9a981f5f7737063, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
   levelsPassed: 0000000000
