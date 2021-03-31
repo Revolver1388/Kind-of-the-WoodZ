@@ -7,6 +7,9 @@ using DG.Tweening;
 
 
 public class EnemyBaseClass : MonoBehaviour {
+
+    
+
     [Header("Enemy Attributes")]
     public int Health = 0;
     public float movementSpeed = 0;
