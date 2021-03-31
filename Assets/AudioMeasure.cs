@@ -36,6 +36,8 @@ public class AudioMeasure : MonoBehaviour
     public int chargeBarDamperAmount = 5;
     public float energyChargeMultiple;
 
+    private HeroControls heroControls;
+
     [SerializeField] TextMeshProUGUI runningChargeUpText;
     [SerializeField] TextMeshProUGUI chargedUpAmountText;
     [SerializeField] TextMeshProUGUI promptText;
@@ -67,6 +69,7 @@ public class AudioMeasure : MonoBehaviour
 
     void Start()
     {
+        heroControls = FindObjectOfType<HeroControls>();
         cameraTranform = Camera.main.transform;
 
         textAnimator = promptText.gameObject.GetComponent<Febucci.UI.TextAnimator>();
@@ -179,14 +182,16 @@ public class AudioMeasure : MonoBehaviour
 
 
 
-        if (Input.GetKeyDown(KeyCode.Space) && !isCharging)
+        if (heroControls.isChargingUp && !isCharging)
         {
             StartChargeUp();
         }
-
-        if (Input.GetKeyUp(KeyCode.Space) && isCharging)
+        
+        if (!heroControls.isChargingUp && isCharging)
         {
             StopCharging();
+            textAnimatorPlayer.StopShowingText();
+            promptText.gameObject.SetActive(false);
         }
 
 
@@ -210,6 +215,8 @@ public class AudioMeasure : MonoBehaviour
         chargeMeterFillBarImage.fillAmount = chargeAmount / 100;
         runningChargeUpText.text = "Energy Charge: " + Mathf.Round(chargeAmount).ToString() + " / 100";
 
+
+       
 
     }
 
