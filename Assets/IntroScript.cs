@@ -19,4 +19,9 @@ public class IntroScript : MonoBehaviour
     {
         
     }
+
+    public void LoadScene(string sceneName)
+    {
+        SceneManager.LoadSceneAsync(sceneName);
+    }
 }
