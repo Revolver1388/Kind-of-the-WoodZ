@@ -1236,15 +1236,10 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4805574678901557372, guid: c78468457bd95b94d968eaa1ed37b7c5,
+    - target: {fileID: 2893400694919146165, guid: c78468457bd95b94d968eaa1ed37b7c5,
         type: 3}
-      propertyPath: tags_fallbackBehaviors.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4805574678901557372, guid: c78468457bd95b94d968eaa1ed37b7c5,
-        type: 3}
-      propertyPath: tags_fallbackBehaviors.Array.data[1]
-      value: incr
+      propertyPath: energyChargeMultiple
+      value: 1.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c78468457bd95b94d968eaa1ed37b7c5, type: 3}
