@@ -46,7 +46,7 @@ public class AudioManager : MonoBehaviour
 
     void StartNewMusic()
     {
-        for (int i = 1; i < 4; i++)
+        for (int i = 2; i < 5; i++)
         {
             if (SceneManager.GetActiveScene().buildIndex == i)
             {
