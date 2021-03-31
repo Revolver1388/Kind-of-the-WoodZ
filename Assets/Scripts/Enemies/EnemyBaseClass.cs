@@ -7,7 +7,13 @@ using DG.Tweening;
 
 
 public class EnemyBaseClass : MonoBehaviour {
+
+
+
     [Header("Enemy Attributes")]
+
+    private HitPopupController hitPopupController;
+
     public int Health = 0;
     public float movementSpeed = 0;
     [SerializeField] float attackDamage = 0;
@@ -25,10 +31,13 @@ public class EnemyBaseClass : MonoBehaviour {
 
     private AudioManager audioManager;
 
+    [SerializeField] GameObject healthObject;
+
 
     public virtual void Awake()
     {
         DOTween.Init();
+        hitPopupController = gameObject.transform.parent.GetChild(1).GetComponent<HitPopupController>();
         cameraTransform = Camera.main.transform;
         audioManager = FindObjectOfType<AudioManager>();
         _anim = GetComponent<Animator>();
@@ -70,14 +79,13 @@ public class EnemyBaseClass : MonoBehaviour {
 
         cameraTransform.DOShakePosition(0.1f, 0.2f, 50, 90, false, false);
 
+        hitPopupController.SetHitAmount(damage);
+
         //Call player damage method
         _anim.SetTrigger("isHurt");
         if(Health > 0)
         {
             Health -= damage;
-
-            
-
         }
         if(Health <= 0)
         {     
@@ -93,11 +101,20 @@ public class EnemyBaseClass : MonoBehaviour {
     }
 
     public virtual void Die() {
+
+        if(healthObject != null)
+        {
+            if(Random.Range(1,3)==1)
+            {
+                GameObject g = Instantiate(healthObject);
+                g.transform.position = transform.position;
+            }
+        }
         _anim.SetBool("isDead", true);
     }
 
     public virtual void DeactivateEnemy() {
-        gameObject.SetActive(false);
+        transform.parent.gameObject.SetActive(false);
     }
 
     public virtual void ActivateAttackBox()
@@ -121,13 +138,14 @@ public class EnemyBaseClass : MonoBehaviour {
     {
         if (c.tag == "PlayerAttackBox")
         {
-            TakeDamage(_player.getDamage());
+            //print(_player.getDamage() * 5);
+            TakeDamage(_player.getDamage() * 5);
         }
         else if (c.tag == "EggBox")
         {
             if (c.gameObject.GetComponent<EggScript>().isHeroEgg && !c.gameObject.GetComponent<EggScript>().hasHit)
             {
-                Health -= 10;
+                TakeDamage(25);
                 c.gameObject.GetComponent<EggScript>().eggCollision();
             }
         }
