@@ -291,7 +291,11 @@ public class HeroControls : MonoBehaviour
 
     private void pickUpHealth()
     {
-        playerHealth++;
+        playerHealth += 2;
+        if(playerHealth > 12)
+        {
+            playerHealth = 12;
+        }
         checkHearts();
     }
 
