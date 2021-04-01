@@ -138,6 +138,12 @@ public class ShadowCurdle : EnemyBaseClass
             }
         }
 
+        if (Mathf.Abs(_parent.transform.position.x - Camera.main.transform.position.x) > 15)
+        {
+            retreatTarget = new Vector2(Camera.main.transform.position.x + 13, _parent.transform.position.y);
+        }        
+        curdleState = CurdleStates.retreat;
+
         //RaycastHit2D hit;
         //hit = Physics2D.BoxCast(new Vector2(transform.position.x, transform.position.y + 0.5f), new Vector2(3, 1), 0, -transform.right, 3);   //(new Vector2(transform.position.x, transform.position.y + 0.5f), transform.right, 3);
         //if (hit)
@@ -224,11 +230,11 @@ public class ShadowCurdle : EnemyBaseClass
         yield return new WaitForSeconds(0.15f); //mayneed to change this based on animations
         if (_parent.transform.position.x <= Camera.main.transform.position.x)
         {
-            retreatTarget = new Vector2(Camera.main.transform.position.x + 10, _parent.transform.position.y);
+            retreatTarget = new Vector2(Camera.main.transform.position.x + 13, _parent.transform.position.y);
         }
         else
         {
-            retreatTarget = new Vector2(Camera.main.transform.position.x - 10, _parent.transform.position.y);
+            retreatTarget = new Vector2(Camera.main.transform.position.x - 13, _parent.transform.position.y);
         }
         curdleState = CurdleStates.retreat;       
     }
