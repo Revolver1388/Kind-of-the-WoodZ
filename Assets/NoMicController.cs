@@ -7,6 +7,20 @@ public class NoMicController : MonoBehaviour
     public GameObject OffMicButton;
     public GameObject OnMicButton;
 
+    private void Start()
+    {
+        if (PlayerPrefs.GetInt("MicMode") == 1)
+        {
+            OffMicButton.SetActive(true);
+            OnMicButton.SetActive(false);
+        }
+        else
+        {
+            OnMicButton.SetActive(true);
+            OffMicButton.SetActive(false);
+        }
+    }
+
     public void OnMic_Click()
     {
         OnMicButton.SetActive(false);
