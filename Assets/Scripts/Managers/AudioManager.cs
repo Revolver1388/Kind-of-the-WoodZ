@@ -27,6 +27,7 @@ public class AudioManager : MonoBehaviour
 
     void Awake()
     {
+
         Instance = this;
     }
 

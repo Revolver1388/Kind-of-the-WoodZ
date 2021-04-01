@@ -178,15 +178,15 @@ public class AudioMeasure : MonoBehaviour
 
     void FixedUpdate()
     {
-
+        
 
         if (chargeAmount < 0) chargeAmount = 0;
         
         if (!isCharging)
         {
             chargeAmount = chargeAmount - (chargeAmount * chargeDegradePercentPerFrame);
-           
 
+            promptText.gameObject.SetActive(false);
         }
 
 
@@ -225,10 +225,7 @@ public class AudioMeasure : MonoBehaviour
         runningChargeUpText.text = "Energy Charge: " + Mathf.Round(chargeAmount).ToString() + " / 100";
 
 
-        if (isNoSoundMode)
-        {
-            chargeAmount = 100;
-        }
+ 
 
     }
 
@@ -250,35 +247,43 @@ public class AudioMeasure : MonoBehaviour
 
     void AnalyzeSound()
     {
-        GetComponent<AudioSource>().GetOutputData(_samples, 0); // fill array with samples
-        int i;
-        float sum = 0;
-        for (i = 0; i < QSamples; i++)
+        if (!isNoSoundMode)
         {
-            sum += _samples[i] * _samples[i]; // sum squared samples
-        }
-        RmsValue = energyChargeMultiple * Mathf.Sqrt(sum / QSamples); // rms = square root of average
-        DbValue = energyChargeMultiple * Mathf.Log10(RmsValue / RefValue); // calculate dB
-        if (DbValue < 0) DbValue = 0; // clamp it to 0dB min
-                                            // get sound spectrum
-        micAudioSource.GetSpectrumData(_spectrum, 0, FFTWindow.BlackmanHarris);
-        float maxV = 0;
-        var maxN = 0;
-        for (i = 0; i < QSamples; i++)
-        { // find max 
-            if (!(_spectrum[i] > maxV) || !(_spectrum[i] > Threshold))
-                continue;
+            GetComponent<AudioSource>().GetOutputData(_samples, 0); // fill array with samples
+            int i;
+            float sum = 0;
+            for (i = 0; i < QSamples; i++)
+            {
+                sum += _samples[i] * _samples[i]; // sum squared samples
+            }
+            RmsValue = energyChargeMultiple * Mathf.Sqrt(sum / QSamples); // rms = square root of average
+            DbValue = energyChargeMultiple * Mathf.Log10(RmsValue / RefValue); // calculate dB
+            if (DbValue < 0) DbValue = 0; // clamp it to 0dB min
+                                          // get sound spectrum
+            micAudioSource.GetSpectrumData(_spectrum, 0, FFTWindow.BlackmanHarris);
+            float maxV = 0;
+            var maxN = 0;
+            for (i = 0; i < QSamples; i++)
+            { // find max 
+                if (!(_spectrum[i] > maxV) || !(_spectrum[i] > Threshold))
+                    continue;
 
-            maxV = _spectrum[i];
-            maxN = i; // maxN is the index of max
+                maxV = _spectrum[i];
+                maxN = i; // maxN is the index of max
+            }
+            float freqN = maxN; // pass the index to a float variable
+            if (maxN > 0 && maxN < QSamples - 1)
+            { // interpolate index using neighbours
+                var dL = _spectrum[maxN - 1] / _spectrum[maxN];
+                var dR = _spectrum[maxN + 1] / _spectrum[maxN];
+                freqN += 0.5f * (dR * dR - dL * dL);
+            }
+            PitchValue = freqN * (_fSample / 2) / QSamples; // convert index to frequency
         }
-        float freqN = maxN; // pass the index to a float variable
-        if (maxN > 0 && maxN < QSamples - 1)
-        { // interpolate index using neighbours
-            var dL = _spectrum[maxN - 1] / _spectrum[maxN];
-            var dR = _spectrum[maxN + 1] / _spectrum[maxN];
-            freqN += 0.5f * (dR * dR - dL * dL);
+        else
+        {
+            RmsValue = 0.01f;
         }
-        PitchValue = freqN * (_fSample / 2) / QSamples; // convert index to frequency
+        
     }
 }
