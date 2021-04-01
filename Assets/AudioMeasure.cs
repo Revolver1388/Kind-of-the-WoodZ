@@ -69,6 +69,8 @@ public class AudioMeasure : MonoBehaviour
 
     void Start()
     {
+        if (PlayerPrefs.GetInt("MicMode") == 0) isNoSoundMode = false;
+        else isNoSoundMode = true;
         heroControls = FindObjectOfType<HeroControls>();
         cameraTranform = Camera.main.transform;
 
@@ -168,9 +170,16 @@ public class AudioMeasure : MonoBehaviour
     }
 
     [SerializeField] Transform promptTextContainerTransform;
-
-    void Update()
+    public bool isNoSoundMode;
+    public void NoMicMode()
     {
+        isNoSoundMode = true;
+    }
+
+    void FixedUpdate()
+    {
+
+
         if (chargeAmount < 0) chargeAmount = 0;
         
         if (!isCharging)
@@ -216,7 +225,10 @@ public class AudioMeasure : MonoBehaviour
         runningChargeUpText.text = "Energy Charge: " + Mathf.Round(chargeAmount).ToString() + " / 100";
 
 
-       
+        if (isNoSoundMode)
+        {
+            chargeAmount = 100;
+        }
 
     }
 
