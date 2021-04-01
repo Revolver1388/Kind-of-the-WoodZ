@@ -28,7 +28,7 @@ public class PlayerCamera : MonoBehaviour
         if (!isPause)
             transform.position = Vector3.SmoothDamp(transform.position, player.position - (transform.forward - (transform.right * cameraOffsetX) - (transform.up * cameraOffsetY)) * distFromPlayer, ref smoothingVelocity, c_Lerp);
         else
-            transform.position = Vector3.SmoothDamp(transform.position, _holdPos.position - (transform.forward - (transform.up * cameraOffsetY)) * distFromPlayer, ref smoothingVelocity, c_Lerp);
+            transform.position = Vector3.SmoothDamp(transform.position, new Vector3(_holdPos.position.x , player.transform.position.y) - (transform.forward - (transform.up * cameraOffsetY)) * distFromPlayer, ref smoothingVelocity, c_Lerp);
     }
 
     public void togglePause()

@@ -99,4 +99,9 @@ public class GameManager : MonoBehaviour {
     public bool[] GetLevelsPassed(){
         return levelsPassed;
     }
+
+    public void ChangeLevel(string levelName)
+    {
+        SceneManager.LoadSceneAsync(levelName);
+    }
 }

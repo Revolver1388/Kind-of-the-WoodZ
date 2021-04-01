@@ -130,18 +130,9 @@ public class HeroControls : MonoBehaviour
                     jump();
                 }
 
-                if(Input.GetKeyDown(KeyCode.Escape))
+                if (Input.GetKeyDown(KeyCode.Escape))
                 {
-                    if(paused)
-                    {
-                        paused = false;
-                        pauseMenu.SetActive(false);
-                    }
-                    else
-                    {
-                        paused = true;
-                        pauseMenu.SetActive(true);
-                    }
+                    GameManager.Instance.ChangeLevel("Main_Menu");
                 }
             }
             playerEnergy = (int)Mathf.Round(audioMeasure.chargeAmount);
