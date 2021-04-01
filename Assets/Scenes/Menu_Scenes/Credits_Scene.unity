@@ -940,10 +940,20 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 56868363}
     m_Modifications:
+    - target: {fileID: 523604288746938158, guid: 3ebef2fb3b1d5034ca512ef92097e605,
+        type: 3}
+      propertyPath: m_Text
+      value: Matthew Riddett
+      objectReference: {fileID: 0}
     - target: {fileID: 6396604195240514307, guid: 3ebef2fb3b1d5034ca512ef92097e605,
         type: 3}
       propertyPath: m_Name
       value: Names
+      objectReference: {fileID: 0}
+    - target: {fileID: 7280780104564781331, guid: 3ebef2fb3b1d5034ca512ef92097e605,
+        type: 3}
+      propertyPath: m_Name
+      value: MatthewRiddett
       objectReference: {fileID: 0}
     - target: {fileID: 7708561888867385733, guid: 3ebef2fb3b1d5034ca512ef92097e605,
         type: 3}
