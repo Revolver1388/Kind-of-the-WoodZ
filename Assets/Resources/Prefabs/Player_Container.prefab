@@ -422,6 +422,7 @@ MonoBehaviour:
   egg: {fileID: 7614976145878281478, guid: b22810f1ae075a949ad37b37309fd75e, type: 3}
   chargeUp: {fileID: 3187757096066122527}
   pauseMenu: {fileID: 401717132303166781}
+  isChargingUp: 0
 --- !u!1001 &5842176319281190873
 PrefabInstance:
   m_ObjectHideFlags: 0

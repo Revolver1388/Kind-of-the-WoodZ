@@ -34,7 +34,7 @@ public class AudioManager : MonoBehaviour
     void Start(){
         for (int i = 0; i < mixerChannel.Length; i++)
         {
-            audioMixer.SetFloat(mixerKey[i], PlayerPrefs.GetFloat(mixerChannel[i]));
+            audioMixer.SetFloat(mixerKey[i], Mathf.Log10(PlayerPrefs.GetFloat(mixerChannel[i])) * 20);
         }
             
         StartCoroutine(PlayMusic("Menu"));
