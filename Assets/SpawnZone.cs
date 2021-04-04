@@ -9,6 +9,7 @@ public class SpawnZone : MonoBehaviour
 
     [SerializeField] GameObject[] spawnPoints;
     [SerializeField] GameObject[] enemies;
+    [SerializeField] GameObject boss;
 
     [SerializeField] int maxEnemies;
     [SerializeField] int startingEnemies;
@@ -17,6 +18,7 @@ public class SpawnZone : MonoBehaviour
 
     private int enemiesDefeated;
     private bool active;
+    private bool bossSpawn;
     [SerializeField] Camera _cam;
     private List<GameObject> enemiesAlive = new List<GameObject>();
     // Start is called before the first frame update
@@ -28,6 +30,7 @@ public class SpawnZone : MonoBehaviour
         leftBlocker.enabled = false;
         rightBlocker.enabled = false;
         _cam = Camera.main;
+        bossSpawn = false;
     }
 
     // Update is called once per frame
@@ -102,6 +105,25 @@ public class SpawnZone : MonoBehaviour
             yield return new WaitForSeconds(time);
         }
         while (bodyCountRequired > enemiesDefeated);
+
+        yield return new WaitForSeconds(1.0f);
+
+        if (boss != null)
+        {
+            do
+            {
+                if (!bossSpawn)
+                {
+                    GameObject e = Instantiate(boss);
+                    e.transform.position = spawnPoints[Random.Range(0, spawnPoints.Length)].transform.position;
+                    e.GetComponentInChildren<SpriteRenderer>().sortingLayerName = "WalkArea";
+                    enemiesAlive.Add(e);
+                    bossSpawn = true;
+                }
+                yield return new WaitForSeconds(1.0f);
+            }
+            while (enemiesAlive.Count > 0);
+        }
 
         moveArrow.SetActive(true);
 
