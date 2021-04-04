@@ -15,9 +15,4 @@ public class WarningScene : MonoBehaviour
         yield return new WaitForSeconds(4);
         SceneManager.LoadSceneAsync("Main_Menu");
     }
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

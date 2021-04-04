@@ -324,126 +324,136 @@ public class HeroControls : MonoBehaviour
 
     private void checkHearts()
     {
-        if (playerHealth == 0)
+        //modified April, 4 2021 {Kyle Ennis} give player 6 hearts and 6 hit instead of hidden second health.
+        for (int i = 0; i < heartCounter.Length; i++)
         {
-            heartCounter[0].GetComponent<Animator>().SetBool("isLife", false);
-            heartCounter[1].GetComponent<Animator>().SetBool("isLife", false);
-            heartCounter[2].GetComponent<Animator>().SetBool("isLife", false);
-            heartCounter[3].GetComponent<Animator>().SetBool("isLife", false);
-            heartCounter[4].GetComponent<Animator>().SetBool("isLife", false);
-            heartCounter[5].GetComponent<Animator>().SetBool("isLife", false);
+            if(i < playerHealth/2)
+            {
+                heartCounter[i].GetComponent<Animator>().SetBool("isLife", true);
+            }
+            else
+            heartCounter[i].GetComponent<Animator>().SetBool("isLife", false);
         }
-        else if(playerHealth == 1)
-        {
-            heartCounter[0].GetComponent<Animator>().SetBool("isLife", true);
-            heartCounter[1].GetComponent<Animator>().SetBool("isLife", false);
-            heartCounter[2].GetComponent<Animator>().SetBool("isLife", false);
-            heartCounter[3].GetComponent<Animator>().SetBool("isLife", false);
-            heartCounter[4].GetComponent<Animator>().SetBool("isLife", false);
-            heartCounter[5].GetComponent<Animator>().SetBool("isLife", false);
+        //if (playerHealth == 0)
+        //{
+        //    heartCounter[0].GetComponent<Animator>().SetBool("isLife", false);
+        //    heartCounter[1].GetComponent<Animator>().SetBool("isLife", false);
+        //    heartCounter[2].GetComponent<Animator>().SetBool("isLife", false);
+        //    heartCounter[3].GetComponent<Animator>().SetBool("isLife", false);
+        //    heartCounter[4].GetComponent<Animator>().SetBool("isLife", false);
+        //    heartCounter[5].GetComponent<Animator>().SetBool("isLife", false);
+        //}
+        //else if(playerHealth == 1)
+        //{
+        //    heartCounter[0].GetComponent<Animator>().SetBool("isLife", true);
+        //    heartCounter[1].GetComponent<Animator>().SetBool("isLife", false);
+        //    heartCounter[2].GetComponent<Animator>().SetBool("isLife", false);
+        //    heartCounter[3].GetComponent<Animator>().SetBool("isLife", false);
+        //    heartCounter[4].GetComponent<Animator>().SetBool("isLife", false);
+        //    heartCounter[5].GetComponent<Animator>().SetBool("isLife", false);
 
-        }
-        else if (playerHealth == 2)
-        {
-            heartCounter[0].GetComponent<Animator>().SetBool("isLife", true);
-            heartCounter[1].GetComponent<Animator>().SetBool("isLife", false);
-            heartCounter[2].GetComponent<Animator>().SetBool("isLife", false);
-            heartCounter[3].GetComponent<Animator>().SetBool("isLife", false);
-            heartCounter[4].GetComponent<Animator>().SetBool("isLife", false);
-            heartCounter[5].GetComponent<Animator>().SetBool("isLife", false);
-        }
-        else if (playerHealth == 3)
-        {
-            heartCounter[0].GetComponent<Animator>().SetBool("isLife", true);
-            heartCounter[1].GetComponent<Animator>().SetBool("isLife", true);
-            heartCounter[2].GetComponent<Animator>().SetBool("isLife", false);
-            heartCounter[3].GetComponent<Animator>().SetBool("isLife", false);
-            heartCounter[4].GetComponent<Animator>().SetBool("isLife", false);
-            heartCounter[5].GetComponent<Animator>().SetBool("isLife", false);
-        }
-        else if (playerHealth == 4)
-        {
-            heartCounter[0].GetComponent<Animator>().SetBool("isLife", true);
-            heartCounter[1].GetComponent<Animator>().SetBool("isLife", true);
-            heartCounter[2].GetComponent<Animator>().SetBool("isLife", false);
-            heartCounter[3].GetComponent<Animator>().SetBool("isLife", false);
-            heartCounter[4].GetComponent<Animator>().SetBool("isLife", false);
-            heartCounter[5].GetComponent<Animator>().SetBool("isLife", false);
+        //}
+        //else if (playerHealth == 2)
+        //{
+        //    heartCounter[0].GetComponent<Animator>().SetBool("isLife", true);
+        //    heartCounter[1].GetComponent<Animator>().SetBool("isLife", false);
+        //    heartCounter[2].GetComponent<Animator>().SetBool("isLife", false);
+        //    heartCounter[3].GetComponent<Animator>().SetBool("isLife", false);
+        //    heartCounter[4].GetComponent<Animator>().SetBool("isLife", false);
+        //    heartCounter[5].GetComponent<Animator>().SetBool("isLife", false);
+        //}
+        //else if (playerHealth == 3)
+        //{
+        //    heartCounter[0].GetComponent<Animator>().SetBool("isLife", true);
+        //    heartCounter[1].GetComponent<Animator>().SetBool("isLife", true);
+        //    heartCounter[2].GetComponent<Animator>().SetBool("isLife", false);
+        //    heartCounter[3].GetComponent<Animator>().SetBool("isLife", false);
+        //    heartCounter[4].GetComponent<Animator>().SetBool("isLife", false);
+        //    heartCounter[5].GetComponent<Animator>().SetBool("isLife", false);
+        //}
+        //else if (playerHealth == 4)
+        //{
+        //    heartCounter[0].GetComponent<Animator>().SetBool("isLife", true);
+        //    heartCounter[1].GetComponent<Animator>().SetBool("isLife", true);
+        //    heartCounter[2].GetComponent<Animator>().SetBool("isLife", false);
+        //    heartCounter[3].GetComponent<Animator>().SetBool("isLife", false);
+        //    heartCounter[4].GetComponent<Animator>().SetBool("isLife", false);
+        //    heartCounter[5].GetComponent<Animator>().SetBool("isLife", false);
 
-        }
-        else if (playerHealth == 5)
-        {
-            heartCounter[0].GetComponent<Animator>().SetBool("isLife", true);
-            heartCounter[1].GetComponent<Animator>().SetBool("isLife", true);
-            heartCounter[2].GetComponent<Animator>().SetBool("isLife", true);
-            heartCounter[3].GetComponent<Animator>().SetBool("isLife", false);
-            heartCounter[4].GetComponent<Animator>().SetBool("isLife", false);
-            heartCounter[5].GetComponent<Animator>().SetBool("isLife", false);
-        }
-        else if (playerHealth == 6)
-        {
-            heartCounter[0].GetComponent<Animator>().SetBool("isLife", true);
-            heartCounter[1].GetComponent<Animator>().SetBool("isLife", true);
-            heartCounter[2].GetComponent<Animator>().SetBool("isLife", true);
-            heartCounter[3].GetComponent<Animator>().SetBool("isLife", false);
-            heartCounter[4].GetComponent<Animator>().SetBool("isLife", false);
-            heartCounter[5].GetComponent<Animator>().SetBool("isLife", false);
-        }
-        else if (playerHealth == 7)
-        {
-            heartCounter[0].GetComponent<Animator>().SetBool("isLife", true);
-            heartCounter[1].GetComponent<Animator>().SetBool("isLife", true);
-            heartCounter[2].GetComponent<Animator>().SetBool("isLife", true);
-            heartCounter[3].GetComponent<Animator>().SetBool("isLife", true);
-            heartCounter[4].GetComponent<Animator>().SetBool("isLife", false);
-            heartCounter[5].GetComponent<Animator>().SetBool("isLife", false);
-        }
-        else if (playerHealth == 8)
-        {
-            heartCounter[0].GetComponent<Animator>().SetBool("isLife", true);
-            heartCounter[1].GetComponent<Animator>().SetBool("isLife", true);
-            heartCounter[2].GetComponent<Animator>().SetBool("isLife", true);
-            heartCounter[3].GetComponent<Animator>().SetBool("isLife", true);
-            heartCounter[4].GetComponent<Animator>().SetBool("isLife", false);
-            heartCounter[5].GetComponent<Animator>().SetBool("isLife", false);
+        //}
+        //else if (playerHealth == 5)
+        //{
+        //    heartCounter[0].GetComponent<Animator>().SetBool("isLife", true);
+        //    heartCounter[1].GetComponent<Animator>().SetBool("isLife", true);
+        //    heartCounter[2].GetComponent<Animator>().SetBool("isLife", true);
+        //    heartCounter[3].GetComponent<Animator>().SetBool("isLife", false);
+        //    heartCounter[4].GetComponent<Animator>().SetBool("isLife", false);
+        //    heartCounter[5].GetComponent<Animator>().SetBool("isLife", false);
+        //}
+        //else if (playerHealth == 6)
+        //{
+        //    heartCounter[0].GetComponent<Animator>().SetBool("isLife", true);
+        //    heartCounter[1].GetComponent<Animator>().SetBool("isLife", true);
+        //    heartCounter[2].GetComponent<Animator>().SetBool("isLife", true);
+        //    heartCounter[3].GetComponent<Animator>().SetBool("isLife", false);
+        //    heartCounter[4].GetComponent<Animator>().SetBool("isLife", false);
+        //    heartCounter[5].GetComponent<Animator>().SetBool("isLife", false);
+        //}
+        //else if (playerHealth == 7)
+        //{
+        //    heartCounter[0].GetComponent<Animator>().SetBool("isLife", true);
+        //    heartCounter[1].GetComponent<Animator>().SetBool("isLife", true);
+        //    heartCounter[2].GetComponent<Animator>().SetBool("isLife", true);
+        //    heartCounter[3].GetComponent<Animator>().SetBool("isLife", true);
+        //    heartCounter[4].GetComponent<Animator>().SetBool("isLife", false);
+        //    heartCounter[5].GetComponent<Animator>().SetBool("isLife", false);
+        //}
+        //else if (playerHealth == 8)
+        //{
+        //    heartCounter[0].GetComponent<Animator>().SetBool("isLife", true);
+        //    heartCounter[1].GetComponent<Animator>().SetBool("isLife", true);
+        //    heartCounter[2].GetComponent<Animator>().SetBool("isLife", true);
+        //    heartCounter[3].GetComponent<Animator>().SetBool("isLife", true);
+        //    heartCounter[4].GetComponent<Animator>().SetBool("isLife", false);
+        //    heartCounter[5].GetComponent<Animator>().SetBool("isLife", false);
 
-        }
-        else if (playerHealth == 9)
-        {
-            heartCounter[0].GetComponent<Animator>().SetBool("isLife", true);
-            heartCounter[1].GetComponent<Animator>().SetBool("isLife", true);
-            heartCounter[2].GetComponent<Animator>().SetBool("isLife", true);
-            heartCounter[3].GetComponent<Animator>().SetBool("isLife", true);
-            heartCounter[4].GetComponent<Animator>().SetBool("isLife", true);
-            heartCounter[5].GetComponent<Animator>().SetBool("isLife", false);
-        }
-        else if (playerHealth == 10)
-        {
-            heartCounter[0].GetComponent<Animator>().SetBool("isLife", true);
-            heartCounter[1].GetComponent<Animator>().SetBool("isLife", true);
-            heartCounter[2].GetComponent<Animator>().SetBool("isLife", true);
-            heartCounter[3].GetComponent<Animator>().SetBool("isLife", true);
-            heartCounter[4].GetComponent<Animator>().SetBool("isLife", true);
-            heartCounter[5].GetComponent<Animator>().SetBool("isLife", false);
-        }
-        else if (playerHealth == 11)
-        {
-            heartCounter[0].GetComponent<Animator>().SetBool("isLife", true);
-            heartCounter[1].GetComponent<Animator>().SetBool("isLife", true);
-            heartCounter[2].GetComponent<Animator>().SetBool("isLife", true);
-            heartCounter[3].GetComponent<Animator>().SetBool("isLife", true);
-            heartCounter[4].GetComponent<Animator>().SetBool("isLife", true);
-            heartCounter[5].GetComponent<Animator>().SetBool("isLife", true);
-        }
-        else if (playerHealth == 12)
-        {
-            heartCounter[0].GetComponent<Animator>().SetBool("isLife", true);
-            heartCounter[1].GetComponent<Animator>().SetBool("isLife", true);
-            heartCounter[2].GetComponent<Animator>().SetBool("isLife", true);
-            heartCounter[3].GetComponent<Animator>().SetBool("isLife", true);
-            heartCounter[4].GetComponent<Animator>().SetBool("isLife", true);
-            heartCounter[5].GetComponent<Animator>().SetBool("isLife", true);
-        }
+        //}
+        //else if (playerHealth == 9)
+        //{
+        //    heartCounter[0].GetComponent<Animator>().SetBool("isLife", true);
+        //    heartCounter[1].GetComponent<Animator>().SetBool("isLife", true);
+        //    heartCounter[2].GetComponent<Animator>().SetBool("isLife", true);
+        //    heartCounter[3].GetComponent<Animator>().SetBool("isLife", true);
+        //    heartCounter[4].GetComponent<Animator>().SetBool("isLife", true);
+        //    heartCounter[5].GetComponent<Animator>().SetBool("isLife", false);
+        //}
+        //else if (playerHealth == 10)
+        //{
+        //    heartCounter[0].GetComponent<Animator>().SetBool("isLife", true);
+        //    heartCounter[1].GetComponent<Animator>().SetBool("isLife", true);
+        //    heartCounter[2].GetComponent<Animator>().SetBool("isLife", true);
+        //    heartCounter[3].GetComponent<Animator>().SetBool("isLife", true);
+        //    heartCounter[4].GetComponent<Animator>().SetBool("isLife", true);
+        //    heartCounter[5].GetComponent<Animator>().SetBool("isLife", false);
+        //}
+        //else if (playerHealth == 11)
+        //{
+        //    heartCounter[0].GetComponent<Animator>().SetBool("isLife", true);
+        //    heartCounter[1].GetComponent<Animator>().SetBool("isLife", true);
+        //    heartCounter[2].GetComponent<Animator>().SetBool("isLife", true);
+        //    heartCounter[3].GetComponent<Animator>().SetBool("isLife", true);
+        //    heartCounter[4].GetComponent<Animator>().SetBool("isLife", true);
+        //    heartCounter[5].GetComponent<Animator>().SetBool("isLife", true);
+        //}
+        //else if (playerHealth == 12)
+        //{
+        //    heartCounter[0].GetComponent<Animator>().SetBool("isLife", true);
+        //    heartCounter[1].GetComponent<Animator>().SetBool("isLife", true);
+        //    heartCounter[2].GetComponent<Animator>().SetBool("isLife", true);
+        //    heartCounter[3].GetComponent<Animator>().SetBool("isLife", true);
+        //    heartCounter[4].GetComponent<Animator>().SetBool("isLife", true);
+        //    heartCounter[5].GetComponent<Animator>().SetBool("isLife", true);
+        //}
     }
 
 
