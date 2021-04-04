@@ -176,6 +176,45 @@ public class AudioMeasure : MonoBehaviour
         isNoSoundMode = true;
     }
 
+    private void Update()
+    {
+        if (isNoSoundMode)
+        {
+
+            if (chargeAmount < 0) chargeAmount = 0;
+
+            if (!isCharging)
+            {
+                chargeAmount = chargeAmount - (chargeAmount * chargeDegradePercentPerFrame);
+                promptText.gameObject.SetActive(false);
+            }
+
+            if (heroControls.isChargingUp && !isCharging)
+            {
+                StartChargeUp();
+            }
+
+            if (!heroControls.isChargingUp && isCharging)
+            {
+                StopCharging();
+                textAnimatorPlayer.StopShowingText();
+                promptText.gameObject.SetActive(false);
+            }
+
+            if (isCharging)
+            {
+                NoMicCharge();
+                
+                chargeLevelText.text = movingAverage + chargeAmount.ToString();
+                if (chargeBarDamperAmount <= 0) chargeBarDamperAmount = 1;
+
+            }
+
+            if (chargeAmount > 100) chargeAmount = 100;
+            chargeMeterFillBarImage.fillAmount = chargeAmount / 100;
+            runningChargeUpText.text = "Energy Charge: " + Mathf.Round(chargeAmount).ToString() + " / 100";
+        }
+    }
     void FixedUpdate()
     {
         
@@ -185,7 +224,6 @@ public class AudioMeasure : MonoBehaviour
         if (!isCharging)
         {
             chargeAmount = chargeAmount - (chargeAmount * chargeDegradePercentPerFrame);
-
             promptText.gameObject.SetActive(false);
         }
 
@@ -223,10 +261,6 @@ public class AudioMeasure : MonoBehaviour
         if (chargeAmount > 100) chargeAmount = 100;
         chargeMeterFillBarImage.fillAmount = chargeAmount / 100;
         runningChargeUpText.text = "Energy Charge: " + Mathf.Round(chargeAmount).ToString() + " / 100";
-
-
- 
-
     }
 
     private void CalculateMovingAverage()
@@ -280,10 +314,40 @@ public class AudioMeasure : MonoBehaviour
             }
             PitchValue = freqN * (_fSample / 2) / QSamples; // convert index to frequency
         }
+        
+        
+        //else
+        //{
+        //    RmsValue = 0.01f;
+        //}
+        
+    }
+    bool mouseTap = false, startTap = false;
+    private readonly float chtime = 0.1f;
+    float leftime;
+    void NoMicCharge()
+    {
+        if (!startTap)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                mouseTap = true;
+                startTap = true;
+            }
+        }
         else
         {
-            RmsValue = 0.01f;
+            if (!mouseTap)
+            {
+                if (Input.GetMouseButtonDown(0)) { mouseTap = true; }
+            }
+            else
+            {
+                if (leftime < chtime) { leftime += 1 * Time.deltaTime; chargeAmount += 50 * Time.deltaTime; }
+                else if(leftime >= chtime) chargeAmount -= 10 * Time.deltaTime;
+
+                if (Input.GetMouseButtonDown(1)) { mouseTap = false; leftime = 0; }
+            }
         }
-        
     }
 }
