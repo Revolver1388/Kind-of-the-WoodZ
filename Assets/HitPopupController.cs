@@ -7,12 +7,16 @@ public class HitPopupController : MonoBehaviour
 {
     [SerializeField] TextMeshProUGUI hitAmountText;
     [SerializeField] GameObject hitpopup;
-
+    [SerializeField] Vector3 _offset;
     private void Start()
     {
         hitpopup.SetActive(false);
+        this.transform.parent = null;
     }
-
+    private void Update()
+    {
+        transform.position = GameManager.Instance.GetPlayerTransform().position + _offset;
+    }
     public void SetHitAmount(int hitAmount/*,Transform objectTransform*/)
     {
         hitAmountText.text = hitAmount.ToString();
