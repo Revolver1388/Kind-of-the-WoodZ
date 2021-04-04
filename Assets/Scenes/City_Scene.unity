@@ -1427,6 +1427,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnZone
       objectReference: {fileID: 0}
+    - target: {fileID: 4092567212918081244, guid: 43085c5d395dcd042af106ed5507cde7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4092567213071202901, guid: 43085c5d395dcd042af106ed5507cde7,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -1609,6 +1614,12 @@ PrefabInstance:
       propertyPath: enemies.Array.data[1]
       value: 
       objectReference: {fileID: 4252383353356931044, guid: b3514c1c3a360d841b1c035af059acf0,
+        type: 3}
+    - target: {fileID: 4092567212918081242, guid: 43085c5d395dcd042af106ed5507cde7,
+        type: 3}
+      propertyPath: boss
+      value: 
+      objectReference: {fileID: 7114562892259631206, guid: 98592e5eafdc6e94b915265e3956ed3d,
         type: 3}
     - target: {fileID: 4092567212918081243, guid: 43085c5d395dcd042af106ed5507cde7,
         type: 3}
@@ -2374,6 +2385,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnZone (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 4092567212918081244, guid: 43085c5d395dcd042af106ed5507cde7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4092567213071202901, guid: 43085c5d395dcd042af106ed5507cde7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2763,6 +2779,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: SpawnZone (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 4092567212918081244, guid: 43085c5d395dcd042af106ed5507cde7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4092567213071202901, guid: 43085c5d395dcd042af106ed5507cde7,
         type: 3}
       propertyPath: m_LocalPosition.y
@@ -2944,6 +2965,11 @@ PrefabInstance:
       propertyPath: startingEnemies
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: 4092567212918081242, guid: 43085c5d395dcd042af106ed5507cde7,
+        type: 3}
+      propertyPath: spawnRate
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 4092567212918081243, guid: 43085c5d395dcd042af106ed5507cde7,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3003,6 +3029,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SpawnZone (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 4092567212918081244, guid: 43085c5d395dcd042af106ed5507cde7,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4092567213071202901, guid: 43085c5d395dcd042af106ed5507cde7,
         type: 3}
