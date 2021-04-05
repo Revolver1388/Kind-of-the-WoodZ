@@ -118,6 +118,11 @@ public class SpawnZone : MonoBehaviour
                     e.transform.position = spawnPoints[Random.Range(0, spawnPoints.Length)].transform.position;
                     e.GetComponentInChildren<SpriteRenderer>().sortingLayerName = "WalkArea";
                     enemiesAlive.Add(e);
+                    //unlock camera
+                    _cam.GetComponent<PlayerCamera>().togglePause();
+                    _cam.GetComponent<PlayerCamera>()._holdPos = null;
+                    leftBlocker.enabled = false;
+                    rightBlocker.enabled = false;
                     bossSpawn = true;
                 }
                 yield return new WaitForSeconds(1.0f);
