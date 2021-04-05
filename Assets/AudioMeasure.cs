@@ -80,20 +80,22 @@ public class AudioMeasure : MonoBehaviour
         promptText.gameObject.SetActive(false);
 
 #if !UNITY_WEBGL
+        if (!isNoSoundMode)
+        {
+            micAudioSource = GetComponent<AudioSource>();
 
-        micAudioSource = GetComponent<AudioSource>();
+            micAudioSource.clip = Microphone.Start(null, true, 1000, 44100);
 
-        micAudioSource.clip = Microphone.Start(null, true, 1000, 44100);
+            micAudioSource.loop = true;
+            micAudioSource.mute = false;
+            micAudioSource.volume = 1;
+            while (!(Microphone.GetPosition(null) > 0)) { }
+            micAudioSource.Play();
 
-        micAudioSource.loop = true;
-        micAudioSource.mute = false;
-        micAudioSource.volume = 1;
-        while (!(Microphone.GetPosition(null) > 0)) { }
-        micAudioSource.Play();
-
-        _samples = new float[QSamples];
-        _spectrum = new float[QSamples];
-        _fSample = AudioSettings.outputSampleRate;
+            _samples = new float[QSamples];
+            _spectrum = new float[QSamples];
+            _fSample = AudioSettings.outputSampleRate;
+        }
 #endif
 
     }

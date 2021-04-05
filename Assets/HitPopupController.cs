@@ -16,6 +16,10 @@ public class HitPopupController : MonoBehaviour
     private void Update()
     {
         transform.position = GameManager.Instance.GetPlayerTransform().position + _offset;
+        if(transform.rotation.y != 0)
+        {
+            transform.rotation = new Quaternion(0, 0, 0, 0);
+        }
     }
     public void SetHitAmount(int hitAmount/*,Transform objectTransform*/)
     {
