@@ -21,6 +21,10 @@ public class AudioMeasure : MonoBehaviour
     private float[] _spectrum;
     private float _fSample;
 
+    bool mouseTap = false, startTap = false;
+    private readonly float chtime = 0.1f;
+    float leftime;
+
     private AudioSource micAudioSource;
 
     public Image chargeMeterFillBarImage;
@@ -60,12 +64,7 @@ public class AudioMeasure : MonoBehaviour
         }
 #endif
 
-#if UNITY_WEBGL && !UNITY_EDITOR
-        void Update()
-        {
-            Microphone.Update();
-        }
-#endif
+
 
     void Start()
     {
@@ -180,6 +179,11 @@ public class AudioMeasure : MonoBehaviour
 
     private void Update()
     {
+#if UNITY_WEBGL && !UNITY_EDITOR
+        Microphone.Update();
+
+#endif
+
         if (isNoSoundMode)
         {
 
@@ -219,8 +223,6 @@ public class AudioMeasure : MonoBehaviour
     }
     void FixedUpdate()
     {
-        
-
         if (chargeAmount < 0) chargeAmount = 0;
         
         if (!isCharging)
@@ -283,6 +285,11 @@ public class AudioMeasure : MonoBehaviour
 
     void AnalyzeSound()
     {
+#if UNITY_WEBGL && !UNITY_EDITOR
+            float[] volumes = Microphone.volumes;
+            RmsValue = volumes[0];
+#endif
+#if !UNITY_WEBGL || (UNITY_WEBGL && UNITY_EDITOR)
         if (!isNoSoundMode)
         {
             GetComponent<AudioSource>().GetOutputData(_samples, 0); // fill array with samples
@@ -316,17 +323,17 @@ public class AudioMeasure : MonoBehaviour
             }
             PitchValue = freqN * (_fSample / 2) / QSamples; // convert index to frequency
         }
-        
-        
+
+
+#endif
+
         //else
         //{
         //    RmsValue = 0.01f;
         //}
-        
+
     }
-    bool mouseTap = false, startTap = false;
-    private readonly float chtime = 0.1f;
-    float leftime;
+ 
     void NoMicCharge()
     {
         if (!startTap)
