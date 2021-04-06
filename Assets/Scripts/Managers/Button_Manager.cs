@@ -48,6 +48,7 @@ public class Button_Manager : MonoBehaviour {
         AudioManager.Instance.CheckMusicTrack();
     }
 
+
     public void ContinueGame(){
         audioSource.PlayOneShot(buttonPressedAudio);
 
