@@ -27,7 +27,7 @@ public class ShadowCurdle : EnemyBaseClass
 
     private bool hasFired = false;
     private bool hasLaid = false;
-    private Vector2 retreatTarget;
+    public Vector2 retreatTarget;
 
     public override void Awake()
     {
@@ -141,8 +141,8 @@ public class ShadowCurdle : EnemyBaseClass
         if (Mathf.Abs(_parent.transform.position.x - Camera.main.transform.position.x) > 15)
         {
             retreatTarget = new Vector2(Camera.main.transform.position.x + 13, _parent.transform.position.y);
+            curdleState = CurdleStates.retreat;
         }        
-        curdleState = CurdleStates.retreat;
 
         //RaycastHit2D hit;
         //hit = Physics2D.BoxCast(new Vector2(transform.position.x, transform.position.y + 0.5f), new Vector2(3, 1), 0, -transform.right, 3);   //(new Vector2(transform.position.x, transform.position.y + 0.5f), transform.right, 3);

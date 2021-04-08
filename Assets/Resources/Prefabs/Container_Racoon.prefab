@@ -92,7 +92,7 @@ GameObject:
   - component: {fileID: 4252383354091592573}
   - component: {fileID: 143742570395563009}
   - component: {fileID: 143742570395563015}
-  - component: {fileID: 5274990893560782605}
+  - component: {fileID: 761330829822690379}
   m_Layer: 0
   m_Name: Atlas_Racoon_1
   m_TagString: Untagged
@@ -232,7 +232,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.7374344, y: 3.236467}
   m_EdgeRadius: 0
---- !u!114 &5274990893560782605
+--- !u!114 &761330829822690379
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -241,13 +241,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 4252383354091592563}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e15b384b10e89ce4387b3fcfbfdd789c, type: 3}
+  m_Script: {fileID: 11500000, guid: 9e78e56d9ad844743926463b6f6af555, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Health: 50
-  movementSpeed: 2.8
+  Health: 60
+  movementSpeed: 3.5
   attackDamage: 1
-  attackSpeed: 1
+  attackSpeed: 0
   _attackBox: {fileID: 0}
   _hitBox: {fileID: 0}
   _player: {fileID: 0}
