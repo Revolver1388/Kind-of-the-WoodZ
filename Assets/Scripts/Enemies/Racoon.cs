@@ -40,6 +40,8 @@ public class Racoon : EnemyBaseClass
             _parent.transform.right = new Vector2(1, 0);
             currentlyFacing = FacingDir.right;
         }
+        Random.InitState(System.DateTime.Now.Millisecond);
+        NewPosition();
     }
 
     public override void LateUpdate()
@@ -97,19 +99,19 @@ public class Racoon : EnemyBaseClass
         int rando = Random.Range(0, 3);
         if(rando == 0)
         {
-            positionTarget = new Vector2(_player.transform.position.x + 5, _player.transform.position.y + 2);
+            positionTarget = new Vector2(_player.transform.position.x + 8, _player.transform.position.y + 2);
         }
         else if (rando == 1)
         {
-            positionTarget = new Vector2(_player.transform.position.x + 5, _player.transform.position.y - 2);
+            positionTarget = new Vector2(_player.transform.position.x + 8, _player.transform.position.y - 2);
         }
         else if (rando == 2)
         {
-            positionTarget = new Vector2(_player.transform.position.x - 5, _player.transform.position.y - 2);
+            positionTarget = new Vector2(_player.transform.position.x - 8, _player.transform.position.y - 2);
         }
         else if (rando == 3)
         {
-            positionTarget = new Vector2(_player.transform.position.x - 5, _player.transform.position.y + 2);
+            positionTarget = new Vector2(_player.transform.position.x - 8, _player.transform.position.y + 2);
         }
         racoonState = RacoonStates.postion;
     }
@@ -162,14 +164,13 @@ public class Racoon : EnemyBaseClass
 
     private void Approach() //approaches player from behind then will attack when close enough
     {
-        if(_parent.transform.position.x < _player.transform.position.y)
+        if(_parent.transform.position.x < _player.transform.position.x)
         {
-            approachTarget = new Vector2(_player.transform.position.x - 1f, _player.transform.position.y);
+            approachTarget = new Vector2(_player.transform.position.x - 2.2f, _player.transform.position.y);
         }
         else
         {
-            approachTarget = new Vector2(_player.transform.position.x - 1f, _player.transform.position.y);
-
+            approachTarget = new Vector2(_player.transform.position.x + 2.2f, _player.transform.position.y);
         }
         _parent.transform.position = Vector2.MoveTowards(_parent.transform.position, approachTarget, movementSpeed * Time.fixedDeltaTime);
 
@@ -212,20 +213,20 @@ public class Racoon : EnemyBaseClass
     IEnumerator Hit()
     {
         yield return new WaitForSeconds(0.6f);
-        racoonState = RacoonStates.postion;
+        NewPosition();
     }
 
     IEnumerator AttackWait()
     {
         yield return new WaitForSeconds(1.4f);
-        racoonState = RacoonStates.postion;
+        NewPosition();
     }
 
     IEnumerator DodgeWait()
     {
         yield return new WaitForSeconds(0.3f);
         _hitBox.enabled = true;
-        racoonState = RacoonStates.postion;
+        NewPosition();
     }
 
 
